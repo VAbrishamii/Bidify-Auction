@@ -15,16 +15,16 @@ const navigate = useNavigate();
     const handleSubmit = async (e) => {
         e.preventDefault();
         const credentials = { email, password };
-        console.log('object credentials', credentials);
+        console.log('credentials', credentials);
         try {
-            const data = await loginUser({ credentials });
-            console.log('data', data);
-            const accesstoken = data.accessToken;
-            console.log('accesstoken', accesstoken);
-            localStorage.setItem("token", accesstoken);
-            localStorage.setItem("loginuser", JSON.stringify(data));
-            console.log(data);
-            navigate("/profile");
+            const response = await loginUser( credentials );
+            console.log('data', response.data);
+            const { accessToken, ...userData } = response.data;
+            console.log('accesstoken', accessToken);
+            localStorage.setItem("token", accessToken);
+            localStorage.setItem("loginuser", JSON.stringify(userData));
+            console.log(userData);
+            navigate("/home");
         } catch (err) {
             setError(err.message);
         }
