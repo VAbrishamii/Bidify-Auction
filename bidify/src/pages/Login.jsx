@@ -1,22 +1,13 @@
 import React from 'react';
+import LoginForm from '../components/LoginForm';
 
 const Login = () => {
-  return (
-    <div>
-      <h2>Login</h2>
-      <form>
+    return (
         <div>
-          <label>Email:</label>
-          <input type="email" placeholder="Enter your email" required />
+            <h1>Login Page</h1>
+            <LoginForm />
         </div>
-        <div>
-          <label>Password:</label>
-          <input type="password" placeholder="Enter your password" required />
-        </div>
-        <button type="submit">Login</button>
-      </form>
-    </div>
-  );
+    );
 };
 
 export default Login;

@@ -1,19 +1,27 @@
 import React from "react";
-import { Link } from "react-router-dom";
-
+import { Link, useNavigate } from "react-router-dom";
 
 const Navbar = () => {
-    const toggleDarkMode = () => {
-        document.body.classList.toggle('dark-mode');
+  const navigate = useNavigate();
+  const isloggedIn = Boolean(localStorage.getItem("accesstoken"));
+  const handleUserIconClick = () => {
+    if (isloggedIn) {
+      navigate("/profile");
+    } else {
+      navigate("/register");
     }
-    return (
-      <nav className="px-4 py-3 flex items-center justify-between">
+  };
+  const toggleDarkMode = () => {
+    document.body.classList.toggle("dark-mode");
+  };
+
+  return (
+    <nav className="px-4 py-3 flex items-center justify-between">
       {/* Logo */}
       <div className="flex items-center space-x-2">
         <Link to="/">
           <img src="/bidify .png" alt="App Logo" className="w-50 h-20" />
         </Link>
-       
       </div>
 
       {/* Search Bar */}
@@ -32,16 +40,15 @@ const Navbar = () => {
         </Link>
         <button
           onClick={toggleDarkMode}
-          className="hover:text-blue-500 focus:outline-none"
-        >
+          className="hover:text-blue-500 focus:outline-none">
           <i className="fas fa-moon text-lg"></i>
         </button>
-        <Link to="/profile" className="hover:text-blue-500">
-          <i className="fas fa-user text-lg"></i>
-        </Link>
+        {/* User Icon */}
+        <button onClick={handleUserIconClick}>
+          <i className="fas fa-user"></i>
+        </button>
       </div>
     </nav>
-        
-    );
+  );
 };
 export default Navbar;
