@@ -20,7 +20,7 @@ const Home = () => {
       {listings.length > 0 ? (
         <div className="listings">
           {listings.map((listing) => (
-            <ListingCard key={listing.data} listing={listing} />
+            <ListingCard key={listing.id} listing={listing} />
           ))}
         </div>
       ) : (
