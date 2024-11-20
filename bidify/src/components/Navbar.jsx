@@ -1,35 +1,49 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 
+
+
 const Navbar = () => {
   const navigate = useNavigate();
   const isloggedIn = Boolean(localStorage.getItem("token"));
-  console.log('isloggedIn', isloggedIn);
+  console.log("isloggedIn", isloggedIn);
   const userData = JSON.parse(localStorage.getItem("loginuser")) || {};
-  console.log('userData', userData);
-  const avatar = userData?.avatar.url;
+  console.log("userData", userData);
+
+  const avatar = userData?.avatar?.url;
   const username = userData?.name;
 
-  const defaultAvatar = "https://images.unsplash.com/photo-1579547945413-497e1b99dac0?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&q=80&h=400&w=400"
+  const defaultAvatar =
+    "https://images.unsplash.com/photo-1579547945413-497e1b99dac0?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&q=80&h=400&w=400";
 
-  const handleUserIconClick = () => {
-    if (isloggedIn) {
-      navigate("/profile");
+  const [isDropdownOpen, setIsDropdownOpen] = React.useState(false);
+
+  const handleDropdownClick = () => {
+    if (userData) {
+      setIsDropdownOpen(!isDropdownOpen);
     } else {
       navigate("/register");
     }
   };
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("userData");
+    navigate("/login");
+  };
+
   const toggleDarkMode = () => {
     document.body.classList.toggle("dark-mode");
   };
 
-  const displayAvatar = avatar && avatar !==  defaultAvatar ? (
-  <img src={avatar} alt="User Avatar" className="w-8 h-8 rounded-full" />
-  ) : (
-    <span className="w-8 h-8 bg-gray-300 text-white rounded-full flex items-center justify-center">
-      {username ? username[0].toUpperCase() : "U"}
-    </span>
-  );
+  const displayAvatar =
+    avatar && avatar !== defaultAvatar ? (
+      <img src={avatar} alt="User Avatar" className="w-8 h-8 rounded-full" />
+    ) : (
+      <span className="w-8 h-8 bg-gray-300 text-white rounded-full flex items-center justify-center">
+        {username ? username[0].toUpperCase() : "U"}
+      </span>
+    );
 
   return (
     <nav className="px-4 py-3 flex items-center justify-between">
@@ -59,10 +73,47 @@ const Navbar = () => {
           className="hover:text-blue-500 focus:outline-none">
           <i className="fas fa-moon text-lg"></i>
         </button>
+
         {/* User Icon */}
-        <button onClick={handleUserIconClick}>
-        {isloggedIn ? displayAvatar : <i className="fas fa-user text-lg"></i>}
-        </button>
+        <div onClick={handleDropdownClick} className="relative">
+          {userData ? displayAvatar : <i className="fas fa-user text-lg"></i>}
+
+          {/* Dropdown Menu */}
+          {isDropdownOpen && userData && (
+            <div className="absolute right-0 mt-2 w-48 bg-white shadow-lg rounded-lg p-2">
+              <ul>
+                <li>
+                  <Link
+                    to="/profile"
+                    className="block px-4 py-2 text-gray-800 hover:bg-gray-200 rounded">
+                    Profile
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    to="/Edit"
+                    className="block px-4 py-2 text-gray-800 hover:bg-gray-200 rounded">
+                    Edit
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    to="/createlist"
+                    className="block px-4 py-2 text-gray-800 hover:bg-gray-200 rounded">
+                    Create Listing
+                  </Link>
+                </li>
+                <li>
+                  <button
+                    onClick={handleLogout}
+                    className="block w-full text-left px-4 py-2 text-gray-800 hover:bg-gray-200 rounded">
+                    Logout
+                  </button>
+                </li>
+              </ul>
+            </div>
+          )}
+        </div>
       </div>
     </nav>
   );

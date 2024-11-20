@@ -4,7 +4,10 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/RegisterPage";
 import Profile from "./pages/Profile";
+import Edit from "./pages/Edit";
 import Layout from "./components/Layout";
+import Createlist from "./pages/Createlist";
+
 
 function App() {
   return (
@@ -15,6 +18,8 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/Profile" element={<Profile />} />
+        <Route path="/Edit" element={<Edit />} />
+        <Route path="/createlist" element={<Createlist />} />
       </Routes>
       </Layout>
     </>
