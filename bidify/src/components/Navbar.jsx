@@ -3,7 +3,15 @@ import { Link, useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   const navigate = useNavigate();
-  const isloggedIn = Boolean(localStorage.getItem("accesstoken"));
+  const isloggedIn = Boolean(localStorage.getItem("token"));
+  console.log('isloggedIn', isloggedIn);
+  const userData = JSON.parse(localStorage.getItem("loginuser")) || {};
+  console.log('userData', userData);
+  const avatar = userData?.avatar.url;
+  const username = userData?.name;
+
+  const defaultAvatar = "https://images.unsplash.com/photo-1579547945413-497e1b99dac0?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&q=80&h=400&w=400"
+
   const handleUserIconClick = () => {
     if (isloggedIn) {
       navigate("/profile");
@@ -14,6 +22,14 @@ const Navbar = () => {
   const toggleDarkMode = () => {
     document.body.classList.toggle("dark-mode");
   };
+
+  const displayAvatar = avatar && avatar !==  defaultAvatar ? (
+  <img src={avatar} alt="User Avatar" className="w-8 h-8 rounded-full" />
+  ) : (
+    <span className="w-8 h-8 bg-gray-300 text-white rounded-full flex items-center justify-center">
+      {username ? username[0].toUpperCase() : "U"}
+    </span>
+  );
 
   return (
     <nav className="px-4 py-3 flex items-center justify-between">
@@ -45,7 +61,7 @@ const Navbar = () => {
         </button>
         {/* User Icon */}
         <button onClick={handleUserIconClick}>
-          <i className="fas fa-user"></i>
+        {isloggedIn ? displayAvatar : <i className="fas fa-user text-lg"></i>}
         </button>
       </div>
     </nav>
