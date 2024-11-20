@@ -26,7 +26,7 @@ const navigate = useNavigate();
 
             localStorage.setItem("loginuser", JSON.stringify(userData));
             console.log(userData);
-            navigate("/home");
+            navigate("/");
         } catch (err) {
             setError(err.message);
         }

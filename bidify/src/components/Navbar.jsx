@@ -1,26 +1,28 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-
-
 
 const Navbar = () => {
   const navigate = useNavigate();
-  const isloggedIn = Boolean(localStorage.getItem("token"));
-  console.log("isloggedIn", isloggedIn);
-  const userData = JSON.parse(localStorage.getItem("loginuser")) || {};
-  console.log("userData", userData);
+  const [isLoggedIn, setIsLoggedIn] = useState(false); 
+  const [userData, setUserData] = useState({}); 
 
-  const avatar = userData?.avatar?.url;
-  const username = userData?.name;
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    const user = JSON.parse(localStorage.getItem("loginuser"));
+
+    setIsLoggedIn(!!token); 
+    if (token && user) {
+      setUserData(user);
+    }
+  }, []);
 
   const defaultAvatar =
     "https://images.unsplash.com/photo-1579547945413-497e1b99dac0?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&q=80&h=400&w=400";
 
-  const [isDropdownOpen, setIsDropdownOpen] = React.useState(false);
-
+    const [isDropdownOpen, setIsDropdownOpen] = React.useState(false);
   const handleDropdownClick = () => {
-    if (userData) {
-      setIsDropdownOpen(!isDropdownOpen);
+    if (isLoggedIn) {
+      setIsDropdownOpen((prev) => !prev);
     } else {
       navigate("/register");
     }
@@ -28,22 +30,30 @@ const Navbar = () => {
 
   const handleLogout = () => {
     localStorage.removeItem("token");
-    localStorage.removeItem("userData");
-    navigate("/login");
+    localStorage.removeItem("loginuser");
+    setIsLoggedIn(false); 
+    setUserData({});
   };
 
   const toggleDarkMode = () => {
     document.body.classList.toggle("dark-mode");
   };
 
-  const displayAvatar =
-    avatar && avatar !== defaultAvatar ? (
-      <img src={avatar} alt="User Avatar" className="w-8 h-8 rounded-full" />
+  const displayAvatar = isLoggedIn ? (
+    userData?.avatar?.url && userData.avatar.url !== defaultAvatar ? (
+      <img
+        src={userData.avatar.url}
+        alt="User Avatar"
+        className="w-8 h-8 rounded-full"
+      />
     ) : (
       <span className="w-8 h-8 bg-gray-300 text-white rounded-full flex items-center justify-center">
-        {username ? username[0].toUpperCase() : "U"}
+        {userData?.name ? userData.name[0].toUpperCase() : "U"}
       </span>
-    );
+    )
+  ) : (
+    <i className="fas fa-user text-lg"></i> 
+  );
 
   return (
     <nav className="px-4 py-3 flex items-center justify-between">
@@ -70,43 +80,48 @@ const Navbar = () => {
         </Link>
         <button
           onClick={toggleDarkMode}
-          className="hover:text-blue-500 focus:outline-none">
+          className="hover:text-blue-500 focus:outline-none"
+        >
           <i className="fas fa-moon text-lg"></i>
         </button>
 
         {/* User Icon */}
         <div onClick={handleDropdownClick} className="relative">
-          {userData ? displayAvatar : <i className="fas fa-user text-lg"></i>}
+          {displayAvatar}
 
           {/* Dropdown Menu */}
-          {isDropdownOpen && userData && (
+          {isLoggedIn && isDropdownOpen && (
             <div className="absolute right-0 mt-2 w-48 bg-white shadow-lg rounded-lg p-2">
               <ul>
                 <li>
                   <Link
                     to="/profile"
-                    className="block px-4 py-2 text-gray-800 hover:bg-gray-200 rounded">
+                    className="block px-4 py-2 text-gray-800 hover:bg-gray-200 rounded"
+                  >
                     Profile
                   </Link>
                 </li>
                 <li>
                   <Link
-                    to="/Edit"
-                    className="block px-4 py-2 text-gray-800 hover:bg-gray-200 rounded">
+                    to="/edit"
+                    className="block px-4 py-2 text-gray-800 hover:bg-gray-200 rounded"
+                  >
                     Edit
                   </Link>
                 </li>
                 <li>
                   <Link
                     to="/createlist"
-                    className="block px-4 py-2 text-gray-800 hover:bg-gray-200 rounded">
+                    className="block px-4 py-2 text-gray-800 hover:bg-gray-200 rounded"
+                  >
                     Create Listing
                   </Link>
                 </li>
                 <li>
                   <button
                     onClick={handleLogout}
-                    className="block w-full text-left px-4 py-2 text-gray-800 hover:bg-gray-200 rounded">
+                    className="block w-full text-left px-4 py-2 text-gray-800 hover:bg-gray-200 rounded"
+                  >
                     Logout
                   </button>
                 </li>
@@ -118,4 +133,5 @@ const Navbar = () => {
     </nav>
   );
 };
+
 export default Navbar;
