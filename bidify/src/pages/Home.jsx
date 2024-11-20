@@ -1,4 +1,5 @@
-import {useEffect, useState} from 'react';
+
+import React, {useEffect, useState} from 'react';
 import { getAllListings } from '../service/all_listing';
 import ListingCard from '../components/ListingCard';
 
@@ -6,10 +7,17 @@ const Home = () => {
     const [listings, setListings] = useState([]);
     console.log('listings', listings);
     useEffect(() => {
+      console.log('useEffect');
       const loadListings = async () => {
-        const listingsData = await getAllListings();
-        console.log('listingsData', listingsData);  
-        setListings(listingsData);
+        console.log('inside loadListings');
+        try{  
+          const listingsData = await getAllListings();
+          console.log('listingsData', listingsData);  
+          setListings(listingsData);
+        }catch(error){
+          console.error("Error loading listings", error);
+        }
+      
       };
       loadListings();
     }, []);

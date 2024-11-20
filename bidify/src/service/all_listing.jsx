@@ -2,6 +2,7 @@ import { ALL_LISTING_ENDPOINT } from "../constants/apiLinks";
 
 export const getAllListings = async () => {
     try {
+        console.log('ALL_LISTING_ENDPOINT');
         const response = await fetch(`${ALL_LISTING_ENDPOINT}?_seller=true&_bids=true`);
         console.log('listing response', response);
         if (!response.ok) {
