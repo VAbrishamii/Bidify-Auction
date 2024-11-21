@@ -1,0 +1,40 @@
+.listings {
+    @apply grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6; /* Grid layout for the cards */
+    justify-items: center; /* Center the cards */
+  }
+.listing-card {
+    @apply border rounded-tl-lg rounded-br-lg shadow-md bg-white p-4 flex flex-col gap-4 max-w-md mx-auto;
+  }
+  
+  .listing-card img {
+    @apply rounded-t-lg object-cover w-full h-48;
+  }
+  
+  .content h1 {
+    @apply text-xl font-bold text-gray-800;
+  }
+  
+  .content p {
+    @apply text-gray-600;
+  }
+  
+  .seller {
+    @apply flex items-center gap-4;
+  }
+  
+  .seller img {
+    @apply w-12 h-12 rounded-full object-cover;
+  }
+  
+  .seller h2 {
+    @apply  text-gray-700;
+  }
+   
+  .bids h3 {
+    @apply  text-gray-700;
+  } 
+  
+  .end-time p {
+    @apply  text-gray-500;
+  }
+  

@@ -1,4 +1,6 @@
 import React, {useEffect, useState }from "react";
+import '../styles/card.css'; 
+
 
 const ListingCard = ({ listing }) => {
   const [remainingTime, setRemainingTime] = useState("");
@@ -42,6 +44,8 @@ const ListingCard = ({ listing }) => {
       <h1>{listing.title}</h1>
       <p>{listing.description}</p>
       <div className="seller">
+      
+        <img src={listing.seller.avatar.url} alt={listing.seller.avatar.alt} />
         <h2>Seller: {listing.seller.name}</h2>
       </div>
       <div className="bids">
