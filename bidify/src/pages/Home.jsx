@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { getAllListings } from "../service/all_listing";
 import ListingCard from "../components/ListingCard";
-import Slider from "react-slick";
+import Carousel from "../components/Carousel";
+import Pagination from "../components/pagination";
+
 
 const Home = () => {
   const [listings, setListings] = useState([]);
   console.log("listings", listings);
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 14;
 
   useEffect(() => {
     const loadListings = async () => {
@@ -21,64 +25,34 @@ const Home = () => {
     loadListings();
   }, []);
 
-  const lastFiveListings = listings.slice(-5);
-  console.log("latest 5 listings", lastFiveListings);
+  const indexOfLastListing = currentPage * itemsPerPage;
+  const indexOfFirstListing = indexOfLastListing - itemsPerPage;
+  const currentListings = listings.slice(indexOfFirstListing, indexOfLastListing);
 
-  const carouselSettings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    autopalay: true,
-    autoplaySpeed: 3000,
-  };
-
+  
   return (
     <div className="home-page">
       {/* Carousel */}
-      {lastFiveListings.length > 0 && (
-        <div className="carousel mx-auto my-4 overflow-visible">
-          <Slider {...carouselSettings}>
-            {lastFiveListings.map((listing, index) => {
-              console.log(`Rendering item ${index}`, listing.media[0].url);
-              return (
-                <div key={listing.id} className="p-4">
-                  <div className="carousel-item">
-                    {listing.media.length > 0 ? (
-                      <div className="relative w-full h-96 overflow-hidden aspect-w-16 aspect-h-9">
-                      <img
-                        src={listing.media[0].url}
-                        alt={
-                          listing.media[0].alt || `Image of ${listing.title}`
-                        }
-                        className="w-full h-full object-cover rounded-md"
-                      />
-                      </div>
-                    ) : (
-                      <p>No image available</p>
-                    )}
-                    <h2 className="text-center mt-2 text-lg font-semibold">
-                      {listing.title}
-                    </h2>
-                  </div>
-                </div>
-              );
-            })}
-          </Slider>
-        </div>
-      )}
+      <Carousel listings={listings} />
 
-      {/* Card*/}
-      {listings.length > 0 ? (
+      {/* Listings */}
+      {currentListings.length > 0 ? (
         <div className="listings">
-          {listings.map((listing) => (
+          {currentListings.map((listing) => (
             <ListingCard key={listing.id} listing={listing} />
           ))}
         </div>
       ) : (
         <p>No listings available.</p>
       )}
+
+      {/* Pagination */}
+      <Pagination
+        listings={listings}
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
+        itemsPerPage={itemsPerPage}
+      />
     </div>
   );
 };
