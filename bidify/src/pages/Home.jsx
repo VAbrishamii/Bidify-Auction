@@ -52,7 +52,7 @@ const Home = () => {
                         alt={
                           listing.media[0].alt || `Image of ${listing.title}`
                         }
-                        className="w-full max-h-full object-contain rounded-md"
+                        className="w-full h-full object-cover rounded-md"
                       />
                       </div>
                     ) : (
