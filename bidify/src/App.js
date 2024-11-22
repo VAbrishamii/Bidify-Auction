@@ -7,6 +7,7 @@ import Profile from "./pages/Profile";
 import Edit from "./pages/Edit";
 import Layout from "./components/Layout";
 import Createlist from "./pages/Createlist";
+import ListingDetails from "./pages/ListingDetails";
 
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
         <Route path="/Profile" element={<Profile />} />
         <Route path="/Edit" element={<Edit />} />
         <Route path="/createlist" element={<Createlist />} />
+        <Route path="/listing/:id>" element={ListingDetails} />
       </Routes>
       </Layout>
     </>

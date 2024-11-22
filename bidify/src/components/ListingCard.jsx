@@ -1,5 +1,7 @@
 import React, {useEffect, useState }from "react";
-import '../styles/card.css'; 
+import { Link } from "react-router-dom";
+import '../index.css'; 
+
 
 
 const ListingCard = ({ listing }) => {
@@ -41,18 +43,23 @@ const ListingCard = ({ listing }) => {
       {listing.media.length > 0 && (
         <img src={listing.media[0].url} alt={listing.media[0].alt} />
       )}
+      
       <h1>{listing.title}</h1>
       <p>{listing.description}</p>
-      <div className="seller">
-      
+
+      <Link to={`/listing/${listing.id}`}>View Details</Link>
+
+      <div className="seller"> 
         <img src={listing.seller.avatar.url} alt={listing.seller.avatar.alt} />
         <h2>Seller: {listing.seller.name}</h2>
       </div>
+
       <div className="bids">
         <h3>Bids: {listing._count.bids}</h3>
         </div>
+
         <div className="end-time">
-        <p>Auction remainig time {remainingTime}</p>
+        <p>Remainig time: {remainingTime}</p>
         </div>
 
     </div>

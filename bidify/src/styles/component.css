@@ -1,6 +1,6 @@
 .listings {
-    @apply grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6; /* Grid layout for the cards */
-    justify-items: center; /* Center the cards */
+    @apply grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6; 
+    
   }
 .listing-card {
     @apply border rounded-tl-lg rounded-br-lg shadow-md bg-white p-4 flex flex-col gap-4 max-w-md mx-auto;

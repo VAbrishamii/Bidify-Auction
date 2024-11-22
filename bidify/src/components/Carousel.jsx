@@ -13,7 +13,9 @@ const Carousel = ({ listings }) => {
     autoplaySpeed: 3000,
   };
 
-  const lastFiveListings = listings.slice(-5);
+  const lastFiveListings = Array.isArray(listings) ? listings.slice(-5) : [];
+
+
 
   return (
     <div className="carousel mx-auto my-4 overflow-visible">

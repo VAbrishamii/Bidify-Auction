@@ -1,33 +1,44 @@
 import React, { useEffect, useState } from "react";
-import { getAllListings } from "../service/all_listing";
 import ListingCard from "../components/ListingCard";
 import Carousel from "../components/Carousel";
 import Pagination from "../components/pagination";
+import AuctionAPI from "../service/AuctionAPI";
+
+const auctionAPI = new AuctionAPI('https://v2.api.noroff.dev/');
 
 
 const Home = () => {
   const [listings, setListings] = useState([]);
-  console.log("listings", listings);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 14;
 
   useEffect(() => {
     const loadListings = async () => {
-      console.log("inside loadListings");
       try {
-        const listingsData = await getAllListings();
+        const listingsData = await auctionAPI.getALLListings();
         console.log("listingsData", listingsData);
-        setListings(listingsData);
+
+        if (listingsData) {
+          setListings(listingsData.data);
+        } else {  
+          console.error("Error loading listings", listingsData);
+          setListings([]);
+        }
+      
       } catch (error) {
         console.error("Error loading listings", error);
+        setListings([]);
       }
     };
     loadListings();
   }, []);
 
+
   const indexOfLastListing = currentPage * itemsPerPage;
   const indexOfFirstListing = indexOfLastListing - itemsPerPage;
-  const currentListings = listings.slice(indexOfFirstListing, indexOfLastListing);
+  const currentListings = Array.isArray(listings) ? listings.slice(indexOfFirstListing, indexOfLastListing) : [];
+
+
 
   
   return (
