@@ -25,9 +25,13 @@ export default class AuctionAPI {
         return this.getAuctions(`auction/listings/${id}?_seller=true&_bids=true`);
     }  
     
-    bidOnListing(id,data) {
-        return this.getAuctions(`auction/listings/${id}/bids`,{
+    bidOnListing(id,data,token) {
+        return this.postAuction(`auction/listings/${id}/bids`,{
             method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${token}`,
+            },
             body: JSON.stringify(data),
         });
     }

@@ -8,6 +8,7 @@ const Navbar = () => {
 
   useEffect(() => {
     const token = localStorage.getItem("token");
+    console.log('token', token);
     const user = JSON.parse(localStorage.getItem("loginuser"));
 
     setIsLoggedIn(!!token); 

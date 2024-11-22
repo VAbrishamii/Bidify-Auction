@@ -9,6 +9,7 @@ const ListingDetails = () => {
   const { id } = useParams();
   const [listing, setListing] = useState(null);
   const [bidAmount, setBidAmount] = useState("");
+  const [token, setToken] = useState("");
 
   useEffect(() => {
     const loadDetailsListing = async () => {
@@ -30,19 +31,60 @@ const ListingDetails = () => {
     };
 
     loadDetailsListing();
+    
+    const token = localStorage.getItem("token");
+    setToken(token);
+    console.log('token in listing details', token);
   }, [id]);
 
   const handlePlaceBid = async () => {
-    if (bidAmount > 0) {
-      alert(`Place bid of $${bidAmount}`);
-      console.log("place bid", bidAmount);
-    } else {
-      alert("Please Enter a valid bid amount");
-      console.log("Invalid bid amount");
+  
+    if (!token) {
+      alert("You must be logged in to place a bid.");
+      return;
+    }
+  
+    if (bidAmount <= 0) {
+      alert("Please enter a valid bid amount.");
+      return;
+    }
+  
+    try {
+      const bidData = {
+        amount: parseFloat(bidAmount),
+      };
+      const response = await auctionAPI.bidOnListing(id, bidData, token);
+  
+      // Update the listing with the new bid data
+      if (response) {
+        alert(`Successfully placed a bid of $${bidAmount}`);
+        setListing((prev) => ({
+          ...prev,
+          bids: [...(prev.bids || []), { amount: bidData.amount }],
+        }));
+        setBidAmount(""); 
+      }
+    } catch (error) {
+      console.error("Error placing bid:", error);
+      alert("Failed to place a bid. Please try again.");
     }
   };
 
-  if (!listing) {return <div>Loading...</div>;}
+ 
+
+//   const handlePlaceBid = async () => {
+//     if (bidAmount > 0) {
+//       alert(`Place bid of $${bidAmount}`);
+//       console.log("place bid", bidAmount);
+//     } else {
+//       alert("Please Enter a valid bid amount");
+//       console.log("Invalid bid amount");
+//     }
+//   };
+
+  if (!listing) {
+    return <div>Loading...</div>;
+  }
 
   const topBidders = listing?.bids
     ? listing.bids.sort((a, b) => b.amount - a.amount).slice(0, 5)
@@ -50,12 +92,7 @@ const ListingDetails = () => {
 
   return (
     <div className="listing-details">
-       <Carousel listings={[listing]} isSingleListing={true}/>
-       {/* <Carousel 
-    listings={listing?.media ? [{ media: listing.media }] : []} 
-    isSingleListing={true} 
-/> */}
-
+      <Carousel listings={[listing]} isSingleListing={true} />
       <p>{listing.description}</p>
 
       {/* Bidding Section */}
@@ -70,6 +107,9 @@ const ListingDetails = () => {
         />
         <button onClick={handlePlaceBid}>Place Bid</button>
       </div>
+
+       {/* Display Error Message */}
+       {/* {error && <p className="error-message">{error}</p>} */}
 
       {/* Seller Information */}
       <div className="seller">
