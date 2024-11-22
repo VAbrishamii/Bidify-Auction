@@ -5,7 +5,7 @@ import Slider from "react-slick";
 const Carousel = ({ listings,isSingleListing = false }) => {
   const carouselSettings = {
     dots: true,
-    infinite: true,
+    infinite: false,
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
@@ -16,6 +16,9 @@ const Carousel = ({ listings,isSingleListing = false }) => {
   const images = isSingleListing
   ? listings[0]?.media || [] 
   : listings.slice(-5).flatMap((listing) => listing.media);
+  console.log('images for carousel', images);
+
+
 
   return (
     <div className="carousel mx-auto my-4 overflow-visible">

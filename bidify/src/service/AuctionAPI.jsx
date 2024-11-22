@@ -23,7 +23,14 @@ export default class AuctionAPI {
 
     getSingleListing(id) {
         return this.getAuctions(`auction/listings/${id}?_seller=true&_bids=true`);
-    }   
+    }  
+    
+    bidOnListing(id,data) {
+        return this.getAuctions(`auction/listings/${id}/bids`,{
+            method: 'POST',
+            body: JSON.stringify(data),
+        });
+    }
 
     createListing(data) {
         return this.postAuction('auction/listings',{
