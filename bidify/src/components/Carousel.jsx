@@ -2,7 +2,7 @@ import React from "react";
 import Slider from "react-slick";
 
 
-const Carousel = ({ listings }) => {
+const Carousel = ({ listings,isSingleListing = false }) => {
   const carouselSettings = {
     dots: true,
     infinite: true,
@@ -13,28 +13,27 @@ const Carousel = ({ listings }) => {
     autoplaySpeed: 3000,
   };
 
-  const lastFiveListings = Array.isArray(listings) ? listings.slice(-5) : [];
-
-
+  const images = isSingleListing
+  ? listings[0]?.media || [] 
+  : listings.slice(-5).flatMap((listing) => listing.media);
 
   return (
     <div className="carousel mx-auto my-4 overflow-visible">
       <Slider {...carouselSettings}>
-        {lastFiveListings.map((listing, index) => (
-          <div key={listing.id} className="p-4">
+        {images.map((mediaItem, index) => (
+          <div key={index} className="p-4">
             <div className="carousel-item">
-              {listing.media.length > 0 ? (
+              {mediaItem?.url ? (
                 <div className="relative w-full h-96 overflow-hidden aspect-w-16 aspect-h-9">
                   <img
-                    src={listing.media[0].url}
-                    alt={listing.media[0].alt || `Image of ${listing.title}`}
+                    src={mediaItem.url}
+                    alt={mediaItem.alt || "Image"}
                     className="w-full h-full object-contain rounded-md"
                   />
                 </div>
               ) : (
                 <p>No image available</p>
               )}
-              <h2 className="text-center mt-2 text-lg font-semibold">{listing.title}</h2>
             </div>
           </div>
         ))}
