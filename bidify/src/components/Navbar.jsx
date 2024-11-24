@@ -5,6 +5,7 @@ const Navbar = () => {
   const navigate = useNavigate();
   const [isLoggedIn, setIsLoggedIn] = useState(false); 
   const [userData, setUserData] = useState({}); 
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -20,7 +21,7 @@ const Navbar = () => {
   const defaultAvatar =
     "https://images.unsplash.com/photo-1579547945413-497e1b99dac0?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&q=80&h=400&w=400";
 
-    const [isDropdownOpen, setIsDropdownOpen] = React.useState(false);
+  
   const handleDropdownClick = () => {
     if (isLoggedIn) {
       setIsDropdownOpen((prev) => !prev);
@@ -34,6 +35,8 @@ const Navbar = () => {
     localStorage.removeItem("loginuser");
     setIsLoggedIn(false); 
     setUserData({});
+    setIsDropdownOpen(false);
+    navigate("/login");
   };
 
   const toggleDarkMode = () => {
@@ -55,6 +58,10 @@ const Navbar = () => {
   ) : (
     <i className="fas fa-user text-lg"></i> 
   );
+
+  const handleLinkClick = () => {
+    setIsDropdownOpen(false); 
+  };
 
   return (
     <nav className="px-4 py-3 flex items-center justify-between">
@@ -92,11 +99,12 @@ const Navbar = () => {
 
           {/* Dropdown Menu */}
           {isLoggedIn && isDropdownOpen && (
-            <div className="absolute right-0 mt-2 w-48 bg-white shadow-lg rounded-lg p-2">
+            <div className="absolute right-0 mt-2 w-48 bg-white shadow-lg rounded-lg p-2 z-50">
               <ul>
                 <li>
                   <Link
                     to="/profile"
+                    onClick={handleLinkClick}
                     className="block px-4 py-2 text-gray-800 hover:bg-gray-200 rounded"
                   >
                     Profile
@@ -105,6 +113,7 @@ const Navbar = () => {
                 <li>
                   <Link
                     to="/edit"
+                    onClick={handleLinkClick}
                     className="block px-4 py-2 text-gray-800 hover:bg-gray-200 rounded"
                   >
                     Edit
@@ -113,6 +122,7 @@ const Navbar = () => {
                 <li>
                   <Link
                     to="/createlist"
+                    onClick={handleLinkClick}
                     className="block px-4 py-2 text-gray-800 hover:bg-gray-200 rounded"
                   >
                     Create Listing

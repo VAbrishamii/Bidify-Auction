@@ -16,11 +16,11 @@ function App() {
       <Layout>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
+        <Route path="/Login" element={<Login />} />
+        <Route path="/Register" element={<Register />} />
         <Route path="/Profile" element={<Profile />} />
         <Route path="/Edit" element={<Edit />} />
-        <Route path="/createlist" element={<Createlist />} />
+        <Route path="/Createlist" element={<Createlist />} />
         <Route path="/listing/:id" element={<ListingDetails />} />
       </Routes>
       </Layout>
