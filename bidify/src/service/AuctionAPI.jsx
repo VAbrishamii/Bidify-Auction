@@ -1,9 +1,12 @@
+import { headers } from "../constants/headers";
+
 export default class AuctionAPI {
     constructor(baseURL) {
         this.baseURL = "https://v2.api.noroff.dev/";
     }
 
     async getAuctions(endpoint,Options) {
+
        try {
            const response = await fetch(`${this.baseURL}${endpoint}`,Options);
            if (!response.ok) {
@@ -17,7 +20,7 @@ export default class AuctionAPI {
        }
     }
 
-    async postAuction(endpoint,Options) {
+    async postAuction(endpoint,Options = {}) {
         console.log('POST Request:', `${this.baseURL}${endpoint}`, Options); 
         try {
             const response = await fetch(`${this.baseURL}${endpoint}`,Options);
@@ -33,14 +36,22 @@ export default class AuctionAPI {
     };
     }
 
+   
     getALLListings() {
-        return this.getAuctions(`auction/listings?_seller=true&_bids=true`);
+        return this.getAuctions(`auction/listings?_seller=true&_bids=true`, {
+            method: "GET",
+            headers: headers(),
+        });
     }
 
+   
     getSingleListing(id) {
-        return this.getAuctions(`auction/listings/${id}?_seller=true&_bids=true`);
-    }  
-    
+        return this.getAuctions(`auction/listings/${id}?_seller=true&_bids=true`, {
+            method: "GET",
+            headers: headers(),
+        });
+    }
+
     bidOnListing(id,data) {
         const token = localStorage.getItem('token');
         console.log('token in bidOnListing', token);   
@@ -50,10 +61,7 @@ export default class AuctionAPI {
         }
         return this.postAuction(`auction/listings/${id}/bids`,{
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                Authorization: `Bearer ${token}`,
-            },
+            headers: headers(),
             body: JSON.stringify(data),
         
         });
@@ -64,6 +72,7 @@ export default class AuctionAPI {
     createListing(data) {
         return this.postAuction('auction/listings',{
             method: 'POST',
+            headers: headers(),
             body: JSON.stringify(data),
         });
     }

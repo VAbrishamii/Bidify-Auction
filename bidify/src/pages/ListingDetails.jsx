@@ -2,13 +2,13 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import AuctionAPI from "../service/AuctionAPI";
 import Carousel from "../components/Carousel";
+import PlaceBid from "../components/PlaceBid"; // Import the new component
 
 const auctionAPI = new AuctionAPI("https://v2.api.noroff.dev/");
 
 const ListingDetails = () => {
   const { id } = useParams();
   const [listing, setListing] = useState(null);
-  const [bidAmount, setBidAmount] = useState("");
   const [token, setToken] = useState("");
 
   useEffect(() => {
@@ -31,60 +31,28 @@ const ListingDetails = () => {
     };
 
     loadDetailsListing();
-    
+
     const token = localStorage.getItem("token");
     setToken(token);
-    console.log('token in listing details', token);
+    console.log("Token in listing details:", token);
   }, [id]);
-
-  const handlePlaceBid = async () => {
-  
-    if (!token) {
-      alert("You must be logged in to place a bid.");
-      return;
-    }
-  
-    if (bidAmount <= 0) {
-      alert("Please enter a valid bid amount.");
-      return;
-    }
-  
-    try {
-      const bidData = {
-        amount: parseFloat(bidAmount),
-      };
-      const response = await auctionAPI.bidOnListing(id, bidData, token);
-  
-      // Update the listing with the new bid data
-      if (response) {
-        alert(`Successfully placed a bid of $${bidAmount}`);
-        setListing((prev) => ({
-          ...prev,
-          bids: [...(prev.bids || []), { amount: bidData.amount }],
-        }));
-        setBidAmount(""); 
-      }
-    } catch (error) {
-      console.error("Error placing bid:", error);
-      alert("Failed to place a bid. Please try again.");
-    }
-  };
-
- 
-
-//   const handlePlaceBid = async () => {
-//     if (bidAmount > 0) {
-//       alert(`Place bid of $${bidAmount}`);
-//       console.log("place bid", bidAmount);
-//     } else {
-//       alert("Please Enter a valid bid amount");
-//       console.log("Invalid bid amount");
-//     }
-//   };
 
   if (!listing) {
     return <div>Loading...</div>;
   }
+
+  const currentDate = new Date();
+  const auctionEndDate = new Date(listing.endsAt);
+  const isAuctionEnded = currentDate > auctionEndDate;
+
+  const handleBidPlaced = (newBid) => {
+    // Update the listing with the new bid data
+    setListing((prev) => ({
+      ...prev,
+      bids: [...(prev.bids || []), { amount: newBid }],
+      _count: { ...prev._count, bids: (prev._count?.bids || 0) + 1 },
+    }));
+  };
 
   const topBidders = listing?.bids
     ? listing.bids.sort((a, b) => b.amount - a.amount).slice(0, 5)
@@ -98,18 +66,14 @@ const ListingDetails = () => {
       {/* Bidding Section */}
       <div className="bidding-section">
         <h3>Bids: {listing._count?.bids || 0}</h3>
-        <input
-          type="number"
-          value={bidAmount}
-          onChange={(e) => setBidAmount(e.target.value)}
-          placeholder="Enter your bid"
-          min="0"
+        <PlaceBid
+          auctionAPI={auctionAPI}
+          listingId={id}
+          token={token}
+          isAuctionEnded={isAuctionEnded}
+          onBidPlaced={handleBidPlaced}
         />
-        <button onClick={handlePlaceBid}>Place Bid</button>
       </div>
-
-       {/* Display Error Message */}
-       {/* {error && <p className="error-message">{error}</p>} */}
 
       {/* Seller Information */}
       <div className="seller">
@@ -140,7 +104,7 @@ const ListingDetails = () => {
 
       {/* End Time */}
       <div className="end-time">
-        <p>Auction ends at: {new Date(listing.endsAt).toLocaleString()}</p>
+        <p>Auction ends at: {auctionEndDate.toLocaleString()}</p>
       </div>
     </div>
   );
