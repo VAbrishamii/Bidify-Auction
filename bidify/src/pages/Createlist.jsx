@@ -7,7 +7,7 @@ const Createlist = () => {
     title: "",
     description: "",
     tags: "",
-    image: "",
+    image: [],
     endDateTime: new Date().toISOString().slice(0, 16),
   });
 
@@ -28,9 +28,9 @@ const Createlist = () => {
     }
   };
 
-  const handleImageUpload = (imageUrl) => { 
-    console.log('imageUrl', imageUrl);
-    setFormData((prev) => ({ ...prev, image: imageUrl }));
+  const handleImageUpload = (imageUrls) => { 
+    console.log('imageUrl', imageUrls);
+    setFormData((prev) => ({ ...prev, image: imageUrls }));
   };
 
   const handleSubmit = async (e) => {
@@ -61,7 +61,8 @@ const Createlist = () => {
         title: formData.title,
         description: formData.description,
         tags: formData.tags.split(',').map((tag) => tag.trim()), 
-        media: formData.image ? [{ url: formData.image, alt: "Auction Image" }] : [],
+        media: formData.image.map((url) => ({ url, alt: "Auction Image" })),
+        // media: formData.image ? [{ url: formData.image, alt: "Auction Image" }] : [],
         endsAt: endsAt,
     };
 
@@ -80,7 +81,8 @@ const Createlist = () => {
   }
 }
 
-return (   <div>
+return (   
+<div>
   <h1>Create Auction Listing</h1>
   <form onSubmit={handleSubmit}>
       <div>
@@ -118,7 +120,8 @@ return (   <div>
       </div>
 
       <div>
-          <label htmlFor="image">Image: <ImageUploader onImageUploaded={handleImageUpload} /></label>
+          <label htmlFor="image">Image: </label> 
+          <ImageUploader onImageUploaded={handleImageUpload} />
       </div>
 
       <div>
