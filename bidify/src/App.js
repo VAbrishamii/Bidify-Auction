@@ -8,6 +8,7 @@ import Edit from "./pages/Edit";
 import Layout from "./components/Layout";
 import Createlist from "./pages/Createlist";
 import ListingDetails from "./pages/ListingDetails";
+import AuthGuard from "./components/AuthGuard";
 
 
 function App() {
@@ -20,7 +21,7 @@ function App() {
         <Route path="/Register" element={<Register />} />
         <Route path="/Profile" element={<Profile />} />
         <Route path="/Edit" element={<Edit />} />
-        <Route path="/Createlist" element={<Createlist />} />
+        <Route path="/Createlist" element={<AuthGuard> <Createlist /> </AuthGuard>} />
         <Route path="/listing/:id" element={<ListingDetails />} />
       </Routes>
       </Layout>
