@@ -8,39 +8,69 @@ const Createlist = () => {
     description: "",
     tags: "",
     image: "",
-    endDateTime: "",
+    endDateTime: new Date().toISOString().slice(0, 16),
   });
 
   const [loading, setLoading] = React.useState(false);
-
   const auctionAPI = new AuctionAPI();
 
   
 
   const handleChange = (e) => {
     const { name, value } = e.target;
+    console.log('name ^ value', name, value);
+
+    if (name === 'endDateTime') {
+      const formattedDate = value.slice(0, 16);
+        setFormData((prev) => ({ ...prev, [name]: formattedDate}));
+    }else {
         setFormData((prev) => ({ ...prev, [name]: value }));
+    }
   };
 
   const handleImageUpload = (imageUrl) => { 
+    console.log('imageUrl', imageUrl);
     setFormData((prev) => ({ ...prev, image: imageUrl }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
+
     try {
+
+      console.log('FormData', formData);
+
+      const endDate = new Date(formData.endDateTime);
+  
+      if (isNaN(endDate.getTime())) { 
+        alert('Please provide a valid end date.');
+        setLoading(false);
+        return;
+      }
+
+      if (endDate < new Date()) {
+        alert('End date must be in the future.');
+        setLoading(false);
+        return;
+      }
+  
+      const endsAt = endDate.toISOString();
+
       const data = {
         title: formData.title,
         description: formData.description,
-        tags: formData.tags.split(',').map((tag) => tag.trim()), // Split and trim tags
-        media: formData.image, 
-        endDate: formData.endDate,
+        tags: formData.tags.split(',').map((tag) => tag.trim()), 
+        media: formData.image ? [{ url: formData.image, alt: "Auction Image" }] : [],
+        endsAt: endsAt,
     };
+
+    console.log('request data', data);
+
     const response = await auctionAPI.createListing(data);
-    alert('Listing created successfully');
+    // alert('Listing created successfully');
     console.log('createListing response', response);
-    window.location.href = '/';
+    // window.location.href = '/';
 
   }catch (error) {
     console.error('createListing error', error);
@@ -96,8 +126,8 @@ return (   <div>
           <input
               type="datetime-local"
               id="endDate"
-              name="endDate"
-              value={formData.endDate}
+              name="endDateTime"
+              value={formData.endDateTime}
               onChange={handleChange}
               required
           />

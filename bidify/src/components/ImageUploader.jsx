@@ -1,29 +1,50 @@
 import React, { useState } from 'react';
 
 const ImageUploader = ({ onImageUploaded }) => {
-    const [imageFile, setImageFile] = useState(null);
+    const [imageFiles, setImageFiles] = useState(null);
     const [uploading, setUploading] = useState(false);
     const [imageUrl, setImageUrl] = useState("");
 
-    const handleFileChange = (event) => {
-        const file = event.target.files[0];
-        setImageFile(file);
-    };
+    // const handleFileChange = (event) => {
+    //     const file = event.target.files[0];
+    //     setImageFile(file);
+    // };
 
+    // const handleFileChange = (event) => {
+    //     const file = event.target.files[0];
+    //     if (file) {
+    //         console.log("Selected file:", file); // Debugging line
+    //         setImageFile(file);
+    //     } else {
+    //         console.log("No file selected"); // Debugging line
+    //     }
+    // };
+    const handleFileChange = (event) => {
+        const files = Array.from(event.target.files); // Convert FileList to an array
+        setImageFiles(files);
+    };
+    
     const uploadImage = async () => {
-        if (!imageFile) {
+        if (imageFiles.length === 0) {
             alert("Please select an image file first!");
             return;
         }
 
         setUploading(true);
 
-        // Use your Cloudinary upload preset and API key
-        const formData = new FormData();
-        formData.append("file", imageFile);
-        formData.append("upload_preset", "default"); // Replace with your Cloudinary upload preset
+        const uploadedUrls = [];
+
+        for (let file of imageFiles) {
+            const formData = new FormData();
+            formData.append("file", file);
+            formData.append("upload_preset", "ml_default");
+
+        // const formData = new FormData();
+        // formData.append("file", imageFile);
+        // formData.append("upload_preset", "ml_default"); // Replace with your Cloudinary upload preset
 
         try {
+            console.log('uploading image');
             const response = await fetch(
                "https://api.cloudinary.com/v1_1/dihplbjah/image/upload",
                 {
@@ -33,19 +54,24 @@ const ImageUploader = ({ onImageUploaded }) => {
             );
 
             if (!response.ok) {
+                const errorDetails = await response.text(); // Capture response body for debugging
+                console.error("Upload failed. Response:", errorDetails);
                 throw new Error("Image upload failed!");
             }
 
             const data = await response.json();
-            setImageUrl(data.secure_url); // URL of the uploaded image
-            setUploading(false);
+            uploadedUrls.push(data.secure_url);
+            console.log('uploading image data', data);
 
-            // Pass the URL to the parent component or API
+            setImageUrl(uploadedUrls); 
+           
             if (onImageUploaded) {
-                onImageUploaded(data.secure_url);
+                console.log('url of image', data.secure_url);
+                onImageUploaded(uploadedUrls); // Pass the secure_url to the parent component
             }
         } catch (error) {
             console.error("Error uploading image:", error);
+        } finally {
             setUploading(false);
         }
     };
@@ -56,16 +82,22 @@ const ImageUploader = ({ onImageUploaded }) => {
             <button onClick={uploadImage} disabled={uploading}>
                 {uploading ? "Uploading..." : "Upload Image"}
             </button>
-            {imageUrl && (
+            {imageUrl.length> 0  && (
                 <div>
                     <p>Image Uploaded!</p>
-                    <a href={imageUrl} target="_blank" rel="noopener noreferrer">
-                        View Image
-                    </a>
+                    {imageUrl.map((url,index) => (
+                         <div key={index}>
+                         <a href={url} target="_blank" rel="noopener noreferrer">
+                             View Image {index + 1}
+                         </a>
+                     </div>
+                       ))}
+                   
                 </div>
             )}
         </div>
     );
+};
 };
 
 export default ImageUploader;
