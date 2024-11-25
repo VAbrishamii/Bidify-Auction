@@ -2,6 +2,7 @@ import React from "react";
 import AuctionAPI from "../service/AuctionAPI";
 import ImageUploader from "../components/ImageUploader";
 
+
 const Createlist = () => {
   const [formData, setFormData] = React.useState({
     title: "",
@@ -62,16 +63,15 @@ const Createlist = () => {
         description: formData.description,
         tags: formData.tags.split(',').map((tag) => tag.trim()), 
         media: formData.image.map((url) => ({ url, alt: "Auction Image" })),
-        // media: formData.image ? [{ url: formData.image, alt: "Auction Image" }] : [],
         endsAt: endsAt,
     };
 
     console.log('request data', data);
 
     const response = await auctionAPI.createListing(data);
-    // alert('Listing created successfully');
+    alert('Listing created successfully');
     console.log('createListing response', response);
-    // window.location.href = '/';
+    window.location.href = '/';
 
   }catch (error) {
     console.error('createListing error', error);

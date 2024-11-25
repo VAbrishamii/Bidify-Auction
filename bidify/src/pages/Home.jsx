@@ -33,6 +33,10 @@ const Home = () => {
     loadListings();
   }, []);
 
+  // const handleNewListing = (newListing) => {
+  //   setListings((prev) => [newListing, ...prev]);
+  // };
+
 
   const indexOfLastListing = currentPage * itemsPerPage;
   const indexOfFirstListing = indexOfLastListing - itemsPerPage;
@@ -43,6 +47,8 @@ const Home = () => {
   
   return (
     <div className="home-page">
+        {/* <Createlist onNewListing={handleNewListing} /> */}
+
       {/* Carousel */}
       <Carousel listings={listings} />
 

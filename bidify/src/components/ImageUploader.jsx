@@ -7,12 +7,10 @@ const ImageUploader = ({ onImageUploaded }) => {
 
     const handleFileChange = (event) => {
         const files = Array.from(event.target.files); 
-        // setImageFiles((prev) => [...prev, ...files]);
         setImageFiles(files);
     };
     
     const uploadImage = async () => {
-        // if (imageFiles.length === 0) {
             if (!imageFiles || imageFiles.length === 0) {
             alert("Please select an image file first!");
             return;
@@ -39,7 +37,7 @@ const ImageUploader = ({ onImageUploaded }) => {
             );
 
             if (!response.ok) {
-                const errorDetails = await response.text(); // Capture response body for debugging
+                const errorDetails = await response.text(); 
                 console.error("Upload failed. Response:", errorDetails);
                 throw new Error("Image upload failed!");
             }
@@ -52,13 +50,10 @@ const ImageUploader = ({ onImageUploaded }) => {
         }
     }
 
-            // setImageUrls(uploadedUrls); 
             setImageUrls((prev) => [...prev, ...uploadedUrls]);
            
             if (onImageUploaded) {
                 onImageUploaded([...imageUrls, ...uploadedUrls]);
-                // console.log('url of image', data.secure_url);
-                // onImageUploaded(uploadedUrls); // Pass the secure_url to the parent component
             }
 
             setUploading(false);
