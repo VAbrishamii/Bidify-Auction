@@ -9,6 +9,7 @@ import Layout from "./components/Layout";
 import Createlist from "./pages/Createlist";
 import ListingDetails from "./pages/ListingDetails";
 import AuthGuard from "./components/AuthGuard";
+import SearchResults from "./pages/SearchResult";
 
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
         <Route path="/Edit" element={<Edit />} />
         <Route path="/Createlist" element={<AuthGuard> <Createlist /> </AuthGuard>} />
         <Route path="/listing/:id" element={<ListingDetails />} />
+        <Route path="/Search" element={<SearchResults/>} />
       </Routes>
       </Layout>
     </>

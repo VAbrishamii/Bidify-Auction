@@ -2,42 +2,74 @@ import React, {useState,useEffect} from "react";
 import Slider from "react-slick";
 
 
-const Carousel = ({ listings,isSingleListing = false }) => {
+const Carousel = ({ listings,isSingleListing = false,showAllImages = false }) => {
 
   const [carouselImages, setCarouselImages] = useState([]);
 
+  // useEffect(() => {
+  //   if (listings.length > 0) {
+  //     const lastFiveListings = listings
+  //       .slice()
+  //       .sort((a, b) => new Date(b.created) - new Date(a.created))
+  //       .slice(0, 5);
+
+  //       const images = lastFiveListings.map((listing) => {
+  //         const firstMediaItem = listing?.media?.[0];
+  //         console.log('firstmediaitem', firstMediaItem);//debug
+  //         if (firstMediaItem) {
+  //           return {
+  //             url: firstMediaItem.url,
+  //             alt: firstMediaItem.alt || "Image",
+  //             title: listing.title,
+  //           };
+  //         }
+  //         return null; 
+  //       }).filter(Boolean);
+  
+
+  //     setCarouselImages(images);
+  //   } else {
+  //     setCarouselImages([]);
+  //   }
+  // }, [listings, isSingleListing]);
   useEffect(() => {
     if (listings.length > 0) {
-      const lastFiveListings = listings
-        .slice()
-        .sort((a, b) => new Date(b.created) - new Date(a.created))
-        .slice(0, 5);
+      if (isSingleListing && showAllImages) {
+        // Show all images for a single listing
+        const allMedia = listings.flatMap((listing) =>
+          listing?.media?.map((mediaItem) => ({
+            url: mediaItem.url,
+            alt: mediaItem.alt || "Image",
+            title: listing.title,
+          })) || []
+        );
+        setCarouselImages(allMedia);
+      } else {
+        // Show first image from the last 5 listings
+        const lastFiveListings = listings
+          .slice()
+          .sort((a, b) => new Date(b.created) - new Date(a.created))
+          .slice(0, 5);
   
-      const imagesWithTitles = lastFiveListings.flatMap((listing) =>
-        (listing?.media || []).map((mediaItem) => ({
-          url: mediaItem.url,
-          alt: mediaItem.alt || "Image",
-          title: listing.title || "Untitled",
-        }))
-      );
+        const images = lastFiveListings
+          .map((listing) => {
+            const firstMediaItem = listing?.media?.[0];
+            return firstMediaItem
+              ? {
+                  url: firstMediaItem.url,
+                  alt: firstMediaItem.alt || "Image",
+                  title: listing.title,
+                }
+              : null;
+          })
+          .filter(Boolean); // Remove null entries
   
-      setCarouselImages(imagesWithTitles);
+        setCarouselImages(images);
+      }
     } else {
       setCarouselImages([]);
     }
-  }, [listings, isSingleListing]);
-  
-
-  // useEffect(() => {
-  //   const images = isSingleListing
-  //     ? listings[0]?.media || [] // Single listing logic
-  //     : listings
-  //         .slice(-5) // Get the last 5 listings
-  //         .flatMap((listing) => listing?.media || []) // Flatten media arrays
-  //         .filter((mediaItem) => mediaItem?.url) // Filter valid media items
-  //         .slice(0, 5); // Limit to 5 items
-  //   setCarouselImages(images);
-  // }, [listings, isSingleListing]);
+  }, [listings, isSingleListing, showAllImages]);
 
   const carouselSettings = {
     dots: true,

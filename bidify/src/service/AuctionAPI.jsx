@@ -103,4 +103,10 @@ export default class AuctionAPI {
       body: JSON.stringify(data),
     });
   }
+  searchListings(query) {
+    return this.getAuctions(`auction/listings/search?q=${encodeURIComponent(query)}`, {
+      method: "GET",
+      // headers: headers(),
+    });
+  }
 }

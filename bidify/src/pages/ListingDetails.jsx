@@ -60,7 +60,7 @@ const ListingDetails = () => {
 
   return (
     <div className="listing-details">
-      <Carousel listings={[listing]} isSingleListing={true} />
+      <Carousel listings={[listing]} isSingleListing={true} showAllImages={true}/>
       <p>{listing.description}</p>
 
       {/* Bidding Section */}

@@ -1,11 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import Search from "./Search";
 
 const Navbar = () => {
   const navigate = useNavigate();
   const [isLoggedIn, setIsLoggedIn] = useState(false); 
   const [userData, setUserData] = useState({}); 
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const dropdownRef = useRef(null); 
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -16,6 +18,20 @@ const Navbar = () => {
     if (token && user) {
       setUserData(user);
     }
+  }, []);
+
+  useEffect(() => {
+    const handleOutsideClick = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setIsDropdownOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleOutsideClick);
+
+    return () => {
+      document.removeEventListener("mousedown", handleOutsideClick); // Cleanup
+    };
   }, []);
 
   const defaultAvatar =
@@ -36,7 +52,7 @@ const Navbar = () => {
     setIsLoggedIn(false); 
     setUserData({});
     setIsDropdownOpen(false);
-    navigate("/login");
+    // navigate("/login");
   };
 
   const toggleDarkMode = () => {
@@ -73,13 +89,14 @@ const Navbar = () => {
       </div>
 
       {/* Search Bar */}
-      <div className="relative">
+      <Search />
+      {/* <div className="relative">
         <input
           type="text"
           placeholder="Search listings..."
           className="px-4 py-2 rounded-md text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 border"
         />
-      </div>
+      </div> */}
 
       {/* Icons */}
       <div className="flex items-center space-x-4">
@@ -94,7 +111,7 @@ const Navbar = () => {
         </button>
 
         {/* User Icon */}
-        <div onClick={handleDropdownClick} className="relative">
+        <div onClick={handleDropdownClick} className="relative" ref={dropdownRef}>
           {displayAvatar}
 
           {/* Dropdown Menu */}
