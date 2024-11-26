@@ -1,6 +1,7 @@
 import React from "react";
 import AuctionAPI from "../service/AuctionAPI";
 import ImageUploader from "../components/ImageUploader";
+import { useNavigate } from "react-router-dom";
 
 
 const Createlist = () => {
@@ -21,12 +22,18 @@ const Createlist = () => {
     const { name, value } = e.target;
     console.log('name ^ value', name, value);
 
-    if (name === 'endDateTime') {
-      const formattedDate = value.slice(0, 16);
-        setFormData((prev) => ({ ...prev, [name]: formattedDate}));
-    }else {
-        setFormData((prev) => ({ ...prev, [name]: value }));
-    }
+    
+    setFormData((prev) => ({
+      ...prev,
+      [name]: name === "endDateTime" ? value.slice(0, 16) : value,
+    }));
+
+    // if (name === 'endDateTime') {
+    //   const formattedDate = value.slice(0, 16);
+    //     setFormData((prev) => ({ ...prev, [name]: formattedDate}));
+    // }else {
+    //     setFormData((prev) => ({ ...prev, [name]: value }));
+    // }
   };
 
   const handleImageUpload = (imageUrls) => { 
@@ -34,36 +41,46 @@ const Createlist = () => {
     setFormData((prev) => ({ ...prev, image: imageUrls }));
   };
 
+  const navigate = useNavigate();
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
 
     try {
-
       console.log('FormData', formData);
 
       const endDate = new Date(formData.endDateTime);
-  
-      if (isNaN(endDate.getTime())) { 
-        alert('Please provide a valid end date.');
-        setLoading(false);
-        return;
-      }
 
+      if (isNaN(endDate.getTime())) {
+        alert("Please provide a valid end date.");
+        return;
+      }
       if (endDate < new Date()) {
-        alert('End date must be in the future.');
-        setLoading(false);
+        alert("End date must be in the future.");
         return;
       }
   
-      const endsAt = endDate.toISOString();
+      // if (isNaN(endDate.getTime())) { 
+      //   alert('Please provide a valid end date.');
+      //   setLoading(false);
+      //   return;
+      // }
+
+      // if (endDate < new Date()) {
+      //   alert('End date must be in the future.');
+      //   setLoading(false);
+      //   return;
+      // }
+  
+      // const endsAt = endDate.toISOString();
 
       const data = {
         title: formData.title,
         description: formData.description,
         tags: formData.tags.split(',').map((tag) => tag.trim()), 
         media: formData.image.map((url) => ({ url, alt: "Auction Image" })),
-        endsAt: endsAt,
+        endsAt: endDate.toISOString(),
+        // endsAt: endsAt,
     };
 
     console.log('request data', data);
@@ -71,7 +88,8 @@ const Createlist = () => {
     const response = await auctionAPI.createListing(data);
     alert('Listing created successfully');
     console.log('createListing response', response);
-    window.location.href = '/';
+    // window.location.href = '/';
+    navigate('/', { state: { newListing: response.data } });
 
   }catch (error) {
     console.error('createListing error', error);

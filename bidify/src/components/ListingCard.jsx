@@ -1,8 +1,6 @@
-import React, {useEffect, useState }from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import '../index.css'; 
-
-
+import "../index.css";
 
 const ListingCard = ({ listing }) => {
   const [remainingTime, setRemainingTime] = useState("");
@@ -31,37 +29,42 @@ const ListingCard = ({ listing }) => {
       );
     };
 
-    calculateRemainingTime(); 
-    const timer = setInterval(calculateRemainingTime, 1000); 
+    calculateRemainingTime();
+    const timer = setInterval(calculateRemainingTime, 1000);
 
-    return () => clearInterval(timer); 
+    return () => clearInterval(timer);
   }, [listing.endsAt]);
-
 
   return (
     <div className="listing-card">
       {listing.media.length > 0 && (
         <img src={listing.media[0].url} alt={listing.media[0].alt} />
       )}
-      
+
       <h1>{listing.title}</h1>
       <p>{listing.description}</p>
 
       <Link to={`/listing/${listing.id}`}>View Details</Link>
 
-      <div className="seller"> 
-        <img src={listing.seller.avatar.url} alt={listing.seller.avatar.alt} />
-        <h2>Seller: {listing.seller.name}</h2>
+      <div className="seller">
+        {listing.seller?.avatar?.url ? (
+          <img
+            src={listing.seller.avatar.url}
+            alt={listing.seller.avatar.alt || "Seller Avatar"}
+          />
+        ) : (
+          <div className="placeholder-avatar">No Avatar</div>
+        )}
+        <h2>Seller: {listing.seller?.name || "Unknown"}</h2>
       </div>
 
       <div className="bids">
         <h3>Bids: {listing._count.bids}</h3>
-        </div>
+      </div>
 
-        <div className="end-time">
+      <div className="end-time">
         <p>Remainig time: {remainingTime}</p>
-        </div>
-
+      </div>
     </div>
   );
 };

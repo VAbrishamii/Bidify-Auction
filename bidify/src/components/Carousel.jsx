@@ -1,8 +1,20 @@
-import React from "react";
+import React, {useState,useEffect} from "react";
 import Slider from "react-slick";
 
 
 const Carousel = ({ listings,isSingleListing = false }) => {
+
+  const [carouselImages, setCarouselImages] = useState([]);
+
+  useEffect(() => {
+    // Update carousel images when listings change
+    const images = isSingleListing
+      ? listings[0]?.media || [] 
+      : listings.slice(-5).flatMap((listing) => listing.media).slice(0, 5);
+    
+    setCarouselImages(images);
+  }, [listings, isSingleListing]);
+
   const carouselSettings = {
     dots: true,
     infinite: false,
@@ -13,17 +25,20 @@ const Carousel = ({ listings,isSingleListing = false }) => {
     autoplaySpeed: 3000,
   };
 
-  const images = isSingleListing
-  ? listings[0]?.media || [] 
-  : listings.slice(-5).flatMap((listing) => listing.media);
-  console.log('images for carousel', images);
+  console.log("Images for carousel", carouselImages);
+
+  // const images = isSingleListing
+  // ? listings[0]?.media || [] 
+  // : listings.slice(-5).flatMap((listing) => listing.media);
+  // : listings.slice(-5).flatMap((listing) => listing.media).slice(0, 5);
+  // console.log('images for carousel', images);
 
 
 
   return (
     <div className="carousel mx-auto my-4 overflow-visible">
       <Slider {...carouselSettings}>
-        {images.map((mediaItem, index) => (
+        {carouselImages.map((mediaItem, index) => (
           <div key={index} className="p-4">
             <div className="carousel-item">
               {mediaItem?.url ? (
