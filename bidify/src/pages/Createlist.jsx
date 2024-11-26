@@ -28,12 +28,6 @@ const Createlist = () => {
       [name]: name === "endDateTime" ? value.slice(0, 16) : value,
     }));
 
-    // if (name === 'endDateTime') {
-    //   const formattedDate = value.slice(0, 16);
-    //     setFormData((prev) => ({ ...prev, [name]: formattedDate}));
-    // }else {
-    //     setFormData((prev) => ({ ...prev, [name]: value }));
-    // }
   };
 
   const handleImageUpload = (imageUrls) => { 
@@ -60,19 +54,6 @@ const Createlist = () => {
         return;
       }
   
-      // if (isNaN(endDate.getTime())) { 
-      //   alert('Please provide a valid end date.');
-      //   setLoading(false);
-      //   return;
-      // }
-
-      // if (endDate < new Date()) {
-      //   alert('End date must be in the future.');
-      //   setLoading(false);
-      //   return;
-      // }
-  
-      // const endsAt = endDate.toISOString();
 
       const data = {
         title: formData.title,
@@ -80,7 +61,6 @@ const Createlist = () => {
         tags: formData.tags.split(',').map((tag) => tag.trim()), 
         media: formData.image.map((url) => ({ url, alt: "Auction Image" })),
         endsAt: endDate.toISOString(),
-        // endsAt: endsAt,
     };
 
     console.log('request data', data);
@@ -88,7 +68,6 @@ const Createlist = () => {
     const response = await auctionAPI.createListing(data);
     alert('Listing created successfully');
     console.log('createListing response', response);
-    // window.location.href = '/';
     navigate('/', { state: { newListing: response.data } });
 
   }catch (error) {

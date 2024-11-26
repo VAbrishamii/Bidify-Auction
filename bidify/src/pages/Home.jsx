@@ -13,7 +13,6 @@ const Home = () => {
   const [meta, setMeta] = useState({}); 
   const [currentPage, setCurrentPage] = useState(1);
   const [loading, setLoading] = useState(true);
-  // const [refreshListings, setRefreshListings] = useState(false);
   const itemsPerPage = 14;
   const location = useLocation();
 
@@ -25,13 +24,8 @@ const Home = () => {
        setListings(listings);
         setMeta(meta);
         console.log("listingsData", listings);
-        // if (listings) {
-        //   setListings(listings);  
-        //   setMeta(meta); 
-        // } else {
-        //   console.error("Error loading listings", listings);
-        //   setListings([]);
-        // }
+        console.log('meta', meta);
+        console.log('meta.pageCount', meta.pageCount);
       } catch (error) {
         console.error("Error loading listings", error);
         setListings([]);
@@ -46,18 +40,9 @@ const Home = () => {
   useEffect(() => {
     if (location.state?.newListing) {
       setListings((prev) => [location.state.newListing, ...prev]);
-      // setCurrentPage((prev) => !prev);
     }
   }, [location.state]);
 
-
-  // const indexOfLastListing = currentPage * itemsPerPage;
-  // const indexOfFirstListing = indexOfLastListing - itemsPerPage;
-  // const currentListings = Array.isArray(listings) ? listings.slice(indexOfFirstListing, indexOfLastListing) : [];
-
-  const handlePageChange = (pageNumber) => {
-    setCurrentPage(pageNumber);
-  };
 
   
   return (
@@ -68,7 +53,7 @@ const Home = () => {
 
          {/* Listings Section */}
          {loading ? (
-        <p>Loading...</p> // Show loading state while data is being fetched
+        <p>Loading...</p> 
       ) : listings.length > 0 ? (
         <div className="listings">
           {listings.map((listing) => (
@@ -76,25 +61,17 @@ const Home = () => {
           ))}
         </div>
       ) : (
-        <p>No listings available.</p> // Handle case when no listings are available
+        <p>No listings available.</p> 
       )}
-
-      {/* Listings
-      {currentListings.length > 0 ? (
-        <div className="listings">
-          {currentListings.map((listing) => (
-            <ListingCard key={listing.id} listing={listing} />
-          ))}
-        </div>
-      ) : (
-        <p>No listings available.</p>
-      )} */}
 
       {/* Pagination */}
       <Pagination
+        listings={listings} 
         currentPage={currentPage}
-        totalPages={meta.pageCount || 1}  
-        onPageChange={handlePageChange}  
+        setCurrentPage={setCurrentPage}
+        itemsPerPage={itemsPerPage}
+        totalPages={meta.pageCount}
+        onPageChange={(newPage) => setCurrentPage(newPage)}
       />
     </div>
   );

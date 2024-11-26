@@ -7,7 +7,6 @@ const Carousel = ({ listings,isSingleListing = false }) => {
   const [carouselImages, setCarouselImages] = useState([]);
 
   useEffect(() => {
-    // Update carousel images when listings change
     const images = isSingleListing
       ? listings[0]?.media || [] 
       : listings.slice(-5).flatMap((listing) => listing.media).slice(0, 5);
