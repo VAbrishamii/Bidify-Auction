@@ -52,7 +52,6 @@ const Navbar = () => {
     setIsLoggedIn(false); 
     setUserData({});
     setIsDropdownOpen(false);
-    // navigate("/login");
   };
 
   const toggleDarkMode = () => {

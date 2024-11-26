@@ -106,7 +106,7 @@ export default class AuctionAPI {
   searchListings(query) {
     return this.getAuctions(`auction/listings/search?q=${encodeURIComponent(query)}`, {
       method: "GET",
-      // headers: headers(),
+      
     });
   }
 }
