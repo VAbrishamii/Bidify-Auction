@@ -9,6 +9,7 @@ import Createlist from "./pages/Createlist";
 import ListingDetails from "./pages/ListingDetails";
 import AuthGuard from "./components/AuthGuard";
 import SearchResults from "./pages/SearchResult";
+import BidsPage from "./pages/BidsPage";
 import EditPage from "./pages/Edit";
 
 
@@ -21,6 +22,7 @@ function App() {
         <Route path="/Login" element={<Login />} />
         <Route path="/Register" element={<Register />} />
         <Route path="/Profile/:username" element={<Profile />} />
+        <Route path="/profile/bids/:username" element={<BidsPage />} />
         <Route path="/Edit" element={<AuthGuard> <EditPage /></AuthGuard>} />
         <Route path="/Createlist" element={<AuthGuard> <Createlist /> </AuthGuard>} />
         <Route path="/listing/:id" element={<ListingDetails />} />

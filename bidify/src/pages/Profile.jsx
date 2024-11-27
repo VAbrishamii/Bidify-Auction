@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom"; // If you're using React Router for navigation
-import AuctionAPI from "../service/AuctionAPI"; // Import AuctionAPI
+import { useParams } from "react-router-dom";
+import { Link } from "react-router-dom"; 
+import AuctionAPI from "../service/AuctionAPI"; 
 import Listings from "../components/ProfileListing";
 
 const Profile = () => {
-  const { username } = useParams();  // Assume you get the username from the URL
+  const { username } = useParams(); 
   const [profileData, setProfileData] = useState(null);
   const [error, setError] = useState(null);
 
@@ -12,7 +13,7 @@ const Profile = () => {
     const fetchProfile = async () => {
       try {
         const data = await new AuctionAPI().singleProfile(username);
-        console.log('username data', data);
+        console.log("username data", data);
         setProfileData(data);
       } catch (err) {
         setError("Failed to fetch profile data");
@@ -48,12 +49,18 @@ const Profile = () => {
       <div className="profile-stats">
         <p>Listings: {profileData.data._count.listings}</p>
         <p>Wins: {profileData.data._count.wins}</p>
+
+        {/* Bids Section with clickable link */}
+        <p>
+          <Link to={`/profile/bids/${username}`}>Bids</Link>
+        </p>
       </div>
+
       <div className="profile-listings">
-      <Listings userName={username} />
+        <Listings userName={username} />
       </div>
     </div>
- );
+  );
 };
 
 export default Profile;

@@ -18,6 +18,7 @@ class AuctionAPI {
       searchListings: (query) => `auction/listings/search?q=${encodeURIComponent(query)}`,
       singleProfile: (name) => `auction/profiles/${name}`,
       allListingsByProfile: (name) => `auction/profiles/${name}/listings`,
+      allBidsByProfile: (name) => `auction/profiles/${name}/bids`,
     };
   }
 
@@ -138,6 +139,10 @@ class AuctionAPI {
   allListingsByProfile(name) {
     return this.get(`${this.endpoints.allListingsByProfile(name)}?_seller=true&_bids=true`);
   }
+  allBidsByProfile(name) {
+    return this.get(`${this.endpoints.allBidsByProfile(name)}?_listings=true`);
+  }
+
 }
 
 export default AuctionAPI;
