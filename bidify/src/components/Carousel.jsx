@@ -6,32 +6,6 @@ const Carousel = ({ listings,isSingleListing = false,showAllImages = false }) =>
 
   const [carouselImages, setCarouselImages] = useState([]);
 
-  // useEffect(() => {
-  //   if (listings.length > 0) {
-  //     const lastFiveListings = listings
-  //       .slice()
-  //       .sort((a, b) => new Date(b.created) - new Date(a.created))
-  //       .slice(0, 5);
-
-  //       const images = lastFiveListings.map((listing) => {
-  //         const firstMediaItem = listing?.media?.[0];
-  //         console.log('firstmediaitem', firstMediaItem);//debug
-  //         if (firstMediaItem) {
-  //           return {
-  //             url: firstMediaItem.url,
-  //             alt: firstMediaItem.alt || "Image",
-  //             title: listing.title,
-  //           };
-  //         }
-  //         return null; 
-  //       }).filter(Boolean);
-  
-
-  //     setCarouselImages(images);
-  //   } else {
-  //     setCarouselImages([]);
-  //   }
-  // }, [listings, isSingleListing]);
   useEffect(() => {
     if (listings.length > 0) {
       if (isSingleListing && showAllImages) {
@@ -45,7 +19,7 @@ const Carousel = ({ listings,isSingleListing = false,showAllImages = false }) =>
         );
         setCarouselImages(allMedia);
       } else {
-        // Show first image from the last 5 listings
+   
         const lastFiveListings = listings
           .slice()
           .sort((a, b) => new Date(b.created) - new Date(a.created))
@@ -62,7 +36,7 @@ const Carousel = ({ listings,isSingleListing = false,showAllImages = false }) =>
                 }
               : null;
           })
-          .filter(Boolean); // Remove null entries
+          .filter(Boolean); 
   
         setCarouselImages(images);
       }

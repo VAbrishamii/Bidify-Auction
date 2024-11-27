@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";  // useParams to access the dynamic URL parameter
-import AuctionAPI from "../service/AuctionAPI";  // Assuming you have an API service for bids
+import AuctionAPI from "../service/AuctionAPI";
+import { Link } from "react-router-dom";
 
 const BidsPage = () => {
   const { username } = useParams();  // Get the username from the URL
@@ -27,12 +28,11 @@ const BidsPage = () => {
   if (loading) {
     return <p>Loading...</p>;
   }
-
   return (
     <div className="bids-page">
       <h1>Bids made by {username}</h1>
       {bids.data.length > 0 ? (
-        <div>
+        <div className="listing-card">
           {bids.data.map((bid) => (
             <div key={bid.id}>
               <p>Bid Amount: {bid.amount}</p>
@@ -45,7 +45,12 @@ const BidsPage = () => {
             )}
               <p>{bid.listing.title}</p>
               <p>{bid.listing.description}</p>
-              <p>{bid.listing.endsAt}</p>
+              
+           {/* Add View Details Link */}
+           <Link to={`/listing/${bid.listing.id}`} className="view-details-link">
+              View Details
+            </Link>
+           
 
             </div>
           ))}
