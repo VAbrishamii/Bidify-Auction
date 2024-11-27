@@ -4,12 +4,12 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/RegisterPage";
 import Profile from "./pages/Profile";
-import Edit from "./pages/Edit";
 import Layout from "./components/Layout";
 import Createlist from "./pages/Createlist";
 import ListingDetails from "./pages/ListingDetails";
 import AuthGuard from "./components/AuthGuard";
 import SearchResults from "./pages/SearchResult";
+import EditPage from "./pages/Edit";
 
 
 function App() {
@@ -21,7 +21,7 @@ function App() {
         <Route path="/Login" element={<Login />} />
         <Route path="/Register" element={<Register />} />
         <Route path="/Profile" element={<Profile />} />
-        <Route path="/Edit" element={<Edit />} />
+        <Route path="/Edit" element={<AuthGuard> <EditPage /></AuthGuard>} />
         <Route path="/Createlist" element={<AuthGuard> <Createlist /> </AuthGuard>} />
         <Route path="/listing/:id" element={<ListingDetails />} />
         <Route path="/Search" element={<SearchResults/>} />

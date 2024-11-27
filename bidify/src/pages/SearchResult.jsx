@@ -5,14 +5,14 @@ import ListingCard from "../components/ListingCard";
 
 const SearchResults = () => {
   const location = useLocation();
-  const query = new URLSearchParams(location.search).get("query"); // Get the query from the URL
+  const query = new URLSearchParams(location.search).get("query"); 
   const [results, setResults] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchResults = async () => {
-      if (!query) return; // If there's no query, don't fetch
+      if (!query) return; 
       setIsLoading(true);
       const api = new AuctionAPI("https://v2.api.noroff.dev/");
       try {
@@ -25,7 +25,7 @@ const SearchResults = () => {
       }
     };
     fetchResults();
-  }, [query]); // Re-run the fetch when the query changes
+  }, [query]);
 
   return (
     <div>
@@ -38,14 +38,6 @@ const SearchResults = () => {
         ) : (
           results.map((listing) => (
             <ListingCard key={listing.id} listing={listing} />
-            // <div key={listing.id} className="p-4 border-b">
-            //   <h3 className="text-lg font-semibold">
-            //     <a href={`/listings/${listing.id}`} className="hover:text-blue-500">
-            //       {listing.title}
-            //     </a>
-            //   </h3>
-            //   <p className="text-sm text-gray-600">{listing.description}</p>
-            // </div>
           ))
         )}
       </div>

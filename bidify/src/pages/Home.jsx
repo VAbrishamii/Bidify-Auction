@@ -2,13 +2,16 @@ import React, { useEffect, useState } from "react";
 import ListingCard from "../components/ListingCard";
 import Carousel from "../components/Carousel";
 import Pagination from "../components/pagination";
-import AuctionAPI from "../service/AuctionAPI";
 import { useLocation } from "react-router-dom";
+import useAuctipnAPI from "../constants/instance";
 
-const auctionAPI = new AuctionAPI('https://v2.api.noroff.dev/');
+
+
 
 
 const Home = () => {
+  const auctionAPI = useAuctipnAPI();
+
   const [listings, setListings] = useState([]);
   const [meta, setMeta] = useState({}); 
   const [currentPage, setCurrentPage] = useState(1);
@@ -34,7 +37,7 @@ const Home = () => {
       }
     };
     loadListings();
-  }, [currentPage]);
+  }, [auctionAPI,currentPage]);
 
 
   useEffect(() => {

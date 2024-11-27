@@ -1,112 +1,127 @@
+import axios from "axios";
 import { headers } from "../constants/headers";
+import { ALL_LISTING_ENDPOINT, API_BASE } from "../constants/apiLinks";
 
-export default class AuctionAPI {
-  constructor(baseURL) {
-    this.baseURL = "https://v2.api.noroff.dev/";
+class AuctionAPI {
+  constructor(baseURL = API_BASE) {
+    this.api = axios.create({
+      baseURL,
+      headers: headers(),
+    });
+
+    // Predefined API endpoints
+    this.endpoints = {
+      allListings: ALL_LISTING_ENDPOINT,
+      singleListing: (id) => `auction/listings/${id}`,
+      bids: (id) => `auction/listings/${id}/bids`,
+      createListing: "auction/listings",
+      searchListings: (query) => `auction/listings/search?q=${encodeURIComponent(query)}`,
+    };
   }
 
-  async getAuctions(endpoint, Options) {
+  // Reusable GET method
+  async get(endpoint, params = {}) {
+    console.log(`[GET] Request to: ${endpoint}`, params);//debugging
     try {
-      const response = await fetch(`${this.baseURL}${endpoint}`, Options);
-      if (!response.ok) {
-        const errorText = await response.text();
-        console.log("api request failed", errorText);
-        try {
-          const errorData = JSON.parse(errorText);
-          throw new Error(
-            errorData.message || "An error occurred while fetching all auctions"
-          );
-        } catch (jsonError) {
-          throw new Error("An unexpected error occurred: " + errorText);
-        }
-      }
-
-      return await response.json();
+      const response = await this.api.get(endpoint, { params });
+      console.log(`[GET] Response from: ${endpoint}`, response.data);//debugging
+      return response.data;
     } catch (error) {
-      console.error("API Request Failed", error);
-      throw error;
+      this.handleError(error);
     }
   }
 
-  async postAuction(endpoint, Options = {}) {
-    console.log("POST Request:", `${this.baseURL}${endpoint}`, Options);
+  // Reusable POST method
+  async post(endpoint, data) {
     try {
-      const response = await fetch(`${this.baseURL}${endpoint}`, Options);
-
-      if (!response.ok) {
-        const errorData = await response.json();
-        console.log("API Request Failed", errorData);
-        throw new Error(
-          errorData.message || "An error occurred while fetching all auctions"
-        );
-      }
-      return await response.json();
+      const response = await this.api.post(endpoint, data);
+      return response.data;
     } catch (error) {
-      console.error("API Request Failed", error);
-      throw error;
+      this.handleError(error);
     }
   }
 
-  async getALLListings(
-    page = 1,
-    limit = 14,
-    sort = "created",
-    sortOrder = "desc"
-  ) {
+  // Reusable PUT method
+  async put(endpoint, data) {
     try {
-      const response = await fetch(
-        `${this.baseURL}auction/listings?sort=${sort}&sortOrder=${sortOrder}&page=${page}&limit=${limit}&_count=true&_seller=true&_bids=true`
-      );
+      const response = await this.api.put(endpoint, data);
+      return response.data;
+    } catch (error) {
+      this.handleError(error);
+    }
+  }
 
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.message || "Error fetching listings");
-      }
+  // Reusable DELETE method
+  async delete(endpoint) {
+    try {
+      const response = await this.api.delete(endpoint);
+      return response.data;
+    } catch (error) {
+      this.handleError(error);
+    }
+  }
 
-      const data = await response.json();
-      console.log("data in getALLListings", data);
+  // Handle errors
+  handleError(error) {
+    if (error.response && error.response.data) {
+      console.error("API Error Details:", {
+        status: error.response.status,
+        headers: error.response.headers,
+        data: error.response.data,
+      });
+      throw new Error(error.response.data.message || "An error occurred.");
+    } else {
+      console.error("Unexpected Error:", error.message);
+      throw new Error("An unexpected error occurred.");
+    }
+  }
+  
+
+  // Specific API Methods
+  getALLListings(page = 1, limit = 14, sort = "created", sortOrder = "desc") {
+    console.log("Fetching all listings with parameters:", { page, limit, sort, sortOrder });//debugging
+    return this.get(this.endpoints.allListings, {
+      page,
+      limit,
+      sort,
+      sortOrder,
+      _count: true,
+      _seller: true,
+      _bids: true,
+    }).then((data) => {
+      console.log('data in getALLListings', data);
       return {
-        listings: data.data, 
+        listings: data.data,
         meta: data.meta,
       };
-    } catch (error) {
+    }).catch((error) => {
+      console.log('error in getALLListings', error);
       console.error("Error fetching listings:", error);
       throw error;
-    }
+    });
+
   }
 
   getSingleListing(id) {
-    return this.getAuctions(`auction/listings/${id}?_seller=true&_bids=true`, {
-      method: "GET",
-      headers: headers(),
-    });
+    return this.get(this.endpoints.singleListing(id), { _seller: true, _bids: true });
   }
 
   bidOnListing(id, data) {
     const token = localStorage.getItem("token");
-    console.log("token in bidOnListing", token);
     if (!token) {
       alert("You must be logged in to place a bid");
       return;
     }
-    return this.postAuction(`auction/listings/${id}/bids`, {
-      method: "POST",
-      headers: headers(),
-      body: JSON.stringify(data),
-    });
+    return this.post(this.endpoints.bids(id), data);
   }
 
   createListing(data) {
-    return this.postAuction("auction/listings", {
-      method: "POST",
-      headers: headers(),
-      body: JSON.stringify(data),
-    });
+    return this.post(this.endpoints.createListing, data);
+
   }
   searchListings(query) {
-    return this.getAuctions(`auction/listings/search?q=${encodeURIComponent(query)}`, {
-      method: "GET",
-      
-    });
+    return this.get(this.endpoints.searchListings(query));
   }
 }
+
+export default AuctionAPI;
