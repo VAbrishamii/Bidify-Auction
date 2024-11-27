@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom"; // If you're using React Router for navigation
 import AuctionAPI from "../service/AuctionAPI"; // Import AuctionAPI
+import Listings from "../components/ProfileListing";
 
 const Profile = () => {
   const { username } = useParams();  // Assume you get the username from the URL
@@ -48,19 +49,11 @@ const Profile = () => {
         <p>Listings: {profileData.data._count.listings}</p>
         <p>Wins: {profileData.data._count.wins}</p>
       </div>
-
-      {/* Optionally, display the user's banner */}
-      {profileData.banner && (
-        <div className="profile-banner">
-          <img
-            src={profileData.banner.url}
-            alt={profileData.banner.alt}
-            className="profile-banner-image"
-          />
-        </div>
-      )}
+      <div className="profile-listings">
+      <Listings userName={username} />
+      </div>
     </div>
-  );
+ );
 };
 
 export default Profile;

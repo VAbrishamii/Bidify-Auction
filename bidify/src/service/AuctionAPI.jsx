@@ -17,6 +17,7 @@ class AuctionAPI {
       createListing: "auction/listings",
       searchListings: (query) => `auction/listings/search?q=${encodeURIComponent(query)}`,
       singleProfile: (name) => `auction/profiles/${name}`,
+      allListingsByProfile: (name) => `auction/profiles/${name}/listings`,
     };
   }
 
@@ -120,11 +121,22 @@ class AuctionAPI {
     return this.post(this.endpoints.createListing, data);
 
   }
+  deleteListing(id) {
+    return this.delete(this.endpoints.singleListing(id));
+  }
+
   searchListings(query) {
     return this.get(this.endpoints.searchListings(query));
   }
+  // searchListings(query) {
+  //   return this.get(`${this.endpoints.searchListings(query)}?seller=true&bids=true`);
+  // }
+  
   singleProfile(name) {
     return this.get(this.endpoints.singleProfile(name));
+  }
+  allListingsByProfile(name) {
+    return this.get(`${this.endpoints.allListingsByProfile(name)}?_seller=true&_bids=true`);
   }
 }
 
