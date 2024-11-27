@@ -16,6 +16,7 @@ class AuctionAPI {
       bids: (id) => `auction/listings/${id}/bids`,
       createListing: "auction/listings",
       searchListings: (query) => `auction/listings/search?q=${encodeURIComponent(query)}`,
+      singleProfile: (name) => `auction/profiles/${name}`,
     };
   }
 
@@ -78,7 +79,7 @@ class AuctionAPI {
   
 
   // Specific API Methods
-  getALLListings(page = 1, limit = 14, sort = "created", sortOrder = "desc") {
+  async getALLListings(page = 1, limit = 14, sort = "created", sortOrder = "desc") {
     console.log("Fetching all listings with parameters:", { page, limit, sort, sortOrder });//debugging
     return this.get(this.endpoints.allListings, {
       page,
@@ -121,6 +122,9 @@ class AuctionAPI {
   }
   searchListings(query) {
     return this.get(this.endpoints.searchListings(query));
+  }
+  singleProfile(name) {
+    return this.get(this.endpoints.singleProfile(name));
   }
 }
 

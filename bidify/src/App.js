@@ -20,7 +20,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/Login" element={<Login />} />
         <Route path="/Register" element={<Register />} />
-        <Route path="/Profile" element={<Profile />} />
+        <Route path="/Profile/:username" element={<Profile />} />
         <Route path="/Edit" element={<AuthGuard> <EditPage /></AuthGuard>} />
         <Route path="/Createlist" element={<AuthGuard> <Createlist /> </AuthGuard>} />
         <Route path="/listing/:id" element={<ListingDetails />} />

@@ -89,13 +89,6 @@ const Navbar = () => {
 
       {/* Search Bar */}
       <Search />
-      {/* <div className="relative">
-        <input
-          type="text"
-          placeholder="Search listings..."
-          className="px-4 py-2 rounded-md text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 border"
-        />
-      </div> */}
 
       {/* Icons */}
       <div className="flex items-center space-x-4">
@@ -119,7 +112,7 @@ const Navbar = () => {
               <ul>
                 <li>
                   <Link
-                    to="/profile"
+                  to={`/profile/${userData.name}`}
                     onClick={handleLinkClick}
                     className="block px-4 py-2 text-gray-800 hover:bg-gray-200 rounded"
                   >

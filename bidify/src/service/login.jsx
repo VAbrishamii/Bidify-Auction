@@ -1,5 +1,6 @@
 import { LOGIN_ENDPOINT } from "../constants/apiLinks";
 import axios from "axios";
+import { headers } from "../constants/headers";
 
 export const loginUser = async (credentials) => {
     try {
@@ -7,9 +8,7 @@ export const loginUser = async (credentials) => {
             LOGIN_ENDPOINT,
             { email: credentials.email, password: credentials.password }, 
             {
-                headers: {
-                    "Content-Type": "application/json",
-                },
+                headers: headers(),
             }
         );
         return response.data; 
