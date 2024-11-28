@@ -1,42 +1,29 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
-import EditComponent from "../components/EditProfile";
 
-const EditPage = () => {
-  const [userData, setUserData] = useState(null);
-  const userName = localStorage.getItem("userName"); // Assuming userName is stored in localStorage
+import React, { useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";  // Import useParams to get URL params
+import UpdateProfile from "../components/UpdateProfile";
+
+const Edit = () => {
+  const navigate = useNavigate();
+  const { username } = useParams(); // Get the username from the URL
 
   useEffect(() => {
-    const fetchUserData = async () => {
-      try {
-        const response = await axios.get(`/auction/profiles/${userName}`, {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
-        });
-        setUserData(response.data);
-      } catch (error) {
-        console.error("Error fetching user data:", error);
-      }
-    };
-
-    fetchUserData();
-  }, [userName]);
-
-  const handleProfileUpdate = (updatedData) => {
-    setUserData(updatedData);
-  };
+    // Check if username exists in URL (if not, redirect to login page)
+    if (!username) {
+      navigate("/login"); // Redirect to login page if no username is found
+    }
+  }, [navigate, username]); // Add `username` as a dependency to re-run the effect when it changes
 
   return (
     <div>
-      <h1>Edit Profile</h1>
-      {userData ? (
-        <EditComponent userData={userData} onProfileUpdate={handleProfileUpdate} />
-      ) : (
-        <p>Loading...</p>
-      )}
+      {/* <h1>Edit Profile</h1> */}
+      {/* Pass the username to UpdateProfile component to pre-fill or use the username */}
+      <UpdateProfile username={username} />
     </div>
   );
 };
 
-export default EditPage;
+export default Edit;
+
+
+

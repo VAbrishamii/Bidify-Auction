@@ -10,7 +10,8 @@ import ListingDetails from "./pages/ListingDetails";
 import AuthGuard from "./components/AuthGuard";
 import SearchResults from "./pages/SearchResult";
 import BidsPage from "./pages/BidsPage";
-import EditPage from "./pages/Edit";
+import Edit from "./pages/Edit";
+
 
 
 function App() {
@@ -23,7 +24,7 @@ function App() {
         <Route path="/Register" element={<Register />} />
         <Route path="/Profile/:username" element={<Profile />} />
         <Route path="/profile/bids/:username" element={<BidsPage />} />
-        <Route path="/Edit" element={<AuthGuard> <EditPage /></AuthGuard>} />
+        <Route path="/Edit/:username" element={<AuthGuard> <Edit /></AuthGuard>} />
         <Route path="/Createlist" element={<AuthGuard> <Createlist /> </AuthGuard>} />
         <Route path="/listing/:id" element={<ListingDetails />} />
         <Route path="/Search" element={<SearchResults/>} />
