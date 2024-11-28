@@ -21,6 +21,9 @@ class AuctionAPI {
       allListingsByProfile: (name) => `auction/profiles/${name}/listings`,
       allBidsByProfile: (name) => `auction/profiles/${name}/bids`,
       updateProfile: (name) => `auction/profiles/${name}`,
+      filterByTagAndActive: (tag, active = true) =>
+        `auction/listings?_tag=${encodeURIComponent(tag)}&_active=${active}`,
+
     };
   }
 
@@ -163,6 +166,9 @@ class AuctionAPI {
   }
   updateProfile(name, data) {
     return this.put(this.endpoints.updateProfile(name), data);
+  }
+  filterByTagAndActive(tag, active = true) {
+    return this.get(this.endpoints.filterByTagAndActive(tag, active));
   }
 }
 
