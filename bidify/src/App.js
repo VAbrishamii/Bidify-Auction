@@ -11,12 +11,14 @@ import AuthGuard from "./components/AuthGuard";
 import SearchResults from "./pages/SearchResult";
 import BidsPage from "./pages/BidsPage";
 import Edit from "./pages/Edit";
+import { AppProvider } from "./context/AppContext";
 
 
 
 function App() {
   return (
     <>
+    <AppProvider>
       <Layout>
       <Routes>
         <Route path="/" element={<Home />} />
@@ -30,6 +32,7 @@ function App() {
         <Route path="/Search" element={<SearchResults/>} />
       </Routes>
       </Layout>
+    </AppProvider>
     </>
   );
 }

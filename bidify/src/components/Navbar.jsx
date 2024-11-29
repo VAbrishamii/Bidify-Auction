@@ -1,8 +1,10 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { useAppContext } from "../context/AppContext";
 import Search from "./Search";
 
 const Navbar = () => {
+  const {setActiveTag, setCurrentPage} = useAppContext();
   const navigate = useNavigate();
   const [isLoggedIn, setIsLoggedIn] = useState(false); 
   const [userData, setUserData] = useState({}); 
@@ -78,6 +80,13 @@ const Navbar = () => {
     setIsDropdownOpen(false); 
   };
 
+  const handleHomeClick = () => {
+      setActiveTag(null); 
+      setCurrentPage(1);
+      navigate("/");  
+    
+  };
+
   return (
     <nav className="px-4 py-3 flex items-center justify-between">
       {/* Logo */}
@@ -92,7 +101,7 @@ const Navbar = () => {
 
       {/* Icons */}
       <div className="flex items-center space-x-4">
-        <Link to="/" className="hover:text-blue-500">
+        <Link to="/" onClick={handleHomeClick} className="hover:text-blue-500">
           <i className="fas fa-home text-lg"></i>
         </Link>
         <button
