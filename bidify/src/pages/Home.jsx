@@ -135,17 +135,18 @@ const Home = () => {
     loadListings();
   }, [auctionAPI, currentPage, activeTag]);
 
-    // Reset page and activeTag when location changes to Home page
+
     useEffect(() => {
       if (location.pathname === "/") {
-        setActiveTag(null); // Reset filter when on home page
+        setActiveTag(null); 
         setCurrentPage(1); 
       }
     }, [location.pathname, setActiveTag, setCurrentPage]);
 
+
   useEffect(() => {
     setCurrentPage(1);
-  }, [activeTag]);
+  }, [activeTag, setCurrentPage]);
 
   // Handle new listings from location state
   useEffect(() => {
