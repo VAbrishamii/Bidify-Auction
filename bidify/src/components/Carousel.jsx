@@ -19,26 +19,23 @@ const Carousel = ({ listings,isSingleListing = false,showAllImages = false }) =>
         );
         setCarouselImages(allMedia);
       } else {
-   
-        const lastFiveListings = listings
-          .slice()
-          .sort((a, b) => new Date(b.created) - new Date(a.created))
-          .slice(0, 5);
-  
-        const images = lastFiveListings
-          .map((listing) => {
-            const firstMediaItem = listing?.media?.[0];
-            return firstMediaItem
-              ? {
-                  url: firstMediaItem.url,
-                  alt: firstMediaItem.alt || "Image",
-                  title: listing.title,
-                }
-              : null;
-          })
-          .filter(Boolean); 
-  
-        setCarouselImages(images);
+
+        const validImages = [];
+        const maxImages = 5;
+
+        for (const listing of listings) {
+          if (validImages.length >= maxImages) break; // Stop when we have enough images
+          if (listing?.media && listing.media.length > 0) {
+            const firstMediaItem = listing.media[0];
+            validImages.push({
+              url: firstMediaItem.url,
+              alt: firstMediaItem.alt || "Image",
+              title: listing.title,
+            });
+          }
+        }
+
+        setCarouselImages(validImages);
       }
     } else {
       setCarouselImages([]);
