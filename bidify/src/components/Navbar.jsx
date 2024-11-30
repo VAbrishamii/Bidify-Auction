@@ -2,6 +2,8 @@ import React, { useState, useEffect, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAppContext } from "../context/AppContext";
 import Search from "./Search";
+import { MdHome, MdLightMode, MdDarkMode , MdPerson} from "react-icons/md";
+
 
 const Navbar = () => {
   const {setActiveTag, setCurrentPage} = useAppContext();
@@ -10,6 +12,7 @@ const Navbar = () => {
   const [userData, setUserData] = useState({}); 
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef(null); 
+  const [isDarkMode, setIsDarkMode] = useState(false);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -19,6 +22,12 @@ const Navbar = () => {
     setIsLoggedIn(!!token); 
     if (token && user) {
       setUserData(user);
+    }
+
+    const saveMode = localStorage.getItem("theme");
+    if (saveMode === "dark") {
+      setIsDarkMode(true);
+      document.body.classList.add("dark");
     }
   }, []);
 
@@ -56,8 +65,12 @@ const Navbar = () => {
     setIsDropdownOpen(false);
   };
 
-  const toggleDarkMode = () => {
-    document.body.classList.toggle("dark-mode");
+  const toggleTheme = () => {
+    setIsDarkMode((prev) => !prev);
+    document.body.classList.toggle("dark");
+
+    const newMode = isDarkMode ? "dark" : "light";
+    localStorage.setItem("theme", newMode);
   };
 
   const displayAvatar = isLoggedIn ? (
@@ -73,7 +86,8 @@ const Navbar = () => {
       </span>
     )
   ) : (
-    <i className="fas fa-user text-lg"></i> 
+    <MdPerson className="text-lg" />
+   
   );
 
   const handleLinkClick = () => {
@@ -102,13 +116,17 @@ const Navbar = () => {
       {/* Icons */}
       <div className="flex items-center space-x-4">
         <Link to="/" onClick={handleHomeClick} className="hover:text-blue-500">
-          <i className="fas fa-home text-lg"></i>
+        <MdHome className="text-lg" />
         </Link>
         <button
-          onClick={toggleDarkMode}
+          onClick={toggleTheme}
           className="hover:text-blue-500 focus:outline-none"
         >
-          <i className="fas fa-moon text-lg"></i>
+        {toggleTheme ? (
+            <MdLightMode className="text-lg" />
+          ) : (
+            <MdDarkMode className="text-lg" />
+          )}
         </button>
 
         {/* User Icon */}
