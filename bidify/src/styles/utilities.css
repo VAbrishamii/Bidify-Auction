@@ -1,8 +1,7 @@
-/* .logo{
-    @apply text-xl font-bold text-primary;
-} */
 .icon {
     @apply text-primary hover:text-primary-hover transition-colors duration-200 text-2xl;
   }
-  
+  .footer {
+    @apply bg-primary-primaryDark text-white p-6 dark:bg-white dark:text-primary;
+  }
 

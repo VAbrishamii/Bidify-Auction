@@ -1,0 +1,21 @@
+.filter-bar{
+    @apply flex justify-center items-center p-8 gap-4;
+}
+.filter-btn {
+    @apply w-32 h-32 rounded-full bg-cover bg-center border-2 relative  border-secondary-default cursor-pointer flex items-center justify-center hover:opacity-80;
+  }
+  .filter-btn::before{
+    @apply inset-0 absolute rounded-full z-0 bg-opacity-80;
+  }
+
+  .filter-btn.active {
+    @apply border-primary-default hover:border-secondary-default hover:opacity-80 cursor-pointer;
+  }
+  
+  .filter-text {
+    @apply text-lg m-2 font-bold text-primary text-center absolute;
+  }
+
+  .filter-item{
+    @apply items-center relative;
+  }

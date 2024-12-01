@@ -65,11 +65,19 @@ const Navbar = () => {
     setIsDropdownOpen(false);
   };
 
-  const toggleTheme = () => {
-    setIsDarkMode((prev) => !prev);
-    document.body.classList.toggle("dark");
+  // const toggleTheme = () => {
+  //   setIsDarkMode((prev) => !prev);
+  //   document.body.classList.toggle("dark");
 
-    const newMode = isDarkMode ? "dark" : "light";
+  //   const newMode = isDarkMode ? "dark" : "light";
+  //   localStorage.setItem("theme", newMode);
+    
+  // };
+  
+  const toggleTheme = () => {
+    const newMode = isDarkMode ? "light" : "dark";
+    setIsDarkMode(!isDarkMode);
+    document.body.classList.toggle("dark", newMode === "dark");
     localStorage.setItem("theme", newMode);
   };
 
@@ -102,7 +110,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="flex-styled justify-between dark:bg-transparent">
+    <nav className="flex-styled justify-between dark:bg-transparent px-6">
       {/* Logo */}
       <div className="flex-styled">
         <Link to="/">
