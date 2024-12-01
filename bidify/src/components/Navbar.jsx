@@ -86,7 +86,7 @@ const Navbar = () => {
       </span>
     )
   ) : (
-    <MdPerson className="text-lg" />
+    <MdPerson className="icon" />
    
   );
 
@@ -102,11 +102,11 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="px-4 py-3 flex items-center justify-between">
+    <nav className="flex-styled justify-between dark:bg-transparent">
       {/* Logo */}
-      <div className="flex items-center space-x-2">
+      <div className="flex-styled">
         <Link to="/">
-          <img src="/bidify .png" alt="App Logo" className="w-50 h-20" />
+          <img src="/bidify ..png" alt="App Logo" className="w-200 h-20" />
         </Link>
       </div>
 
@@ -114,18 +114,18 @@ const Navbar = () => {
       <Search />
 
       {/* Icons */}
-      <div className="flex items-center space-x-4">
+      <div className="flex-styled">
         <Link to="/" onClick={handleHomeClick} className="hover:text-blue-500">
-        <MdHome className="text-lg" />
+        <MdHome className="icon" />
         </Link>
         <button
           onClick={toggleTheme}
-          className="hover:text-blue-500 focus:outline-none"
+          className="focus:outline-none"
         >
-        {toggleTheme ? (
-            <MdLightMode className="text-lg" />
+        {isDarkMode ? (
+            <MdLightMode className="icon"/>
           ) : (
-            <MdDarkMode className="text-lg" />
+            <MdDarkMode className="icon" />
           )}
         </button>
 

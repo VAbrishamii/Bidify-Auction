@@ -12,6 +12,8 @@ import SearchResults from "./pages/SearchResult";
 import BidsPage from "./pages/BidsPage";
 import Edit from "./pages/Edit";
 import { AppProvider } from "./context/AppContext";
+import "./index.css";
+
 
 
 

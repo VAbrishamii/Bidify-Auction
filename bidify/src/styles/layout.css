@@ -1,3 +1,9 @@
 .dark{
-@apply bg-primary-default text-white;
+   @apply bg-primary-primaryDark text-white;
+}
+.dark .icon{
+   @apply text-white;
+}
+.flex-styled{
+   @apply flex items-center gap-4;
 }

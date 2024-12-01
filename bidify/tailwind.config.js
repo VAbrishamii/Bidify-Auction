@@ -1,12 +1,13 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   darkMode: 'class',
-  content: ['./src/**/*.{js,jsx,ts,tsx}', './public/index.html'],
+  content: ['./src/**/*.{js,jsx,ts,tsx}', './public/index.html', './src/**/*.css'],
   theme: {
     extend: {
       colors: {
         primary: {
-          default: '#34F65',
+          default: '#346F65',
+          primaryDark: '#192E28',
           hover: '#488F84',
         },
         secondary: {
@@ -26,9 +27,18 @@ module.exports = {
         red:{
           default:'#EB6213',
         },
+        boxShadow:{
+          'primary-glow':'0 0px 15px rgba(52, 111, 101, 0.5)',
+        },
       },
       fontFamily: {
         body: ['Manrope', 'sans-serif'],
+      },
+      textColor: {
+        primary: '#346F65',
+        'primary-hover': '#488F84',
+        secondary: '#88B990',
+        'secondary-hover': '#ABCD9E',
       },
      
     },
