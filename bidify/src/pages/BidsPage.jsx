@@ -29,12 +29,12 @@ const BidsPage = () => {
     return <p>Loading...</p>;
   }
   return (
-    <div className="bids-page">
-      <h1>Bids made by {username}</h1>
+    <div>
+      <h1 className="flex items-center justify-center font-semibold text-gray-dark">Bids made by {username}</h1>
       {bids.data.length > 0 ? (
-        <div className="listing-card">
+        <div className="listings">
           {bids.data.map((bid) => (
-            <div key={bid.id}>
+            <div key={bid.id} className="listing-card">
               <p>Bid Amount: {bid.amount}</p>
               <p>Placed at: {new Date(bid.created).toLocaleString()}</p>
               {bid.listing.media.length > 0 && (

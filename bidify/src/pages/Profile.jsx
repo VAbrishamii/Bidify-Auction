@@ -38,22 +38,23 @@ const Profile = () => {
         <img
           src={profileData.data.avatar.url}
           alt={profileData.data.avatar.alt}
-          className="profile-avatar"
+        
         />
-        <h1>Name:{profileData.data.name}</h1>
-        <p>Bio: {profileData.data.bio}</p>
-        <p>Email: {profileData.data.email}</p>
-        <p>Credits: {profileData.data.credits}</p>
+        <h1>{profileData.data.name.charAt(0).toUpperCase()+profileData.data.name.slice(1)}</h1>
+        <p>{profileData.data.bio}</p>
+        {/* Bids Section with clickable link */}
+        <p>
+          <Link to={`/profile/bids/${username}`}>{username.charAt(0).toUpperCase() + username.slice(1)} Bids</Link>
+        </p>
+       
       </div>
 
       <div className="profile-stats">
+       <p>Credits: {profileData.data.credits}</p>
         <p>Listings: {profileData.data._count.listings}</p>
         <p>Wins: {profileData.data._count.wins}</p>
 
-        {/* Bids Section with clickable link */}
-        <p>
-          <Link to={`/profile/bids/${username}`}>Bids</Link>
-        </p>
+        
       </div>
 
       <div className="profile-listings">

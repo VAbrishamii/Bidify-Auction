@@ -1,0 +1,21 @@
+.profile-page{
+    @apply flex flex-col items-center m-4;
+}
+.profile-header img{
+    @apply w-14 h-14 rounded-full object-cover;
+}
+.profile-header h1{
+    @apply text-2xl font-bold text-gray-dark;
+}
+.profile-header p{
+    @apply text-gray-dark;
+}
+.profile-stats{
+    @apply flex gap-4 mt-4;
+}
+.profile-stats p{
+    @apply font-semibold text-xl;
+}
+.profile-listings{
+    @apply mt-5
+}
