@@ -44,15 +44,16 @@ const ListingDetails = () => {
   const currentDate = new Date();
   const auctionEndDate = new Date(listing.endsAt);
   const isAuctionEnded = currentDate > auctionEndDate;
-
-  const handleBidPlaced = (newBid) => {
-    // Update the listing with the new bid data
-    setListing((prev) => ({
-      ...prev,
-      bids: [...(prev.bids || []), { amount: newBid }],
-      _count: { ...prev._count, bids: (prev._count?.bids || 0) + 1 },
-    }));
+  
+  const handleBidPlaced = async () => {
+    try {
+      const updatedListing = await auctionAPI.getSingleListing(id);
+      setListing(updatedListing.data);
+    } catch (error) {
+      console.error("Error updating listing after placing bid:", error);
+    }
   };
+  
 
   const topBidders = listing?.bids
     ? listing.bids.sort((a, b) => b.amount - a.amount).slice(0, 5)

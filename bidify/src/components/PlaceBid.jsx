@@ -25,6 +25,8 @@ const PlaceBid = ({ auctionAPI, listingId, token, isAuctionEnded, onBidPlaced })
         alert(`Successfully placed a bid of $${bidAmount}`);
         onBidPlaced(bidData.amount); // Notify parent component about the new bid
         setBidAmount(""); // Clear input
+        const updatedListing = await auctionAPI.getSingleListing(listingId);
+        onBidPlaced(updatedListing.data);
       }
     } catch (error) {
       console.error("Error placing bid:", error);
