@@ -44,7 +44,7 @@ const ListingCard = ({ listing }) => {
       <h1>{listing.title}</h1>
       <p>{listing.description}</p>
 
-      <Link to={`/listing/${listing.id}`}>View Details</Link>
+      
 
       <div className="seller">
         {listing.seller?.avatar?.url ? (
@@ -61,6 +61,7 @@ const ListingCard = ({ listing }) => {
       <div className="bids">
         <h3>Bids: {listing._count.bids}</h3>
       </div>
+      <Link to={`/listing/${listing.id}`}>View Details</Link>
 
       <div className="end-time">
         <p>Remainig time: {remainingTime}</p>

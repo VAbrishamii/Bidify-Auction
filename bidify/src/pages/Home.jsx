@@ -6,6 +6,8 @@ import FilterBar from "../components/FilterByTags"; // Import the new FilterBar 
 import { useLocation } from "react-router-dom";
 import useAuctipnAPI from "../constants/instance";
 import { useAppContext } from "../context/AppContext";
+import Loader from "../components/Loader";
+
 
 const Home = () => {
   const { activeTag, setActiveTag, currentPage, setCurrentPage } =
@@ -14,12 +16,10 @@ const Home = () => {
   const [listings, setListings] = useState([]);
   const [filteredListings, setFilteredListings] = useState([]);
   const [meta, setMeta] = useState({});
-  // const [currentPage, setCurrentPage] = useState(1);
   const [loading, setLoading] = useState(true);
-  // const [activeTag, setActiveTag] = useState(null); // State for the selected tag
   const itemsPerPage = 14;
   const location = useLocation();
-  // const navigate = useNavigate();
+
 
   // Load listings
   useEffect(() => {
@@ -81,7 +81,9 @@ const Home = () => {
     : listings;
 
   return (
-    <div className="home-page">
+    <div className="home-page animate-spinSlow">
+      {loading && <Loader />}
+      <>
       {/* Carousel */}
       <Carousel listings={displayedListings} />
 
@@ -89,9 +91,7 @@ const Home = () => {
       <FilterBar activeTag={activeTag} setActiveTag={setActiveTag} />
 
       {/* Listings Section */}
-      {loading ? (
-        <p>Loading...</p>
-      ) : displayedListings.length > 0 ? (
+     { displayedListings.length > 0 ? (
         <div className="listings">
           {displayedListings.map((listing) => (
             <ListingCard key={listing.id} listing={listing} />
@@ -123,6 +123,7 @@ const Home = () => {
           onPageChange={(newPage) => setCurrentPage(newPage)}
         />
       )}
+      </>
     </div>
   );
 };

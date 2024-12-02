@@ -4,7 +4,8 @@
 
 @import "~slick-carousel/slick/slick.css";
 @import "~slick-carousel/slick/slick-theme.css";
-/* @import "./styles/component.css"; */
+@import './styles/components/loader.css';
+@import './styles/components/carousel.css';
 @import './styles/components/filterBar.css';
 @import './styles/components/cardList.css';
 @import './styles/utilities.css';

@@ -1,35 +1,39 @@
-import React, {useState,useEffect} from "react";
-import Slider from "react-slick";
+import React, { useState, useEffect } from "react";
+import Gallery from "react-image-gallery";
+import "react-image-gallery/styles/css/image-gallery.css";
 
-
-const Carousel = ({ listings,isSingleListing = false,showAllImages = false }) => {
-
+const Carousel = ({
+  listings,
+  isSingleListing = false,
+  showAllImages = false,
+}) => {
   const [carouselImages, setCarouselImages] = useState([]);
 
   useEffect(() => {
     if (listings.length > 0) {
       if (isSingleListing && showAllImages) {
-        // Show all images for a single listing
-        const allMedia = listings.flatMap((listing) =>
-          listing?.media?.map((mediaItem) => ({
-            url: mediaItem.url,
-            alt: mediaItem.alt || "Image",
-            title: listing.title,
-          })) || []
+        const allMedia = listings.flatMap(
+          (listing) =>
+            listing?.media?.map((mediaItem) => ({
+              original: mediaItem.url,
+              thumbnail: mediaItem.url,
+              description: mediaItem.alt || "Image",
+              title: listing.title,
+            })) || []
         );
         setCarouselImages(allMedia);
       } else {
-
         const validImages = [];
         const maxImages = 5;
 
         for (const listing of listings) {
-          if (validImages.length >= maxImages) break; // Stop when we have enough images
+          if (validImages.length >= maxImages) break;
           if (listing?.media && listing.media.length > 0) {
             const firstMediaItem = listing.media[0];
             validImages.push({
-              url: firstMediaItem.url,
-              alt: firstMediaItem.alt || "Image",
+              original: firstMediaItem.url,
+              thumbnail: firstMediaItem.url,
+              description: firstMediaItem.alt || "Image",
               title: listing.title,
             });
           }
@@ -42,36 +46,23 @@ const Carousel = ({ listings,isSingleListing = false,showAllImages = false }) =>
     }
   }, [listings, isSingleListing, showAllImages]);
 
-  const carouselSettings = {
-    dots: true,
-    infinite: false,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    autoplay: true,
-    autoplaySpeed: 3000,
-  };
   console.log("Listings:", listings);
   console.log("Images for carousel", carouselImages);
 
   return (
     <div className="carousel mx-auto my-4 overflow-visible">
       {carouselImages.length > 0 ? (
-        <Slider {...carouselSettings}>
-          {carouselImages.map((mediaItem, index) => (
-            <div key={index} className="p-4">
-              <div className="carousel-item">
-                <div className="relative w-full h-96 overflow-hidden aspect-w-16 aspect-h-9">
-                  <img
-                    src={mediaItem.url}
-                    alt={mediaItem.alt || "Image"}
-                    className="w-full h-full object-contain rounded-md"
-                  />
-                </div>
-              </div>
-            </div>
-          ))}
-        </Slider>
+        <Gallery
+          items={carouselImages} // Pass the images to react-image-gallery
+          showThumbnails={false} // Enable thumbnails below the main images
+          showFullscreenButton={true} // Enable fullscreen button
+          showPlayButton={false} // Disable play button
+          autoPlay={true} // Enable auto play
+          slideInterval={3000} // Set slide interval (in milliseconds)
+          showBullets={true} // Enable bullets below the main images
+          renderLeftNav={() => null} // Hide left navigation arrow
+          renderRightNav={() => null} // Hide right navigation
+        />
       ) : (
         <p>No images available</p>
       )}
@@ -80,5 +71,3 @@ const Carousel = ({ listings,isSingleListing = false,showAllImages = false }) =>
 };
 
 export default Carousel;
-
-

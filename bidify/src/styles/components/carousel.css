@@ -1,0 +1,31 @@
+.carousel{
+    @apply mx-auto my-2 max-w-full;
+}
+
+.image-gallery-slide {
+    @apply flex justify-center items-center;
+}
+.image-gallery-thumbnails-bottom {
+    @apply flex justify-center p-4 absolute bottom-0 w-full;
+}
+.image-gallery-bullets {
+    @apply flex justify-center items-center absolute;
+}
+.image-gallery-bullets-container {
+    @apply rounded-full transition bottom-0;
+}
+.image-gallery-image {
+    @apply w-full h-96 object-cover rounded-md shadow-md relative;
+}
+.image-gallery-image img {
+    @apply w-full h-full object-cover rounded-md;
+}
+
+.image-gallery-description {
+    @apply text-center text-sm mt-2 font-semibold absolute;
+}
+
+.image-gallery-fullscreen-button {
+    @apply hidden;
+}
+
