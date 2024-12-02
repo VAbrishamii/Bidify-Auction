@@ -7,3 +7,6 @@
 .flex-styled{
    @apply flex items-center gap-4;
 }
+.pagination{
+   @apply flex justify-center gap-4 p-4;
+}

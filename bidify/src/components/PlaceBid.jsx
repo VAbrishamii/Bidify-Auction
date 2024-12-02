@@ -42,7 +42,7 @@ const PlaceBid = ({ auctionAPI, listingId, token, isAuctionEnded, onBidPlaced })
         min="0"
         disabled={isAuctionEnded}
       />
-      <button onClick={handlePlaceBid} disabled={isAuctionEnded}>
+      <button onClick={handlePlaceBid} disabled={isAuctionEnded} className="btn">
         {isAuctionEnded ? "Auction Ended" : "Place Bid"}
       </button>
     </div>

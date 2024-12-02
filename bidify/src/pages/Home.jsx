@@ -17,7 +17,7 @@ const Home = () => {
   const [filteredListings, setFilteredListings] = useState([]);
   const [meta, setMeta] = useState({});
   const [loading, setLoading] = useState(true);
-  const itemsPerPage = 14;
+  const itemsPerPage = 12;
   const location = useLocation();
 
 

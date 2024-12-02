@@ -15,11 +15,11 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
 
   return (
     <div className="pagination">
-      <button onClick={handlePrevious} disabled={currentPage === 1}>
+      <button onClick={handlePrevious} disabled={currentPage === 1} style={{ visibility: currentPage === 1 ? "hidden" : "visible" }}>
         Previous
       </button>
       <span>
-        Page {currentPage} of {totalPages}
+         {currentPage} of {totalPages}
       </span>
       <button onClick={handleNext} disabled={currentPage === totalPages}>
         Next

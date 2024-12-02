@@ -1,0 +1,44 @@
+.listing-details {
+    @apply container mx-auto p-5;
+}
+.left-section {
+    @apply grid grid-cols-1 md:grid-cols-3 gap-8 mt-8;
+}
+.left-section-content {
+    @apply md:col-span-2 space-y-4;
+}
+.left-section-content h1 {
+    @apply text-2xl font-bold text-gray-dark;
+}
+
+.bidding-section {
+    @apply space-y-4;
+}
+.bidding-section h2 {
+    @apply text-xl font-semibold text-gray-dark;
+}
+.right-section {
+    @apply space-y-4;
+}
+
+.top-bidders {
+    @apply p-4 border rounded-lg shadow;
+}
+.top-bidders h4 {
+    @apply text-xl font-semibold text-gray-dark;
+}
+.top-bidders ul {
+    @apply space-y-2;
+}
+.top-bidders li {
+    @apply flex items-center space-x-4;
+}
+.top-bidders img {
+    @apply w-10 h-10 rounded-full object-cover;
+}
+.bidder-info span{
+    @apply font-medium
+}
+.bidder-info p {
+    @apply text-sm text-gray-dark;
+}

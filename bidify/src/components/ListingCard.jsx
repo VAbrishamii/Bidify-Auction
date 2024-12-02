@@ -1,9 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import Loader from "./Loader";
 import "../index.css";
+
 
 const ListingCard = ({ listing }) => {
   const [remainingTime, setRemainingTime] = useState("");
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const calculateRemainingTime = () => {
@@ -35,10 +39,24 @@ const ListingCard = ({ listing }) => {
     return () => clearInterval(timer);
   }, [listing.endsAt]);
 
+  const handleViewDetails = () => {
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+      navigate(`/listing/${listing.id}`);
+    }, 3000);
+  }
+
   return (
     <div className="listing-card">
-      {listing.media.length > 0 && (
-        <img src={listing.media[0].url} alt={listing.media[0].alt} />
+       {loading && <Loader />} {/* Render the loader when loading is true */}
+      {!loading && (
+        <>
+      {/* Image Section */}
+      {listing.media.length > 0 ? (
+        <img src={listing.media[0].url} alt={listing.media[0].alt || "Listing Image"} />
+      ) : (
+        <div className="no-image">No image available</div> // Fallback message
       )}
 
       <h1>{listing.title}</h1>
@@ -61,11 +79,16 @@ const ListingCard = ({ listing }) => {
       <div className="bids">
         <h3>Bids: {listing._count.bids}</h3>
       </div>
-      <Link to={`/listing/${listing.id}`}>View Details</Link>
+      {/* <Link to={`/listing/${listing.id}`} className="details">View Details</Link> */}
+      <button onClick={handleViewDetails} className="details">
+            View Details
+          </button>
 
       <div className="end-time">
         <p>Remainig time: {remainingTime}</p>
       </div>
+      </>
+      )}
     </div>
   );
 };

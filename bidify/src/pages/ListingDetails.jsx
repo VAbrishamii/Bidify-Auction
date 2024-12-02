@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import AuctionAPI from "../service/AuctionAPI";
 import Carousel from "../components/Carousel";
-import PlaceBid from "../components/PlaceBid"; // Import the new component
+import PlaceBid from "../components/PlaceBid";
 
 const auctionAPI = new AuctionAPI("https://v2.api.noroff.dev/");
 
@@ -60,51 +60,75 @@ const ListingDetails = () => {
 
   return (
     <div className="listing-details">
-      <Carousel listings={[listing]} isSingleListing={true} showAllImages={true}/>
-      <p>{listing.description}</p>
+      <Carousel
+        listings={[listing]}
+        isSingleListing={true}
+        showAllImages={true}
+      />
 
-      {/* Bidding Section */}
-      <div className="bidding-section">
-        <h3>Bids: {listing._count?.bids || 0}</h3>
-        <PlaceBid
-          auctionAPI={auctionAPI}
-          listingId={id}
-          token={token}
-          isAuctionEnded={isAuctionEnded}
-          onBidPlaced={handleBidPlaced}
-        />
-      </div>
+      <div className="left-section">
+        {/* Left Section */}
+        <div className="left-section-content">
+          <h1>{listing.title}</h1>
+          <p>{listing.description}</p>
 
-      {/* Seller Information */}
-      <div className="seller">
-        {listing.seller?.avatar?.url && (
-          <img
-            src={listing.seller.avatar.url}
-            alt={listing.seller.avatar.alt}
-          />
-        )}
-        <h2>Seller: {listing.seller?.name || "Unknown"}</h2>
-      </div>
+          {/* Bidding Section */}
+          <div className="bidding-section">
+            <h2>Bids: {listing._count?.bids || 0}</h2>
+            <PlaceBid
+              auctionAPI={auctionAPI}
+              listingId={id}
+              token={token}
+              isAuctionEnded={isAuctionEnded}
+              onBidPlaced={handleBidPlaced}
+            />
+          </div>
+        </div>
 
-      {/* Top 5 Bidders */}
-      <div className="top-bidders">
-        <h3>Top 5 Bidders</h3>
-        <ul>
-          {topBidders.map((bid, index) => (
-            <li key={index}>
-              {bid.bidder?.avatar?.url && (
-                <img src={bid.bidder.avatar.url} alt={bid.bidder.avatar.alt} />
-              )}
-              <span>{bid.bidder?.name || "Unknown"}</span>
-              <span>Bid: ${bid.amount}</span>
-            </li>
-          ))}
-        </ul>
+        {/* Right Section */}
+        <div className="right-section">
+          {/* Seller Information */}
+          <div className="seller">
+            {listing.seller?.avatar?.url && (
+              <img
+                src={listing.seller.avatar.url}
+                alt={listing.seller.avatar.alt}
+              />
+            )}
+            <h3 className="text-lg font-semibold text-center mt-2">
+              Seller: {listing.seller?.name || "Unknown"}
+            </h3>
+          </div>
+
+          {/* Top 5 Bidders */}
+          <div className="top-bidders">
+            <h4>Top 5 Bidders</h4>
+            <ul>
+              {topBidders.map((bid, index) => (
+                <li key={index}>
+                  {bid.bidder?.avatar?.url && (
+                    <img
+                      src={bid.bidder.avatar.url}
+                      alt={bid.bidder.avatar.alt}
+                      // className="w-10 h-10 rounded-full"
+                    />
+                  )}
+                  <div className="bidder-info">
+                    <span>{bid.bidder?.name || "Unknown"}</span>
+                    <p>Bid: ${bid.amount}</p>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
       </div>
 
       {/* End Time */}
-      <div className="end-time">
-        <p>Auction ends at: {auctionEndDate.toLocaleString()}</p>
+      <div className="mt-8 text-center">
+        <p className="text-gray-600">
+          Auction ends at: {auctionEndDate.toLocaleString()}
+        </p>
       </div>
     </div>
   );
