@@ -79,8 +79,8 @@ const Createlist = () => {
 }
 
 return (   
-<div>
-  <h1>Create Auction Listing</h1>
+<div className="form">
+  {/* <h1>Create Auction Listing</h1> */}
   <form onSubmit={handleSubmit}>
       <div>
           <label htmlFor="title">Title:</label>
@@ -133,7 +133,7 @@ return (
           />
       </div>
 
-      <button type="submit" disabled={loading}>
+      <button className="btn" type="submit" disabled={loading}>
           {loading ? 'Submitting...' : 'Create Listing'}
       </button>
   </form>

@@ -3,8 +3,10 @@ import AuctionAPI from "../service/AuctionAPI"; // Assuming you have this path c
 import { useNavigate } from "react-router-dom";
 import ImageUploader from './ImageUploader'; // Import the ImageUploader component
 
-const UpdateProfile = ({ username }) => {
+const UpdateProfile = ({ username, onUpdateAvatar }) => {
   const [avatar, setAvatar] = useState({ url: "", alt: "" });
+  const [currentAvatar, setCurrentAvatar] = useState(""); // Current avatar URL 
+  const [currentBio, setCurrentBio] = useState(""); // Current bio
   const [bio, setBio] = useState("");
   const [name, setName] = useState(""); // User's name
   const [loading, setLoading] = useState(false); // Loading state for submission
@@ -28,8 +30,10 @@ const UpdateProfile = ({ username }) => {
     const fetchProfile = async () => {
       try {
         const profile = await auctionAPI.singleProfile(username);
-        setName(profile.data.name || ""); // Assuming profile contains 'name'
+        setName(profile.data.name || ""); 
+        setCurrentAvatar(profile.data.avatar || ""); // Set the current avatar URL
         setAvatar(profile.data.avatar || { url: "", alt: "" });
+        setCurrentBio(profile.data.bio || ""); // Set the current bio
         setBio(profile.data.bio || "");
       } catch (error) {
         setErrorMessage("Failed to fetch profile data. Please try again.");
@@ -58,7 +62,13 @@ const UpdateProfile = ({ username }) => {
 
     try {
       await auctionAPI.updateProfile(username, data);
+      setCurrentAvatar(avatar.url); // Update the current avatar URL
+      setCurrentBio(bio); 
+      if (onUpdateAvatar) {
+        onUpdateAvatar(avatar.url); 
+      }
       setSuccessMessage("Profile updated successfully!");
+      setTimeout(() => setSuccessMessage(""), 3000);
     } catch (error) {
       setErrorMessage(error.message);
     } finally {
@@ -67,25 +77,35 @@ const UpdateProfile = ({ username }) => {
   };
 
   return (
-    <div>
+    <div className="profile">
       {/* <h2>Update Profile</h2> */}
       {successMessage && <p style={{ color: "green" }}>{successMessage}</p>}
       {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
 
-      {/* Display user's current avatar, name, and bio at the top */}
-      <div style={{ marginBottom: "20px" }}>
-        <h3>{name}</h3>
+      {/* Display user's current avatar, name, and bio at the top
+      <div className="profile-header">      
         {avatar.url && <img src={avatar.url} alt={avatar.alt} style={{ width: "100px", height: "100px", objectFit: "cover" }} />}
+        <h1>{name.charAt(0).toUpperCase()+name.slice(1)}</h1>
         <p>{bio}</p>
+      </div> */}
+      <div className="profile-header">
+        {currentAvatar.url && (
+          <img
+            src={currentAvatar.url}
+            alt={currentAvatar.alt}
+            style={{ width: "100px", height: "100px", objectFit: "cover" }}
+          />
+        )}
+        <h1>{name.charAt(0).toUpperCase() + name.slice(1)}</h1>
+        <p>{currentBio}</p>
       </div>
 
-      <form onSubmit={handleSubmit}>
+      <form className='form' onSubmit={handleSubmit}>
         <div>
           <label htmlFor="avatar">Change Avatar:</label>
-          {/* Use ImageUploader for handling the image upload */}
-          {/* <ImageUploader onImageUploaded={handleImageUploaded} /> */}
           <ImageUploader onImageUploaded={(urls) => handleImageUploaded(urls, "avatar")} />
-          {avatar.url && <img src={avatar.url} alt={avatar.alt} style={{ width: "100px", height: "100px", objectFit: "cover" }} />}
+          {avatar.url && 
+          <img src={avatar.url} alt={avatar.alt} className="avatar" />}
         </div>
         <div>
           <label htmlFor="bio">Bio:</label>
@@ -96,7 +116,7 @@ const UpdateProfile = ({ username }) => {
             required
           />
         </div>
-        <button type="submit" disabled={loading}>
+        <button className='btn' type="submit" disabled={loading}>
           {loading ? "Updating..." : "Update Profile"}
         </button>
       </form>

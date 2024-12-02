@@ -33,7 +33,7 @@ const Profile = () => {
 
   // Render the profile data
   return (
-    <div className="profile-page">
+    <div className="profile">
       <div className="profile-header">
         <img
           src={profileData.data.avatar.url}
