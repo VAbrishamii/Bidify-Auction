@@ -1,8 +1,8 @@
 .footer {
-   @apply bg-primary-primaryDark text-white p-6 w-full dark:bg-white dark:text-primary mt-auto;
+   @apply bg-primary-primaryDark text-white p-6 w-full dark:bg-gray-light dark:text-primary mt-auto;
  }
 .dark{
-   @apply bg-gradient-to-t from-primary-primaryDark to-primary-default text-white;
+   @apply bg-gradient-to-t from-primary-primaryDark to-primary-default text-white bg-no-repeat bg-cover bg-fixed;
 }
 .dark .icon{
    @apply text-white;

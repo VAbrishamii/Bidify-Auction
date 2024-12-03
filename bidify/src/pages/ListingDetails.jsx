@@ -127,7 +127,7 @@ const ListingDetails = () => {
 
       {/* End Time */}
       <div className="mt-8 text-center">
-        <p className="text-gray-600">
+        <p className="text-red-default ">
           Auction ends at: {auctionEndDate.toLocaleString()}
         </p>
       </div>

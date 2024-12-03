@@ -8,7 +8,7 @@ const Layout = ({ children }) => {
     const noNavbar = ["/login", "/register"].includes(location.pathname);
 
     return (
-        <div>
+        <div className="min-h-screen flex flex-col">
             {!noNavbar && <Navbar />}
             <main>{children}</main>
             <Footer />

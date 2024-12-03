@@ -58,7 +58,7 @@ const RegisterForm = ({ onregisterSuccess }) => {
       </div>
     </div>
   
-    <form  className='form mt-10' onSubmit={handleSubmit}>
+    <form  className='form my-28' onSubmit={handleSubmit}>
         <div>
         
         <label>Name: <span className="text-red-default">*</span> </label>

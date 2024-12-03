@@ -1,4 +1,4 @@
-body,html {
+body {
   @apply font-body h-screen flex flex-col;
 }
 main{

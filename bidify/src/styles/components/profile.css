@@ -5,10 +5,10 @@
     @apply w-14 h-14 rounded-full object-cover;
 }
 .profile-header h1{
-    @apply text-2xl font-bold text-gray-dark;
+    @apply text-2xl font-bold text-gray-dark dark:text-gray-light;
 }
 .profile-header p{
-    @apply text-gray-dark;
+    @apply text-gray-dark dark:text-gray-light;
 }
 .profile-stats{
     @apply flex gap-4 mt-4;

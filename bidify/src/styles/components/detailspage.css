@@ -8,14 +8,14 @@
     @apply md:col-span-2 space-y-4;
 }
 .left-section-content h1 {
-    @apply text-2xl font-bold text-gray-dark;
+    @apply text-2xl font-bold text-gray-dark dark:text-gray-light;
 }
 
 .bidding-section {
     @apply space-y-4;
 }
 .bidding-section h2 {
-    @apply text-xl font-semibold text-gray-dark;
+    @apply text-xl font-semibold text-gray-dark dark:text-gray-light;
 }
 .right-section {
     @apply space-y-4;
@@ -25,7 +25,7 @@
     @apply p-4 border rounded-lg shadow;
 }
 .top-bidders h4 {
-    @apply text-xl font-semibold text-gray-dark;
+    @apply text-xl font-semibold text-gray-dark dark:text-gray-light;
 }
 .top-bidders ul {
     @apply space-y-2;

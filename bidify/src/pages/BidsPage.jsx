@@ -30,7 +30,7 @@ const BidsPage = () => {
   }
   return (
     <div>
-      <h1 className="flex items-center justify-center font-semibold text-gray-dark">Bids made by {username}</h1>
+      <h1 className="flex items-center justify-center font-semibold text-gray-dark dark:text-gray-light">Bids made by {username}</h1>
       {bids.data.length > 0 ? (
         <div className="listings">
           {bids.data.map((bid) => (

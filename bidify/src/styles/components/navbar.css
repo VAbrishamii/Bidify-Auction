@@ -5,7 +5,7 @@
     @apply w-8 h-8 bg-gray-300 text-white rounded-full flex items-center justify-center
 }
 .navbar{
-    @apply justify-between dark:bg-transparent px-6
+    @apply justify-between dark:bg-transparent px-6 border-b border-primary-default dark:border-gray-800;
 }
 .dropdown{
     @apply absolute right-0 mt-2 w-48 bg-white shadow-lg rounded-lg p-2 z-50
