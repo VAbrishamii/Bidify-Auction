@@ -3,8 +3,8 @@ import LoginForm from '../components/LoginForm';
 
 const Login = () => {
     return (
-        <div>
-            <h1>Login Page</h1>
+        <div className='min-h-screen flex-styled justify-center bg-gradient-to-t from-secondary-default to-primary-default'>
+            
             <LoginForm />
         </div>
     );

@@ -40,9 +40,28 @@ const RegisterForm = ({ onregisterSuccess }) => {
     }
   };
   return (
-    <form onSubmit={handleSubmit}>
+    <div className="register-welcoming">
+    {/* Left Side: Logo and Welcome Message */}
+    <div className="left-side-registerform">
+      <div className="text-center w-80">
+        <img
+          src="/bidify white.png" // Replace with your logo path
+          alt="Bidify Logo"
+          className="logo ml-6"
+        />
+        <h1 className="text-3xl font-bold mt-4">Welcome to Bidify</h1>
+        <h2>Create Your Account and unlock Exlusive Features</h2>
+        <p className="mt-4 text-gray-light">
+          By creating an account, you get <strong>1000 point credit</strong>{" "}
+          and can use it to sell or buy your house.
+        </p>
+      </div>
+    </div>
+  
+    <form  className='form mt-10' onSubmit={handleSubmit}>
         <div>
-        <label>Name:</label>
+        
+        <label>Name: <span className="text-red-default">*</span> </label>
         <input
           type="text"
           name="name"
@@ -52,7 +71,7 @@ const RegisterForm = ({ onregisterSuccess }) => {
         />
       </div>
       <div>
-        <label>Email:</label>
+        <label>Email: <span className="text-red-default">*</span></label>
         <input
           type="email"
           name="email"
@@ -62,7 +81,7 @@ const RegisterForm = ({ onregisterSuccess }) => {
         />
       </div>
       <div>
-        <label>Password:</label>
+        <label>Password: <span className="text-red-default">*</span></label>
         <input
           type="password"
           name="password"
@@ -72,7 +91,7 @@ const RegisterForm = ({ onregisterSuccess }) => {
         />
       </div>
       <div>
-        <label>Confirm Password:</label>
+        <label>Confirm Password: <span className="text-red-default">*</span></label>
         <input
           type="password"
           name="confirmPassword"
@@ -81,12 +100,14 @@ const RegisterForm = ({ onregisterSuccess }) => {
           onChange={handleChange}
         />
       </div>
-      <button type="submit">Register</button>
-      <Link to="/login" className="text-blue-500 hover:underline">
-        <button type="submit">Login</button>
+      <button className="btn" type="submit">Register</button>
+      <Link to="/login" className="signin-btn flex-styled">
+  
+        <button  className='w-full' type="submit">Login</button>
       </Link>
       {error && <p className="text-red-500">{error}</p>}
     </form>
+  </div>
   );
 };
 export default RegisterForm;

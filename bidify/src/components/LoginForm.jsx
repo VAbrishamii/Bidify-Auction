@@ -33,9 +33,10 @@ const navigate = useNavigate();
     }
 
 return (
-    <form onSubmit={handleSubmit}>
+    <form className='form flex flex-col bg-white' onSubmit={handleSubmit}>
+        <h1 className='flex-styled justify-center'>Welcome Back</h1>
         <div>
-            <label>Email:</label>
+            <label>Email: <span className="text-red-default">*</span></label>
             <input
                 type="email"
                 placeholder="Enter your email"
@@ -44,7 +45,7 @@ return (
             />
         </div>
         <div>
-            <label>Password:</label>
+            <label>Password: <span className="text-red-default">*</span></label>
             <input
                 type="password"
                 placeholder="Enter your password"
@@ -52,7 +53,7 @@ return (
                 onChange={(e) => setPassword(e.target.value)}
             />
         </div>
-        <button type="submit">Login</button>
+        <button className='signin-btn' type="submit">Login</button>
         {error && <p>{error}</p>}
     </form>
 );

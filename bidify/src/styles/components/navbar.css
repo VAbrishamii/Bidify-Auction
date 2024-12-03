@@ -1,0 +1,25 @@
+.islogin{
+    @apply w-9 h-9 rounded-full border-2 border-primary-default;
+}
+.no-user-avatar{
+    @apply w-8 h-8 bg-gray-300 text-white rounded-full flex items-center justify-center
+}
+.navbar{
+    @apply justify-between dark:bg-transparent px-6
+}
+.dropdown{
+    @apply absolute right-0 mt-2 w-48 bg-white shadow-lg rounded-lg p-2 z-50
+}
+.menu-item{
+    @apply block px-4 py-2 text-gray-800 hover:bg-gray-200 rounded
+}
+.register-welcoming{
+    @apply min-h-screen flex 
+}
+.left-side-registerform{
+    @apply w-1/2 bg-gradient-to-t from-primary-default to-secondary-default text-white flex flex-col items-center justify-center
+}
+.signin-btn{
+    @apply bg-secondary-default text-white rounded-md px-4 py-2 hover:bg-secondary-hover transition-colors duration-200 items-center;
+  }
+  

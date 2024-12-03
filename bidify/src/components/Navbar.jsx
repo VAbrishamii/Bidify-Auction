@@ -260,10 +260,10 @@ const Navbar = () => {
       <img
         src={userData.avatar.url}
         alt="User Avatar"
-        className="w-8 h-8 rounded-full"
+        className="islogin"
       />
     ) : (
-      <span className="w-8 h-8 bg-gray-300 text-white rounded-full flex items-center justify-center">
+      <span className="no-user-avatar">
         {userData?.name ? userData.name[0].toUpperCase() : "U"}
       </span>
     )
@@ -272,11 +272,11 @@ const Navbar = () => {
   );
 
   return (
-    <nav className="flex-styled justify-between dark:bg-transparent px-6">
+    <nav className="flex-styled navbar">
       {/* Logo */}
       <div className="flex-styled">
         <Link to="/">
-          <img src="/bidify ..png" alt="App Logo" className="w-200 h-20" />
+          <img src="/bidify ..png" alt="App Logo" className="logo" />
         </Link>
       </div>
 
@@ -285,10 +285,10 @@ const Navbar = () => {
 
       {/* Icons */}
       <div className="flex-styled">
-        <Link to="/" onClick={handleHomeClick} className="hover:text-blue-500">
+        <Link to="/" onClick={handleHomeClick} >
           <MdHome className="icon" />
         </Link>
-        <button onClick={toggleTheme} className="focus:outline-none">
+        <button onClick={toggleTheme} >
           {isDarkMode ? (
             <MdLightMode className="icon" />
           ) : (
@@ -302,12 +302,12 @@ const Navbar = () => {
 
           {/* Dropdown Menu */}
           {isLoggedIn && isDropdownOpen && (
-            <div className="absolute right-0 mt-2 w-48 bg-white shadow-lg rounded-lg p-2 z-50">
+            <div className="dropdown">
               <ul>
                 <li>
                   <Link
                     to={`/profile/${userData.name}`}
-                    className="block px-4 py-2 text-gray-800 hover:bg-gray-200 rounded"
+                    className="menu-item"
                   >
                     Profile
                   </Link>
@@ -315,7 +315,7 @@ const Navbar = () => {
                 <li>
                   <Link
                     to={`/edit/${userData.name}`}
-                    className="block px-4 py-2 text-gray-800 hover:bg-gray-200 rounded"
+                    className="menu-item"
                   >
                     Edit
                   </Link>
@@ -323,7 +323,7 @@ const Navbar = () => {
                 <li>
                   <Link
                     to="/createlist"
-                    className="block px-4 py-2 text-gray-800 hover:bg-gray-200 rounded"
+                    className="menu-item"
                   >
                     Create Listing
                   </Link>
@@ -331,7 +331,7 @@ const Navbar = () => {
                 <li>
                   <button
                     onClick={handleLogout}
-                    className="block w-full text-left px-4 py-2 text-gray-800 hover:bg-gray-200 rounded"
+                    className="menu-item"
                   >
                     Logout
                   </button>
