@@ -3,7 +3,8 @@ import { FaInstagram, FaFacebook } from "react-icons/fa";
 
 const Footer = () => {
   return (
-    <footer className="footer flex-styled justify-between">
+    <footer className="footer">
+      <div className='flex-styled justify-between'>
       <div className="contact-us">
         <h2 className="font-semibold">Contact Us:</h2>
         <p>Email: <a href="mailto:contact@example.com">contact@example.com</a></p>
@@ -20,6 +21,7 @@ const Footer = () => {
             <FaFacebook size={30} />
           </a>
         </div>
+      </div>
       </div>
     </footer>
   );

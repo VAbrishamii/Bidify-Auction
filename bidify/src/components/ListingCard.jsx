@@ -9,6 +9,17 @@ const ListingCard = ({ listing }) => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
+  const MAX_TITLE_LENGTH = 30;
+  const MAX_DESCRIPTION_LENGTH = 100;
+
+  const truncateText = (text, maxLength) => {
+    if (!text || text.length <= maxLength) {
+      return text;
+    }
+    return text.substring(0, maxLength) + "...";
+
+  };
+
   useEffect(() => {
     const calculateRemainingTime = () => {
       const now = new Date();
@@ -44,7 +55,7 @@ const ListingCard = ({ listing }) => {
     setTimeout(() => {
       setLoading(false);
       navigate(`/listing/${listing.id}`);
-    }, 3000);
+    }, 1000);
   }
 
   return (
@@ -59,10 +70,8 @@ const ListingCard = ({ listing }) => {
         <div className="no-image">No image available</div> // Fallback message
       )}
 
-      <h1>{listing.title}</h1>
-      <p>{listing.description}</p>
-
-      
+      <h1>{truncateText(listing.title, MAX_TITLE_LENGTH)}</h1>
+      <p>{truncateText(listing.description, MAX_DESCRIPTION_LENGTH)}</p>
 
       <div className="seller">
         {listing.seller?.avatar?.url ? (

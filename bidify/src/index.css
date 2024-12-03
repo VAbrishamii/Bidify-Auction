@@ -13,13 +13,32 @@
 @import './styles/utilities.css';
 @import "./styles/layout.css";
 
-body {
-  @apply font-body;
- 
+
+
+
+
+
+
+
+/* Style the scrollbar */
+::-webkit-scrollbar {
+  width: 8px; /* width of the scrollbar */
+  overflow-y: auto;
 }
 
+/* Background of the scrollbar */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
 
+/* Scrollbar thumb */
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
 
-
-
-
+/* Scrollbar thumb on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+} 

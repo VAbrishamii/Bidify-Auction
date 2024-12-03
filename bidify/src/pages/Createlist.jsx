@@ -106,11 +106,12 @@ return (
       </div>
 
       <div>
-          <label htmlFor="tags">Tags (comma-separated):</label>
+          <label htmlFor="tags" >Tags (comma-separated):</label>
           <input
               type="text"
               id="tags"
               name="tags"
+              placeholder="It could be in categoriy of  Art,Electornics,Decorative ans Accessories"
               value={formData.tags}
               onChange={handleChange}
           />

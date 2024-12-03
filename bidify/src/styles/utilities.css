@@ -1,11 +1,14 @@
-  .footer {
-    @apply bg-primary-primaryDark text-white p-6 dark:bg-white dark:text-primary;
-  }
+body,html {
+  @apply font-body h-screen flex flex-col;
+}
+main{
+ @apply flex-grow flex flex-col;
+}
   input[type="number"] {
     @apply border w-64 border-gray-300 rounded-md p-2 mr-5;
   }
   input[type="text"] {
-    @apply border w-64 border-gray-300 rounded-md p-2 mr-5;
+    @apply border w-96 border-gray-300 rounded-md p-2 mr-5;
   }
   input[type="email"] {
     @apply border w-64 border-gray-300 rounded-md p-2 mr-5;
@@ -20,7 +23,7 @@
     @apply text-gray-dark font-medium text-sm block;
   }
   input[type='file'] {
-    @apply w-64 p-2;
+    @apply w-64 ;
   }
   textarea {
     @apply border w-64 border-gray-300 rounded-md p-2 mr-5;

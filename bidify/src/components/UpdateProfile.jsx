@@ -1,9 +1,11 @@
 import React, { useState, useEffect, useMemo } from "react";
-import AuctionAPI from "../service/AuctionAPI"; // Assuming you have this path correct
+import AuctionAPI from "../service/AuctionAPI"; 
 import { useNavigate } from "react-router-dom";
-import ImageUploader from './ImageUploader'; // Import the ImageUploader component
+import ImageUploader from './ImageUploader'; 
+import { useAppContext } from "../context/AppContext";
 
 const UpdateProfile = ({ username, onUpdateAvatar }) => {
+  const { userData, updateUserData } = useAppContext();
   const [avatar, setAvatar] = useState({ url: "", alt: "" });
   const [currentAvatar, setCurrentAvatar] = useState(""); // Current avatar URL 
   const [currentBio, setCurrentBio] = useState(""); // Current bio
@@ -62,8 +64,9 @@ const UpdateProfile = ({ username, onUpdateAvatar }) => {
 
     try {
       await auctionAPI.updateProfile(username, data);
-      setCurrentAvatar(avatar.url); // Update the current avatar URL
-      setCurrentBio(bio); 
+      updateUserData({ avatar, bio });
+      // setCurrentAvatar(avatar); 
+      // setCurrentBio(bio); 
       if (onUpdateAvatar) {
         onUpdateAvatar(avatar.url); 
       }
@@ -77,51 +80,45 @@ const UpdateProfile = ({ username, onUpdateAvatar }) => {
   };
 
   return (
-    <div className="profile">
-      {/* <h2>Update Profile</h2> */}
-      {successMessage && <p style={{ color: "green" }}>{successMessage}</p>}
-      {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
 
-      {/* Display user's current avatar, name, and bio at the top
-      <div className="profile-header">      
-        {avatar.url && <img src={avatar.url} alt={avatar.alt} style={{ width: "100px", height: "100px", objectFit: "cover" }} />}
-        <h1>{name.charAt(0).toUpperCase()+name.slice(1)}</h1>
-        <p>{bio}</p>
-      </div> */}
-      <div className="profile-header">
-        {currentAvatar.url && (
-          <img
-            src={currentAvatar.url}
-            alt={currentAvatar.alt}
-            style={{ width: "100px", height: "100px", objectFit: "cover" }}
-          />
-        )}
-        <h1>{name.charAt(0).toUpperCase() + name.slice(1)}</h1>
-        <p>{currentBio}</p>
-      </div>
+  <div className="profile">
+     {successMessage && <p className="text-primary">{successMessage}</p>}
+     {errorMessage && <p className="text-red-default">{errorMessage}</p>}
+  <div className="profile-header">
+    {userData.avatar?.url && (
+      <img
+        src={userData.avatar.url}
+        alt={userData.avatar.alt}
+        className="avatar"
+      />
+    )}
+    <h1>{userData.name.charAt(0).toUpperCase() + name.slice(1)}</h1>
+    <p>{userData.bio}</p>
+  </div>
 
-      <form className='form' onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="avatar">Change Avatar:</label>
-          <ImageUploader onImageUploaded={(urls) => handleImageUploaded(urls, "avatar")} />
-          {avatar.url && 
-          <img src={avatar.url} alt={avatar.alt} className="avatar" />}
-        </div>
-        <div>
-          <label htmlFor="bio">Bio:</label>
-          <textarea
-            id="bio"
-            value={bio}
-            onChange={(e) => setBio(e.target.value)}
-            required
-          />
-        </div>
-        <button className='btn' type="submit" disabled={loading}>
-          {loading ? "Updating..." : "Update Profile"}
-        </button>
-      </form>
+  <form className='form' onSubmit={handleSubmit}>
+    <div>
+      <label htmlFor="avatar">Change Avatar:</label>
+      <ImageUploader onImageUploaded={handleImageUploaded} />
+      {avatar.url && <img src={avatar.url} alt={avatar.alt} className="avatar" />}
     </div>
-  );
+    <div>
+      <label htmlFor="bio">Bio:</label>
+      <textarea
+        id="bio"
+        value={bio}
+        onChange={(e) => setBio(e.target.value)}
+        required
+      />
+    </div>
+    <button  className='btn' type="submit" disabled={loading}>
+      {loading ? "Updating..." : "Update Profile"}
+    </button>
+  </form>
+
+ 
+</div>
+);
 };
 
 export default UpdateProfile;

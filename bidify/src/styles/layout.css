@@ -1,3 +1,6 @@
+.footer {
+   @apply bg-primary-primaryDark text-white p-6 w-full dark:bg-white dark:text-primary mt-auto;
+ }
 .dark{
    @apply bg-primary-primaryDark text-white;
 }
@@ -11,13 +14,13 @@
    @apply flex justify-center gap-4 p-4;
 }
 .form{
-   @apply flex flex-col gap-4 max-w-md mx-auto bg-white p-6 rounded-lg shadow-md space-y-6;
+   @apply flex flex-col gap-4 max-w-xl mx-auto bg-white p-6 rounded-lg space-y-6;
 }
 .btn{
    @apply bg-primary-default text-white rounded-md px-4 py-2 hover:bg-primary-hover transition-colors duration-200;
  }
  .icon {
-   @apply text-primary hover:text-primary-hover transition-colors duration-200 text-2xl;
+   @apply text-primary hover:text-primary-hover transition-colors duration-200 text-2xl mr-2;
  }
  .avatar{
    @apply w-14 h-14 rounded-full object-cover mt-4;
