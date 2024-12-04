@@ -1,7 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   darkMode: 'class',
-  content: ['./src/**/*.{js,jsx,ts,tsx}', './public/index.html', './src/**/*.css'],
+  content: ['./src/**/*.{js,jsx,ts,tsx}', './public/index.html'],
   theme: {
     extend: {
       animation: {
@@ -43,7 +43,6 @@ module.exports = {
         secondary: '#88B990',
         'secondary-hover': '#ABCD9E',
       },
-     
     },
   },
   plugins: [
