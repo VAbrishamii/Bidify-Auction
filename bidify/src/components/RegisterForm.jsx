@@ -40,7 +40,7 @@ const RegisterForm = ({ onregisterSuccess }) => {
     }
   };
   return (
-    <div className="register-welcoming">
+    <div className="register-welcoming ">
     {/* Left Side: Logo and Welcome Message */}
     <div className="left-side-registerform">
       <div className="text-center w-80">

@@ -1,34 +1,33 @@
-.islogin{
-    @apply w-9 h-9  rounded-full border-2 border-primary-default;
+.islogin {
+  @apply w-9 h-9  rounded-full border-2 border-primary-default;
 }
-.no-user-avatar{
-    @apply w-8 h-8 bg-gray-300 text-white rounded-full flex items-center justify-center
+.no-user-avatar {
+  @apply w-8 h-8 bg-gray-300 text-white rounded-full flex items-center justify-center;
 }
-.navbar{
-    @apply justify-between bg-primary-default dark:bg-transparent px-6 border-b border-primary-default dark:border-gray-800;
+.navbar {
+  @apply justify-between bg-primary-default dark:bg-transparent px-6 border-b border-primary-default dark:border-gray-800;
 }
-.dropdown{
-    @apply absolute right-0 mt-2 w-48 bg-white shadow-lg rounded-lg p-2 z-50
+.dropdown {
+  @apply absolute right-0 mt-2 w-48 bg-white shadow-lg rounded-lg p-2 z-50;
 }
-.menu-item{
-    @apply block px-4 py-2 text-gray-800 hover:bg-gray-200 rounded
+.menu-item {
+  @apply block px-4 py-2 text-gray-800 hover:bg-gray-200 rounded;
 }
-.register-welcoming{
-    @apply min-h-screen flex 
+.register-welcoming {
+  @apply min-h-screen flex flex-col md:flex-row;
 }
-.left-side-registerform{
-    @apply w-1/2 bg-gradient-to-t from-primary-default to-secondary-default text-white flex flex-col items-center justify-center
+.left-side-registerform {
+  @apply w-full md:w-1/2 bg-gradient-to-t from-primary-default to-secondary-default text-white flex flex-col items-center justify-center md:mr-8;
 }
-.signin-btn{
-    @apply bg-secondary-default text-white rounded-md px-4 py-2 hover:bg-secondary-hover transition-colors duration-200 items-center;
-  }
-  .search-bar{
-    @apply relative top-0;
-  }
-.search-bar input{
-     @apply px-4 py-2 rounded-full text-black placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-900 border ring-opacity-50;
+.signin-btn {
+  @apply w-60 bg-secondary-default text-white rounded-md px-4 py-2  hover:bg-secondary-hover transition-colors duration-200 items-center;
 }
-.search-bar button{
-    @apply absolute right-8 sm:right-3 top-3 text-xl text-primary ;
+.search-bar {
+  @apply relative top-0;
 }
-   
+.search-bar input {
+  @apply px-4 py-2 rounded-full text-black placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-900 border ring-opacity-50;
+}
+.search-bar button {
+  @apply absolute right-8 sm:right-3 top-3 text-xl text-primary;
+}
