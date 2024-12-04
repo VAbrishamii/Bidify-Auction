@@ -5,7 +5,8 @@ import Search from "./Search";
 import { MdHome, MdLightMode, MdDarkMode, MdPerson } from "react-icons/md";
 
 const Navbar = () => {
-  const { setActiveTag, setCurrentPage, userData, updateUserData } = useAppContext();
+  const { setActiveTag, setCurrentPage, userData, updateUserData } =
+    useAppContext();
   const navigate = useNavigate();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -16,7 +17,7 @@ const Navbar = () => {
     "https://images.unsplash.com/photo-1579547945413-497e1b99dac0?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&q=80&h=400&w=400";
 
   const lightLogo = "/bidify ..png";
-  const darkLogo = "/dark mode.png"; 
+  // const darkLogo = "/dark mode.png";
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -73,11 +74,7 @@ const Navbar = () => {
 
   const displayAvatar = isLoggedIn ? (
     userData?.avatar?.url && userData.avatar.url !== defaultAvatar ? (
-      <img
-        src={userData.avatar.url}
-        alt="User Avatar"
-        className="islogin"
-      />
+      <img src={userData.avatar.url} alt="User Avatar" className="islogin" />
     ) : (
       <span className="no-user-avatar">
         {userData?.name ? userData.name[0].toUpperCase() : "U"}
@@ -88,76 +85,77 @@ const Navbar = () => {
   );
 
   return (
-    <nav className="flex-styled navbar">
-      {/* Logo */}
-      <div className="flex-styled">
-        <Link to="/">
-          <img src={isDarkMode ? darkLogo : lightLogo} alt="App Logo" className="logo" />
-        </Link>
-      </div>
-
-      {/* Search Bar */}
-      <Search />
-
-      {/* Icons */}
-      <div className="flex-styled">
-        <Link to="/" onClick={handleHomeClick} >
-          <MdHome className="icon" />
-        </Link>
-        <button onClick={toggleTheme} >
-          {isDarkMode ? (
-            <MdLightMode className="icon" />
-          ) : (
-            <MdDarkMode className="icon" />
-          )}
-        </button>
-
-        {/* User Icon */}
-        <div onClick={handleDropdownClick} className="relative" ref={dropdownRef}>
-          {displayAvatar}
-
-          {/* Dropdown Menu */}
-          {isLoggedIn && isDropdownOpen && (
-            <div className="dropdown">
-              <ul>
-                <li>
-                  <Link
-                    to={`/profile/${userData.name}`}
-                    className="menu-item"
-                  >
-                    Profile
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    to={`/edit/${userData.name}`}
-                    className="menu-item"
-                  >
-                    Edit
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    to="/createlist"
-                    className="menu-item"
-                  >
-                    Create Listing
-                  </Link>
-                </li>
-                <li>
-                  <button
-                    onClick={handleLogout}
-                    className="menu-item"
-                  >
-                    Logout
-                  </button>
-                </li>
-              </ul>
-            </div>
-          )}
+    <div>
+      <nav className="flex-styled navbar sm:flex-row ">
+        {/* Logo */}
+        <div className="flex-styled">
+          <Link to="/">
+            <img src={lightLogo} alt="App Logo" className="logo" />
+          </Link>
         </div>
+
+        {/* Search Bar */}
+        <div className="hidden sm:block">
+          <Search />
+        </div>
+
+        {/* Icons */}
+        <div className="flex-styled">
+          <Link to="/" onClick={handleHomeClick}>
+            <MdHome className="icon" />
+          </Link>
+          <button onClick={toggleTheme}>
+            {isDarkMode ? (
+              <MdLightMode className="icon" />
+            ) : (
+              <MdDarkMode className="icon" />
+            )}
+          </button>
+
+          {/* User Icon */}
+          <div
+            onClick={handleDropdownClick}
+            className="relative"
+            ref={dropdownRef}>
+            {displayAvatar}
+
+            {/* Dropdown Menu */}
+            {isLoggedIn && isDropdownOpen && (
+              <div className="dropdown">
+                <ul>
+                  <li>
+                    <Link
+                      to={`/profile/${userData.name}`}
+                      className="menu-item">
+                      Profile
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to={`/edit/${userData.name}`} className="menu-item">
+                      Edit
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to="/createlist" className="menu-item">
+                      Create Listing
+                    </Link>
+                  </li>
+                  <li>
+                    <button onClick={handleLogout} className="menu-item">
+                      Logout
+                    </button>
+                  </li>
+                </ul>
+              </div>
+            )}
+          </div>
+        </div>
+      </nav>
+      {/* Search Bar Outside Navbar (Small Screens) */}
+      <div className="sm:hidden p-4">
+        <Search />
       </div>
-    </nav>
+    </div>
   );
 };
 

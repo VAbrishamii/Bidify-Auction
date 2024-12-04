@@ -45,7 +45,7 @@ const RegisterForm = ({ onregisterSuccess }) => {
     <div className="left-side-registerform">
       <div className="text-center w-80">
         <img
-          src="/bidify white.png" // Replace with your logo path
+          src="/bidify ..png" // Replace with your logo path
           alt="Bidify Logo"
           className="logo ml-6"
         />

@@ -10,13 +10,12 @@
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
-    "autoprefixer": "^10.4.20",
     "axios": "^1.7.7",
     "canvas": "^2.11.2",
     "date-fns": "^4.1.0",
     "font-awesome": "^4.7.0",
     "jwt-decode": "^4.0.0",
-    "postcss": "^8.4.49",
+    "postcss-loader": "^6.2.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-dropzone": "^14.3.5",
@@ -28,16 +27,16 @@
     "react-scripts": "^5.0.1",
     "react-slick": "^0.30.2",
     "slick-carousel": "^1.8.1",
-    "tailwindcss": "^3.4.15",
     "web-vitals": "^2.1.4",
     "yup": "^1.4.0"
   },
-  "scripts": {
-    "start": "react-scripts start --openssl-legacy-provider",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
-  },
+ "scripts": {
+  "start": "react-scripts start",
+  "build": "react-scripts build",
+  "test": "react-scripts test",
+  "eject": "react-scripts eject"
+
+},
   "eslintConfig": {
     "extends": [
       "react-app",
@@ -57,6 +56,12 @@
     ]
   },
   "devDependencies": {
-    "css-loader": "^7.1.2"
+    "@babel/core": "^7.26.0",
+    "@babel/preset-env": "^7.26.0",
+    "autoprefixer": "^10.4.20",
+    "babel-loader": "^9.2.1",
+    "css-loader": "^7.1.2",
+    "postcss": "^8.4.49",
+    "tailwindcss": "^3.4.16"
   }
 }

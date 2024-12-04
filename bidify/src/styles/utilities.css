@@ -1,5 +1,5 @@
 body {
-  @apply font-body h-screen flex flex-col;
+  @apply font-body h-screen flex flex-col p-0 m-0 overflow-x-hidden;
 }
 main{
  @apply flex-grow flex flex-col;
