@@ -1,6 +1,9 @@
-.filter-bar{
+/* .filter-bar{
     @apply flex justify-center items-center p-8 gap-4;
-}
+} */
+ .filter-bar{
+    @apply flex flex-wrap justify-center gap-4;
+ }
 .filter-btn {
     @apply w-32 h-32 rounded-full bg-cover bg-center border-2 relative shadow-md border-secondary-default cursor-pointer flex items-center justify-center hover:opacity-80;
   }

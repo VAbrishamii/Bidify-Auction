@@ -7,8 +7,10 @@ import { useAppContext } from "../context/AppContext";
 const UpdateProfile = ({ username, onUpdateAvatar }) => {
   const { userData, updateUserData } = useAppContext();
   const [avatar, setAvatar] = useState({ url: "", alt: "" });
-  const [currentAvatar, setCurrentAvatar] = useState(""); 
-  const [currentBio, setCurrentBio] = useState(""); 
+  // eslint-disable-next-line
+  const [currentAvatar,setCurrentAvatar] = useState("");
+  // eslint-disable-next-line 
+  const [currentBio,setCurrentBio] = useState(""); 
   const [bio, setBio] = useState("");
   const [name, setName] = useState(""); // User's name
   const [loading, setLoading] = useState(false); // Loading state for submission

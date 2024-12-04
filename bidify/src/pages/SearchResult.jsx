@@ -1,4 +1,4 @@
-import { useLocation } from "react-router-dom";
+// import { useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import AuctionAPI from "../service/AuctionAPI"; 
 import ListingCard from "../components/ListingCard";
@@ -6,7 +6,7 @@ import Pagination from "../components/pagination";
 import { useAppContext } from "../context/AppContext";
 
 const SearchResults = () => {
-  const location = useLocation();
+  // const location = useLocation();
   // const query = new URLSearchParams(location.search).get("query"); 
   const {searchQuery,results, setResults, currentPage, setCurrentPage} = useAppContext();
   const [isLoading, setIsLoading] = useState(false);
