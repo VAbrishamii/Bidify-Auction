@@ -39,7 +39,7 @@ return (
             <label>Email: <span className="text-red-default">*</span></label>
             <input
                 type="email"
-                placeholder="Enter your email"
+                placeholder="Enter your email ex:email.stud.noroff.no"
                 required
                 onChange={(e) => setEmail(e.target.value)}
             />
@@ -48,7 +48,7 @@ return (
             <label>Password: <span className="text-red-default">*</span></label>
             <input
                 type="password"
-                placeholder="Enter your password"
+                placeholder="Enter your password it should be at least 8 characters"
                 required
                 onChange={(e) => setPassword(e.target.value)}
             />

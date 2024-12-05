@@ -42,10 +42,9 @@ module.exports = {
         'primary-hover': '#488F84',
         secondary: '#88B990',
         'secondary-hover': '#ABCD9E',
-      },
+      }
     },
   },
-  plugins: [
-  ],
+  plugins: [],
 }
 

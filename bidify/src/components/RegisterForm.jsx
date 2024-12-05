@@ -43,7 +43,7 @@ const RegisterForm = ({ onregisterSuccess }) => {
     <div className="register-welcoming ">
     {/* Left Side: Logo and Welcome Message */}
     <div className="left-side-registerform">
-      <div className="text-center w-80">
+      <div className="text-center w-80 p-5">
         <img
           src="/bidify ..png" // Replace with your logo path
           alt="Bidify Logo"
@@ -53,13 +53,13 @@ const RegisterForm = ({ onregisterSuccess }) => {
         <h2>Create Your Account and unlock Exlusive Features</h2>
         <p className="mt-4 text-gray-light">
           By creating an account, you get <strong>1000 point credit</strong>{" "}
-          and can use it to sell or buy your house.
+          and can use it to sell or buy your items.
         </p>
       </div>
     </div>
   
     <form  className='form my-28' onSubmit={handleSubmit}>
-        <div>
+        <div className="container mx-auto">
         
         <label>Name: <span className="text-red-default">*</span> </label>
         <input
@@ -68,6 +68,7 @@ const RegisterForm = ({ onregisterSuccess }) => {
           placeholder="Enter your Name"
           required
           onChange={handleChange}
+      
         />
       </div>
       <div>

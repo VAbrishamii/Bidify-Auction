@@ -14,7 +14,7 @@ export const loginUser = async (credentials) => {
         return response.data; 
     } catch (error) {
         const errorMessage =
-            error.response?.data?.message || "An error occurred while logging in";
+         alert(error.response?.data?.message || "Pleae try agian something in your Usernmae or Password is wrong");
         throw new Error(errorMessage);
     }
 };

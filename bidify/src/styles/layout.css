@@ -14,7 +14,7 @@
    @apply flex justify-center gap-4 p-4;
 }
 .form{
-   @apply min-h-screen md:w-1/2 flex flex-col justify-center items-center gap-4 max-w-xl mx-auto bg-white pt-8 rounded-lg space-y-6 m-4;
+   @apply min-h-screen md:w-1/2 md:m-0 flex flex-col justify-center items-center gap-4 max-w-xl mx-auto bg-white p-8 rounded-lg space-y-6 m-4;
 }
 .btn{
    @apply w-60 bg-primary-default text-white rounded-md mb-4 px-4 py-2 hover:bg-primary-hover transition-colors duration-200;
@@ -28,4 +28,5 @@
  .logo{
    @apply w-56 h-24;
  }
+
 

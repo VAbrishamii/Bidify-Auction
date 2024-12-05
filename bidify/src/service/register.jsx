@@ -20,7 +20,7 @@ export const registerUser = async (user) => {
             const errorData = await response.json();
             console.log('error data', errorData);
             // Show error message as an alert
-            const errorMessage = errorData.errors?.[0]?.message || "An error occurred while registering";
+            const errorMessage = errorData.errors?.[0]?.message || "Please try again something went wrong while registering";
             alert(errorMessage);
             throw new Error(errorMessage); // Ensure the correct error message is thrown
         }
