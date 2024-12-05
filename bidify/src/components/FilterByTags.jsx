@@ -2,10 +2,11 @@ import React from "react";
 
 const FilterBar = ({ activeTag, setActiveTag }) => {
   const tags = [
-   {name: "art", image: "/art.jpg"},
-   {name: "decorative", image: "/decorative.jpg"},
-   {name: "electronics", image: "/electronics.jpg"},
-   {name: "accessories", image: "/accessories.jpg"},];
+    { name: "art", image: `${process.env.PUBLIC_URL}/art.jpg` },
+    { name: "decorative", image: `${process.env.PUBLIC_URL}/decorative.jpg` },
+    { name: "electronics", image: `${process.env.PUBLIC_URL}/electronics.jpg` },
+    { name: "accessories", image: `${process.env.PUBLIC_URL}/accessories.jpg` },
+  ];
 
   const handleTagClick = (tag) => {
     setActiveTag((prev) => (prev === tag ? null : tag)); // Toggle the tag filter
