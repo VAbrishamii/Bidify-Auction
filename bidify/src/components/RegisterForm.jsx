@@ -59,7 +59,7 @@ const RegisterForm = ({ onregisterSuccess }) => {
     </div>
   
     <form  className='form my-28' onSubmit={handleSubmit}>
-        <div className="container mx-auto">
+        <div>
         
         <label>Name: <span className="text-red-default">*</span> </label>
         <input

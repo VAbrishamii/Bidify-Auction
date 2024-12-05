@@ -4,6 +4,8 @@ import ImageUploader from "../components/ImageUploader";
 import { useNavigate } from "react-router-dom";
 
 
+
+
 const Createlist = () => {
   const [formData, setFormData] = React.useState({
     title: "",
@@ -15,8 +17,7 @@ const Createlist = () => {
 
   const [loading, setLoading] = React.useState(false);
   const auctionAPI = new AuctionAPI();
-
-  
+  const [activeTag, setActiveTag] = React.useState([]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -58,7 +59,8 @@ const Createlist = () => {
       const data = {
         title: formData.title,
         description: formData.description,
-        tags: formData.tags.split(',').map((tag) => tag.trim()), 
+        tags: [formData.tags],
+        // tags: formData.tags.split(',').map((tag) => tag.trim()), 
         media: formData.image.map((url) => ({ url, alt: "Auction Image" })),
         endsAt: endDate.toISOString(),
     };
@@ -79,10 +81,10 @@ const Createlist = () => {
 }
 
 return (   
-<div className="form">
+<div>
   {/* <h1>Create Auction Listing</h1> */}
-  <form onSubmit={handleSubmit}>
-      <div>
+  <form  className='form' onSubmit={handleSubmit}>
+      <div className="form-group">
           <label htmlFor="title">Title:</label>
           <input
               type="text"
@@ -94,7 +96,7 @@ return (
           />
       </div>
 
-      <div>
+      <div className="form-group">
           <label htmlFor="description">Description:</label>
           <textarea
               id="description"
@@ -105,24 +107,32 @@ return (
           />
       </div>
 
-      <div>
-          <label htmlFor="tags" >Tags (comma-separated):</label>
-          <input
-              type="text"
-              id="tags"
-              name="tags"
-              placeholder="It could be in categoriy of  Art,Electornics,Decorative ans Accessories"
-              value={formData.tags}
-              onChange={handleChange}
-          />
-      </div>
+      
+       <div className="form-group">
+          <label htmlFor="tags">Tags:</label>
+          <select
+            id="tags"
+            name="tags"
+            value={formData.tags}
+            onChange={handleChange}
+            required
+          >
+            <option value="">Select a category</option>
+            <option value="art">Art</option>
+            <option value="electronics">Electronics</option>
+            <option value="decorative">Decorative</option>
+            <option value="accessories">Accessories</option>
+          </select>
+        </div>
+     
+      
 
-      <div>
+      <div className="form-group">
           <label htmlFor="image">Image: </label> 
           <ImageUploader onImageUploaded={handleImageUpload} />
       </div>
 
-      <div>
+      <div className="form-group">
           <label htmlFor="endDate">End Date:</label>
           <input
               type="datetime-local"
