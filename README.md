@@ -16,3 +16,18 @@ Follow these steps to set up the project locally on your machine:
 1. **Clone the repository**:
    ```bash
    git clone https://github.com/your-username/Bidify-Auction.git
+   cd bidify
+   npm install
+   npm start
+
+Open http://localhost:3000 in your browser to see the application in action.   
+
+## Features
+
+- **User Authentication**: Users can sign up, log in, and manage their profiles.
+- **Bid on Auctions**: Users can place bids on products with real-time updates.
+- **Auction Timer**: Countdown timer for each auction to indicate when it ends.
+- **Real-time Updates**: Live bidding updates using WebSockets or polling.
+- **Search and Filter**: Search for products by name or category, and filter by price.
+- **Responsive Design**: Optimized for mobile, tablet, and desktop views.
+
