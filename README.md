@@ -7,8 +7,7 @@ Bidify is an online auction platform built using React. It allows users to place
 - [Features](#features)
 - [Usage](#usage)
 - [Technologies Used](#technologies-used)
-- [Contributing](#contributing)
-- [License](#license)
+
 
 ## Installation
 
