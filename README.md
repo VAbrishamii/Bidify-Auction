@@ -20,6 +20,7 @@ Follow these steps to set up the project locally on your machine:
    2. cd bidify
    3. nmp install
    4. npm start
+      
 Open http://localhost:3000 in your browser to see the application in action.
  
 
