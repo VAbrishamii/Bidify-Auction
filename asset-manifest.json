@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.css": "/Bidify-Auction/static/css/main.22ac8592.css",
-    "main.js": "/Bidify-Auction/static/js/main.3004214d.js",
-    "static/js/845.e6353029.chunk.js": "/Bidify-Auction/static/js/845.e6353029.chunk.js",
-    "static/media/slick.svg": "/Bidify-Auction/static/media/slick.2630a3e3eab21c607e21.svg",
-    "static/media/slick.eot": "/Bidify-Auction/static/media/slick.a4e97f5a2a64f0ab1323.eot",
-    "static/media/slick.ttf": "/Bidify-Auction/static/media/slick.c94f7671dcc99dce43e2.ttf",
-    "static/media/slick.woff": "/Bidify-Auction/static/media/slick.295183786cd8a1389865.woff",
-    "index.html": "/Bidify-Auction/index.html",
-    "main.22ac8592.css.map": "/Bidify-Auction/static/css/main.22ac8592.css.map",
-    "main.3004214d.js.map": "/Bidify-Auction/static/js/main.3004214d.js.map",
-    "845.e6353029.chunk.js.map": "/Bidify-Auction/static/js/845.e6353029.chunk.js.map"
+    "main.css": "/Bidify-Auction/bidify/static/css/main.5140360d.css",
+    "main.js": "/Bidify-Auction/bidify/static/js/main.7d64e04d.js",
+    "static/js/845.e6353029.chunk.js": "/Bidify-Auction/bidify/static/js/845.e6353029.chunk.js",
+    "static/media/slick.svg": "/Bidify-Auction/bidify/static/media/slick.2630a3e3eab21c607e21.svg",
+    "static/media/slick.eot": "/Bidify-Auction/bidify/static/media/slick.a4e97f5a2a64f0ab1323.eot",
+    "static/media/slick.ttf": "/Bidify-Auction/bidify/static/media/slick.c94f7671dcc99dce43e2.ttf",
+    "static/media/slick.woff": "/Bidify-Auction/bidify/static/media/slick.295183786cd8a1389865.woff",
+    "index.html": "/Bidify-Auction/bidify/index.html",
+    "main.5140360d.css.map": "/Bidify-Auction/bidify/static/css/main.5140360d.css.map",
+    "main.7d64e04d.js.map": "/Bidify-Auction/bidify/static/js/main.7d64e04d.js.map",
+    "845.e6353029.chunk.js.map": "/Bidify-Auction/bidify/static/js/845.e6353029.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.22ac8592.css",
-    "static/js/main.3004214d.js"
+    "static/css/main.5140360d.css",
+    "static/js/main.7d64e04d.js"
   ]
 }
