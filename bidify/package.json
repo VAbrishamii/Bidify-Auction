@@ -67,6 +67,6 @@
     "postcss-loader": "^8.1.1",
     "tailwindcss": "^3.4.16"
   },
-  "homepage": "https://vabrishamii.github.io/Bidify-Auction/"
+  "homepage": "https://vabrishamii.github.io/Bidify-Auction/bidify/"
 
 }
