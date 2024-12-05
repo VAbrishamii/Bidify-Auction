@@ -27,7 +27,28 @@ Open http://localhost:3000 in your browser to see the application in action.
 - **User Authentication**: Users can sign up, log in, and manage their profiles.
 - **Bid on Auctions**: Users can place bids on products with real-time updates.
 - **Auction Timer**: Countdown timer for each auction to indicate when it ends.
-- **Real-time Updates**: Live bidding updates using WebSockets or polling.
 - **Search and Filter**: Search for products by name or category, and filter by price.
 - **Responsive Design**: Optimized for mobile, tablet, and desktop views.
+
+## Usage
+
+Once the application is up and running, follow these steps:
+
+1. **Sign Up / Login**: Create an account or log in to start bidding.
+2. **Browse Auctions**: Explore the available auction items.
+3. **Place a Bid**: Select an item and place your bid.
+4. **Monitor Auctions**: Keep track of your active bids and watch the countdowns.
+5. **Profile Management**: View your past bids, auctions, and personal details.
+
+## Technologies Used
+
+- **React**: JavaScript library for building user interfaces.
+- **Tailwind**: Styling the front-end components.
+- **React Router**: For handling routing within the application.
+- **Axios**: For making HTTP requests to the backend API.
+
+## Link to visit
+ https://vabrishamii.github.io/Bidify-Auction/
+
+
 
