@@ -16,7 +16,7 @@ const Navbar = () => {
   const defaultAvatar =
     "https://images.unsplash.com/photo-1579547945413-497e1b99dac0?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&q=80&h=400&w=400";
 
-  const lightLogo = "/bidify ..png";
+  const lightLogo = "/Bidify ..png";
   // const darkLogo = "/dark mode.png";
 
   useEffect(() => {

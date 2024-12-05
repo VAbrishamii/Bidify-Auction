@@ -33,7 +33,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
@@ -59,8 +61,10 @@
     "autoprefixer": "^10.4.20",
     "babel-loader": "^9.2.1",
     "css-loader": "^7.1.2",
+    "gh-pages": "^6.2.0",
     "postcss": "^8.4.49",
     "postcss-loader": "^8.1.1",
     "tailwindcss": "^3.4.16"
-  }
+  },
+  "homepage": "http://VAbrishami.github.io/Bidify-Auction"
 }
