@@ -17,7 +17,7 @@ const Createlist = () => {
 
   const [loading, setLoading] = React.useState(false);
   const auctionAPI = new AuctionAPI();
-  const [activeTag, setActiveTag] = React.useState([]);
+  // const [activeTag, setActiveTag] = React.useState([]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
