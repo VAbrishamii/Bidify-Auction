@@ -1,4 +1,4 @@
-name: Deploy React App
+name: Deploy Bidify to GitHub Pages
 
 on:
   push:
