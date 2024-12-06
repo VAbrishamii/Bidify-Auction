@@ -61,7 +61,6 @@
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@babel/preset-env": "^7.26.0",
     "autoprefixer": "^10.4.20",
-    "babel-loader": "^9.2.1",
     "css-loader": "^7.1.2",
     "gh-pages": "^6.2.0",
     "postcss": "^8.4.49",
