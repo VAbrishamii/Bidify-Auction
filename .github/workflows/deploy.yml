@@ -26,10 +26,17 @@ jobs:
           npm install
           npm run build
 
-      # Step 4: Deploy to GitHub Pages
+        # Step 4: Configure Git  
+       - name: Set up Git
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+    
+
+      # Step 5: Deploy to GitHub Pages
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           branch: gh-pages  # Deploy to the gh-pages branch
           folder: bidify/build  # Path to the build folder (after running npm run build)
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          # github_token: ${{ secrets.GITHUB_TOKEN }}
