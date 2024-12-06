@@ -10,6 +10,9 @@
 .profile-header p{
     @apply text-gray-dark dark:text-gray-light;
 }
+.profile-header p:last-child{
+    @apply text-primary-hover;
+}
 .profile-stats{
     @apply flex gap-4 mt-4;
 }
@@ -18,4 +21,7 @@
 }
 .profile-listings{
     @apply mt-5
+}
+.listing-container{
+    @apply flex flex-wrap gap-4;
 }

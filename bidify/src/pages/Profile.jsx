@@ -57,7 +57,7 @@ const Profile = () => {
         
       </div>
 
-      <div className="profile-listings">
+      <div className="profile-listings min-h-[360px]">
         <Listings userName={username} />
       </div>
     </div>

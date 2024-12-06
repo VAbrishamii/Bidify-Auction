@@ -20,25 +20,26 @@ input[type="submit"] {
   @apply bg-primary-default text-white rounded-md px-4 py-2 hover:bg-primary-hover transition-colors duration-200;
 }
 input[type='dateTime-local'] {
-  @apply border rounded-md w-96 p-2 mr-5;
+  @apply border rounded-md md:w-80 w-80 p-2 mr-5;
 }
 label {
   @apply text-gray-dark font-medium text-sm block ml-5;
   min-width: 90px;
 }
 input[type="file"] {
-  @apply  rounded-md w-96 md:w-80 mb-4 mr-5 ml-5 p-2;
+  @apply  rounded-md w-80 md:w-64 mb-4 mr-7 ml-5 p-2;
 
 }
 textarea {
   @apply border md:w-96 w-80 border-gray-300 rounded-md mr-8 ml-8 p-2; 
 }
 select {
-  @apply border md:w-96 w-80 border-gray-300 rounded-md p-2 mx-5;
+  @apply border md:w-80 w-80 border-gray-300 rounded-md p-2 mx-5;
 }
+
 @media (max-width: 768px){
   input[type='text'] {
-    @apply w-80;
+    @apply w-64;
   }
   input[type='email'] {
     @apply w-80;
@@ -47,6 +48,15 @@ select {
     @apply w-80;
   }
   textarea {
-    @apply w-80;
+    @apply w-64;
+  }
+  input[type='dateTime-local'] {
+    @apply w-64;
+  }
+  input[type='file'] {
+    @apply w-64;
+  }
+  select {
+    @apply w-64;
   }
 }

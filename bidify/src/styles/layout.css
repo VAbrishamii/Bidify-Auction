@@ -14,7 +14,7 @@
    @apply flex justify-center gap-4 p-4;
 }
 .form{
-   @apply min-h-screen md:w-1/2  flex flex-col justify-center items-center gap-4 max-w-xl mx-auto bg-white p-8 rounded-lg space-y-6 m-4;
+   @apply border min-h-[70vh] md:w-1/2  flex flex-col justify-center items-center gap-4 max-w-xl mx-auto bg-white p-8 rounded-lg space-y-6 my-28;
 }
 .form-group{
    @apply flex flex-col gap-4;

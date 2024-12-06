@@ -115,7 +115,7 @@ const Navbar = () => {
           {/* User Icon */}
           <div
             onClick={handleDropdownClick}
-            className="relative"
+            className="relative avatar"
             ref={dropdownRef}>
             {displayAvatar}
 

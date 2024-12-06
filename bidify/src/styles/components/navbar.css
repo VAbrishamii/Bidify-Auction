@@ -31,3 +31,13 @@
 .search-bar button {
   @apply absolute right-8 sm:right-3 top-3 text-xl text-primary;
 }
+@media (max-width: 768px){
+ .search-bar button{
+    @apply right-1/4;
+ }
+}
+@media (max-width: 425px){
+  .search-bar button{
+    @apply right-1/3;
+  }
+}
