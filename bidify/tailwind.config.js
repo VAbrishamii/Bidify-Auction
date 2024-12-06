@@ -28,7 +28,7 @@ module.exports = {
           dark:'#2B2B2B',
         },
         red:{
-          default:'#EB6213',
+          default:'#B50303',
         },
         boxShadow:{
           'primary-glow':'0 0px 15px rgba(52, 111, 101, 0.5)',

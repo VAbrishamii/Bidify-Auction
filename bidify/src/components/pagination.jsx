@@ -15,7 +15,7 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
 
   return (
     <div className="pagination">
-      <button aria-lable='Previous' onClick={handlePrevious} disabled={currentPage === 1} style={{ visibility: currentPage === 1 ? "hidden" : "visible" }}>
+      <button aria-label='Previous' onClick={handlePrevious} disabled={currentPage === 1} style={{ visibility: currentPage === 1 ? "hidden" : "visible" }}>
         Previous
       </button>
       <span>

@@ -141,7 +141,7 @@ const Navbar = () => {
                     </Link>
                   </li>
                   <li>
-                    <button aria-lable='LogOut' onClick={handleLogout} className="menu-item">
+                    <button aria-label='LogOut' onClick={handleLogout} className="menu-item">
                       Logout
                     </button>
                   </li>
