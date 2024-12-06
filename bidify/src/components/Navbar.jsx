@@ -81,7 +81,7 @@ const Navbar = () => {
       </span>
     )
   ) : (
-    <MdPerson className="icon" />
+    <MdPerson className="icon mt-2" />
   );
 
   return (
