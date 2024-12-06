@@ -44,7 +44,7 @@ const Profile = () => {
         <p>{profileData.data.bio}</p>
         {/* Bids Section with clickable link */}
         <p>
-          <Link to={`/profile/bids/${username}`}>{username.charAt(0).toUpperCase() + username.slice(1)} Bids</Link>
+          <Link aria-label='Go to Bids made by User Page' to={`/profile/bids/${username}`}>{username.charAt(0).toUpperCase() + username.slice(1)} Bids</Link>
         </p>
        
       </div>

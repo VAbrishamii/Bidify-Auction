@@ -89,7 +89,7 @@ const Navbar = () => {
       <nav className="flex-styled navbar sm:flex-row ">
         {/* Logo */}
         <div className="flex-styled">
-          <Link to="/">
+          <Link to="/" aria-label="Go to Home Page">
             <img src={`${process.env.PUBLIC_URL}/Bidify ..png`} alt="App Logo" className="logo" />
           </Link>
         </div>
@@ -101,7 +101,7 @@ const Navbar = () => {
 
         {/* Icons */}
         <div className="flex-styled">
-          <Link to="/" onClick={handleHomeClick}>
+          <Link to="/"  aria-label='Go to Home Page' onClick={handleHomeClick}>
             <MdHome className="icon" />
           </Link>
           <button aria-label={isDarkMode ? "Switch to light mode" : "Switch to dark mode"} onClick={toggleTheme}>
@@ -124,19 +124,19 @@ const Navbar = () => {
               <div className="dropdown">
                 <ul>
                   <li>
-                    <Link
+                    <Link aria-label="Go to Profile"
                       to={`/profile/${userData.name}`}
                       className="menu-item">
                       Profile
                     </Link>
                   </li>
                   <li>
-                    <Link to={`/edit/${userData.name}`} className="menu-item">
+                    <Link aria-label="Go to Edit" to={`/edit/${userData.name}`} className="menu-item">
                       Edit
                     </Link>
                   </li>
                   <li>
-                    <Link to="/createlist" className="menu-item">
+                    <Link aria-label='Go to Create List' to="/createlist" className="menu-item">
                       Create Listing
                     </Link>
                   </li>

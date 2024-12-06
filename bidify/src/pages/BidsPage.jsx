@@ -47,7 +47,7 @@ const BidsPage = () => {
               <p>{bid.listing.description}</p>
               
            {/* Add View Details Link */}
-           <Link to={`/listing/${bid.listing.id}`} className="view-details-link">
+           <Link aria-label='Go to Details List Page' to={`/listing/${bid.listing.id}`} className="view-details-link">
               View Details
             </Link>
            

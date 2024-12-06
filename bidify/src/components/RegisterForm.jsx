@@ -102,7 +102,7 @@ const RegisterForm = ({ onregisterSuccess }) => {
         />
       </div>
       <button aria-label='Register' className="btn" type="submit">Register</button>
-      <Link to="/login" className="signin-btn flex-styled">
+      <Link aria-label='Go to Login' to="/login" className="signin-btn flex-styled">
   
         <button  aria-label='Login' className='w-full' type="submit">Login</button>
       </Link>
