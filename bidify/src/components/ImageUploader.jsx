@@ -76,7 +76,7 @@ const ImageUploader = ({ onImageUploaded }) => {
         onChange={handleFileChange}
         multiple
       />
-      <button className="btn ml-8 w-36" onClick={uploadImage} disabled={uploading}>
+      <button aria-label='Upload' className="btn ml-8 w-36" onClick={uploadImage} disabled={uploading}>
         {uploading ? "Uploading..." : "Upload Image"}
       </button>
       {imageUrls.length > 0 && (

@@ -113,7 +113,7 @@ const UpdateProfile = ({ username, onUpdateAvatar }) => {
         required
       />
     </div>
-    <button  className='btn' type="submit" disabled={loading}>
+    <button  aria-lable='Update' className='btn' type="submit" disabled={loading}>
       {loading ? "Updating..." : "Update Profile"}
     </button>
   </form>

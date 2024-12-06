@@ -53,7 +53,7 @@ return (
                 onChange={(e) => setPassword(e.target.value)}
             />
         </div>
-        <button className='signin-btn' type="submit">Login</button>
+        <button aria-label='Login' className='signin-btn' type="submit">Login</button>
         {error && <p>{error}</p>}
     </form>
 );

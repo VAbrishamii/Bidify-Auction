@@ -104,7 +104,7 @@ const Navbar = () => {
           <Link to="/" onClick={handleHomeClick}>
             <MdHome className="icon" />
           </Link>
-          <button onClick={toggleTheme}>
+          <button aria-label={isDarkMode ? "Switch to light mode" : "Switch to dark mode"} onClick={toggleTheme}>
             {isDarkMode ? (
               <MdLightMode className="icon" />
             ) : (
@@ -141,7 +141,7 @@ const Navbar = () => {
                     </Link>
                   </li>
                   <li>
-                    <button onClick={handleLogout} className="menu-item">
+                    <button aria-lable='LogOut' onClick={handleLogout} className="menu-item">
                       Logout
                     </button>
                   </li>

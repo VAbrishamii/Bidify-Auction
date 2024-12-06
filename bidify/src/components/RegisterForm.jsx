@@ -101,10 +101,10 @@ const RegisterForm = ({ onregisterSuccess }) => {
           onChange={handleChange}
         />
       </div>
-      <button className="btn" type="submit">Register</button>
+      <button aria-label='Register' className="btn" type="submit">Register</button>
       <Link to="/login" className="signin-btn flex-styled">
   
-        <button  className='w-full' type="submit">Login</button>
+        <button  aria-label='Login' className='w-full' type="submit">Login</button>
       </Link>
       {error && <p className="text-red-500">{error}</p>}
     </form>

@@ -16,7 +16,7 @@ return (
   <div className="filter-bar">
     {tags.map((tag) => (
       <div key={tag.name} className="flex-styled filter-item">
-        <button
+        <button aria-label="Filter by tag"
           className={`filter-btn ${
             activeTag === tag.name ? "active" : "" 
       
