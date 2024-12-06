@@ -33,12 +33,12 @@
  }
  @media (max-width: 768px){
    .avatar{
-     @apply w-8 h-8;
+     @apply w-8 h-8 mt-0;
    }
  }
 @media (max-width: 425px){
    .form{
-     @apply p-0;
+     @apply px-2 ;
    }
  }
 

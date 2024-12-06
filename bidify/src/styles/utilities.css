@@ -39,7 +39,8 @@ select {
 
 @media (max-width: 768px){
   input[type='text'] {
-    @apply w-64;
+    @apply w-80 mt-4;
+
   }
   input[type='email'] {
     @apply w-80;
@@ -48,7 +49,7 @@ select {
     @apply w-80;
   }
   textarea {
-    @apply w-64;
+    @apply w-80;
   }
   input[type='dateTime-local'] {
     @apply w-64;
