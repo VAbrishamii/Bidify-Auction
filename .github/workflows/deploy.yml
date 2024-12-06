@@ -26,8 +26,8 @@ jobs:
           npm install
           npm run build
 
-        # Step 4: Configure Git  
-       - name: Set up Git
+      # Step 4: Configure Git  
+      - name: Set up Git
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
