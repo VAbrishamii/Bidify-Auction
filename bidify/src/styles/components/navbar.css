@@ -33,11 +33,11 @@
 }
 @media (max-width: 768px){
  .search-bar button{
-    @apply right-1/4;
+    @apply right-1/4 mt-3;
  }
 }
 @media (max-width: 425px){
   .search-bar button{
-    @apply right-1/3;
+    @apply mt-3;
   }
 }
