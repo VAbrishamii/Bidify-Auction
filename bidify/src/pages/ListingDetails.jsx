@@ -15,8 +15,7 @@ const ListingDetails = () => {
     const loadDetailsListing = async () => {
       try {
         const listingData = await auctionAPI.getSingleListing(id);
-        console.log("Single Listing Media:", listingData.data?.media);
-        console.log("listingData", listingData);
+  
 
         if (listingData) {
           setListing(listingData.data);
@@ -34,7 +33,6 @@ const ListingDetails = () => {
 
     const token = localStorage.getItem("token");
     setToken(token);
-    console.log("Token in listing details:", token);
   }, [id]);
 
   if (!listing) {
@@ -44,7 +42,7 @@ const ListingDetails = () => {
   const currentDate = new Date();
   const auctionEndDate = new Date(listing.endsAt);
   const isAuctionEnded = currentDate > auctionEndDate;
-  
+
   const handleBidPlaced = async () => {
     try {
       const updatedListing = await auctionAPI.getSingleListing(id);
@@ -53,7 +51,6 @@ const ListingDetails = () => {
       console.error("Error updating listing after placing bid:", error);
     }
   };
-  
 
   const topBidders = listing?.bids
     ? listing.bids.sort((a, b) => b.amount - a.amount).slice(0, 5)
@@ -111,7 +108,6 @@ const ListingDetails = () => {
                     <img
                       src={bid.bidder.avatar.url}
                       alt={bid.bidder.avatar.alt}
-                      // className="w-10 h-10 rounded-full"
                     />
                   )}
                   <div className="bidder-info">

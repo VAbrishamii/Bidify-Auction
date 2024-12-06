@@ -1,6 +1,12 @@
 import React, { useState } from "react";
 
-const PlaceBid = ({ auctionAPI, listingId, token, isAuctionEnded, onBidPlaced }) => {
+const PlaceBid = ({
+  auctionAPI,
+  listingId,
+  token,
+  isAuctionEnded,
+  onBidPlaced,
+}) => {
   const [bidAmount, setBidAmount] = useState("");
 
   const handlePlaceBid = async () => {
@@ -23,8 +29,8 @@ const PlaceBid = ({ auctionAPI, listingId, token, isAuctionEnded, onBidPlaced })
 
       if (response) {
         alert(`Successfully placed a bid of $${bidAmount}`);
-        onBidPlaced(bidData.amount); // Notify parent component about the new bid
-        setBidAmount(""); // Clear input
+        onBidPlaced(bidData.amount);
+        setBidAmount("");
         const updatedListing = await auctionAPI.getSingleListing(listingId);
         onBidPlaced(updatedListing.data);
       }
@@ -44,7 +50,11 @@ const PlaceBid = ({ auctionAPI, listingId, token, isAuctionEnded, onBidPlaced })
         min="0"
         disabled={isAuctionEnded}
       />
-      <button aria-label='Place Bid' onClick={handlePlaceBid} disabled={isAuctionEnded} className="btn">
+      <button
+        aria-label="Place Bid"
+        onClick={handlePlaceBid}
+        disabled={isAuctionEnded}
+        className="btn">
         {isAuctionEnded ? "Auction Ended" : "Place Bid"}
       </button>
     </div>
@@ -52,4 +62,3 @@ const PlaceBid = ({ auctionAPI, listingId, token, isAuctionEnded, onBidPlaced })
 };
 
 export default PlaceBid;
-

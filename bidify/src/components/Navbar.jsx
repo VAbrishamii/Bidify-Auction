@@ -16,9 +16,6 @@ const Navbar = () => {
   const defaultAvatar =
     "https://images.unsplash.com/photo-1579547945413-497e1b99dac0?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&q=80&h=400&w=400";
 
-  // const lightLogo = "/Bidify ..png";
-
-
   useEffect(() => {
     const token = localStorage.getItem("token");
     setIsLoggedIn(!!token);
@@ -90,7 +87,11 @@ const Navbar = () => {
         {/* Logo */}
         <div className="flex-styled">
           <Link to="/" aria-label="Go to Home Page">
-            <img src={`${process.env.PUBLIC_URL}/Bidify ..png`} alt="App Logo" className="logo" />
+            <img
+              src={`${process.env.PUBLIC_URL}/Bidify ..png`}
+              alt="App Logo"
+              className="logo"
+            />
           </Link>
         </div>
 
@@ -101,10 +102,14 @@ const Navbar = () => {
 
         {/* Icons */}
         <div className="flex-styled">
-          <Link to="/"  aria-label='Go to Home Page' onClick={handleHomeClick}>
+          <Link to="/" aria-label="Go to Home Page" onClick={handleHomeClick}>
             <MdHome className="icon" />
           </Link>
-          <button aria-label={isDarkMode ? "Switch to light mode" : "Switch to dark mode"} onClick={toggleTheme}>
+          <button
+            aria-label={
+              isDarkMode ? "Switch to light mode" : "Switch to dark mode"
+            }
+            onClick={toggleTheme}>
             {isDarkMode ? (
               <MdLightMode className="icon" />
             ) : (
@@ -124,24 +129,34 @@ const Navbar = () => {
               <div className="dropdown">
                 <ul>
                   <li>
-                    <Link aria-label="Go to Profile"
+                    <Link
+                      aria-label="Go to Profile"
                       to={`/profile/${userData.name}`}
                       className="menu-item">
                       Profile
                     </Link>
                   </li>
                   <li>
-                    <Link aria-label="Go to Edit" to={`/edit/${userData.name}`} className="menu-item">
+                    <Link
+                      aria-label="Go to Edit"
+                      to={`/edit/${userData.name}`}
+                      className="menu-item">
                       Edit
                     </Link>
                   </li>
                   <li>
-                    <Link aria-label='Go to Create List' to="/createlist" className="menu-item">
+                    <Link
+                      aria-label="Go to Create List"
+                      to="/createlist"
+                      className="menu-item">
                       Create Listing
                     </Link>
                   </li>
                   <li>
-                    <button aria-label='LogOut' onClick={handleLogout} className="menu-item">
+                    <button
+                      aria-label="LogOut"
+                      onClick={handleLogout}
+                      className="menu-item">
                       Logout
                     </button>
                   </li>

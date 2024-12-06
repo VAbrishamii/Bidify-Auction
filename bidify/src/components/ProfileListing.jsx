@@ -13,7 +13,6 @@ const Listings = ({ userName }) => {
       try {
         const api = new AuctionAPI();
         const fetchedListings = await api.allListingsByProfile(userName);
-        console.log("fetchedListings", fetchedListings);
         setListings(fetchedListings.data || []);
       } catch (error) {
         console.error("Error fetching listings:", error);
@@ -26,7 +25,9 @@ const Listings = ({ userName }) => {
   }, [userName]);
 
   const handleDelete = async (listingId) => {
-    const confirmed = window.confirm("Are you sure you want to delete this listing?");
+    const confirmed = window.confirm(
+      "Are you sure you want to delete this listing?"
+    );
     if (!confirmed) return;
     try {
       const api = new AuctionAPI();
@@ -45,27 +46,26 @@ const Listings = ({ userName }) => {
 
   return (
     <div>
-    {listings.length > 0 ? (
-      <div className="listings">
-        {listings.map((listing) => (
-          <div key={listing.id} className="listing-container">
-            {/* Listing Card */}
-            <ListingCard listing={listing} />
-             {/* Trash Icon for Delete */}
-             <button
-              className="delete-button"
-              onClick={() => handleDelete(listing.id)}
-              aria-label={`Delete ${listing.title}`}
-            >
-              <FontAwesomeIcon icon={faTrashAlt} />
-            </button>
-          </div>
-        ))}
-      </div>
-    ) : (
-      <p>No listings found for {userName}</p>
-    )}
-  </div>
+      {listings.length > 0 ? (
+        <div className="listings">
+          {listings.map((listing) => (
+            <div key={listing.id} className="listing-container">
+              {/* Listing Card */}
+              <ListingCard listing={listing} />
+              {/* Trash Icon for Delete */}
+              <button
+                className="delete-button"
+                onClick={() => handleDelete(listing.id)}
+                aria-label={`Delete ${listing.title}`}>
+                <FontAwesomeIcon icon={faTrashAlt} />
+              </button>
+            </div>
+          ))}
+        </div>
+      ) : (
+        <p>No listings found for {userName}</p>
+      )}
+    </div>
   );
 };
 export default Listings;

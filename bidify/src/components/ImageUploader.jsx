@@ -76,7 +76,11 @@ const ImageUploader = ({ onImageUploaded }) => {
         onChange={handleFileChange}
         multiple
       />
-      <button aria-label='Upload' className="btn ml-8 w-36" onClick={uploadImage} disabled={uploading}>
+      <button
+        aria-label="Upload"
+        className="btn ml-8 w-36"
+        onClick={uploadImage}
+        disabled={uploading}>
         {uploading ? "Uploading..." : "Upload Image"}
       </button>
       {imageUrls.length > 0 && (
@@ -88,17 +92,16 @@ const ImageUploader = ({ onImageUploaded }) => {
                 View Image {index + 1}
               </a>
               <button
-                                onClick={() => handleDeleteImage(url)}
-                                style={{
-                                    border: "none",
-                                    backgroundColor: "transparent",
-                                    color: "red",
-                                    cursor: "pointer",
-                                }}
-                                title="Delete Image"
-                            >
-                                ❌
-                            </button>
+                onClick={() => handleDeleteImage(url)}
+                style={{
+                  border: "none",
+                  backgroundColor: "transparent",
+                  color: "red",
+                  cursor: "pointer",
+                }}
+                title="Delete Image">
+                ❌
+              </button>
             </div>
           ))}
         </div>

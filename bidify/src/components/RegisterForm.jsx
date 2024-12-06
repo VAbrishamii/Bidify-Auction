@@ -27,7 +27,6 @@ const RegisterForm = ({ onregisterSuccess }) => {
       return;
     }
 
-    // Check if passwords match
     if (formData.password !== formData.confirmPassword) {
       alert("Passwords do not match.");
       return;
@@ -41,74 +40,86 @@ const RegisterForm = ({ onregisterSuccess }) => {
   };
   return (
     <div className="register-welcoming ">
-    {/* Left Side: Logo and Welcome Message */}
-    <div className="left-side-registerform">
-      <div className="text-center w-80 p-5">
-        <img
-          src={`${process.env.PUBLIC_URL}/Bidify ..png`} 
-          alt="Bidify Logo"
-          className="logo ml-6"
-        />
-        <h1 className="text-3xl font-bold mt-4">Welcome to Bidify</h1>
-        <h2>Create Your Account and unlock Exlusive Features</h2>
-        <p className="mt-4 text-gray-light">
-          By creating an account, you get <strong>1000 point credit</strong>{" "}
-          and can use it to sell or buy your items.
-        </p>
+      {/* Left Side: Logo and Welcome Message */}
+      <div className="left-side-registerform">
+        <div className="text-center w-80 p-5">
+          <img
+            src={`${process.env.PUBLIC_URL}/Bidify ..png`}
+            alt="Bidify Logo"
+            className="logo ml-6"
+          />
+          <h1 className="text-3xl font-bold mt-4">Welcome to Bidify</h1>
+          <h2>Create Your Account and unlock Exlusive Features</h2>
+          <p className="mt-4 text-gray-light">
+            By creating an account, you get <strong>1000 point credit</strong>{" "}
+            and can use it to sell or buy your items.
+          </p>
+        </div>
       </div>
-    </div>
-  
-    <form  className='form' onSubmit={handleSubmit}>
+
+      <form className="form" onSubmit={handleSubmit}>
         <div>
-        
-        <label>Name: <span className="text-red-default">*</span> </label>
-        <input
-          type="text"
-          name="name"
-          placeholder="Enter your Name"
-          required
-          onChange={handleChange}
-      
-        />
-      </div>
-      <div>
-        <label>Email: <span className="text-red-default">*</span></label>
-        <input
-          type="email"
-          name="email"
-          placeholder="Enter your email"
-          required
-          onChange={handleChange}
-        />
-      </div>
-      <div>
-        <label>Password: <span className="text-red-default">*</span></label>
-        <input
-          type="password"
-          name="password"
-          placeholder="Enter your password"
-          required
-          onChange={handleChange}
-        />
-      </div>
-      <div>
-        <label>Confirm Password: <span className="text-red-default">*</span></label>
-        <input
-          type="password"
-          name="confirmPassword"
-          placeholder="Confirm your password"
-          required
-          onChange={handleChange}
-        />
-      </div>
-      <button aria-label='Register' className="btn" type="submit">Register</button>
-      <Link aria-label='Go to Login' to="/login" className="signin-btn flex-styled">
-  
-        <button  aria-label='Login' className='w-full' type="submit">Login</button>
-      </Link>
-      {error && <p className="text-red-500">{error}</p>}
-    </form>
-  </div>
+          <label>
+            Name: <span className="text-red-default">*</span>{" "}
+          </label>
+          <input
+            type="text"
+            name="name"
+            placeholder="Enter your Name"
+            required
+            onChange={handleChange}
+          />
+        </div>
+        <div>
+          <label>
+            Email: <span className="text-red-default">*</span>
+          </label>
+          <input
+            type="email"
+            name="email"
+            placeholder="Enter your email"
+            required
+            onChange={handleChange}
+          />
+        </div>
+        <div>
+          <label>
+            Password: <span className="text-red-default">*</span>
+          </label>
+          <input
+            type="password"
+            name="password"
+            placeholder="Enter your password"
+            required
+            onChange={handleChange}
+          />
+        </div>
+        <div>
+          <label>
+            Confirm Password: <span className="text-red-default">*</span>
+          </label>
+          <input
+            type="password"
+            name="confirmPassword"
+            placeholder="Confirm your password"
+            required
+            onChange={handleChange}
+          />
+        </div>
+        <button aria-label="Register" className="btn" type="submit">
+          Register
+        </button>
+        <Link
+          aria-label="Go to Login"
+          to="/login"
+          className="signin-btn flex-styled">
+          <button aria-label="Login" className="w-full" type="submit">
+            Login
+          </button>
+        </Link>
+        {error && <p className="text-red-500">{error}</p>}
+      </form>
+    </div>
   );
 };
 export default RegisterForm;

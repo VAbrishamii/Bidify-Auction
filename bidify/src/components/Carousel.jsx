@@ -46,22 +46,20 @@ const Carousel = ({
     }
   }, [listings, isSingleListing, showAllImages]);
 
-  console.log("Listings:", listings);
-  console.log("Images for carousel", carouselImages);
 
   return (
     <div className="carousel mx-auto my-4 overflow-visible">
       {carouselImages.length > 0 ? (
         <Gallery
-          items={carouselImages} // Pass the images to react-image-gallery
-          showThumbnails={false} // Enable thumbnails below the main images
-          showFullscreenButton={true} // Enable fullscreen button
-          showPlayButton={false} // Disable play button
-          autoPlay={true} // Enable auto play
-          slideInterval={3000} // Set slide interval (in milliseconds)
-          showBullets={true} // Enable bullets below the main images
-          renderLeftNav={() => null} // Hide left navigation arrow
-          renderRightNav={() => null} // Hide right navigation
+          items={carouselImages} 
+          showThumbnails={false} 
+          showFullscreenButton={true} 
+          showPlayButton={false} 
+          autoPlay={true} 
+          slideInterval={3000} 
+          showBullets={true} 
+          renderLeftNav={() => null} 
+          renderRightNav={() => null} 
         />
       ) : (
         <p>No images available</p>

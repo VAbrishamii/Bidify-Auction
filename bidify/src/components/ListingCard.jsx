@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import Loader from "./Loader";
 import "../index.css";
 
-
 const ListingCard = ({ listing }) => {
   const [remainingTime, setRemainingTime] = useState("");
   const [loading, setLoading] = useState(false);
@@ -17,7 +16,6 @@ const ListingCard = ({ listing }) => {
       return text;
     }
     return text.substring(0, maxLength) + "...";
-
   };
 
   useEffect(() => {
@@ -56,47 +54,50 @@ const ListingCard = ({ listing }) => {
       setLoading(false);
       navigate(`/listing/${listing.id}`);
     }, 1000);
-  }
+  };
 
   return (
     <div className="listing-card">
-       {loading && <Loader />} {/* Render the loader when loading is true */}
+      {loading && <Loader />} {/* Render the loader when loading is true */}
       {!loading && (
         <>
-      {/* Image Section */}
-      {listing.media.length > 0 ? (
-        <img src={listing.media[0].url} alt={listing.media[0].alt || "Listing Image"} />
-      ) : (
-        <div className="no-image">No image available</div> // Fallback message
-      )}
+          {/* Image Section */}
+          {listing.media.length > 0 ? (
+            <img
+              src={listing.media[0].url}
+              alt={listing.media[0].alt || "Listing Image"}
+            />
+          ) : (
+            <div className="no-image">No image available</div>
+          )}
 
-      <h1>{truncateText(listing.title, MAX_TITLE_LENGTH)}</h1>
-      <p>{truncateText(listing.description, MAX_DESCRIPTION_LENGTH)}</p>
+          <h1>{truncateText(listing.title, MAX_TITLE_LENGTH)}</h1>
+          <p>{truncateText(listing.description, MAX_DESCRIPTION_LENGTH)}</p>
 
-      <div className="seller">
-        {listing.seller?.avatar?.url ? (
-          <img
-            src={listing.seller.avatar.url}
-            alt={listing.seller.avatar.alt || "Seller Avatar"}
-          />
-        ) : (
-          <div className="placeholder-avatar">No Avatar</div>
-        )}
-        <h2>Seller: {listing.seller?.name || "Unknown"}</h2>
-      </div>
+          <div className="seller">
+            {listing.seller?.avatar?.url ? (
+              <img
+                src={listing.seller.avatar.url}
+                alt={listing.seller.avatar.alt || "Seller Avatar"}
+              />
+            ) : (
+              <div className="placeholder-avatar">No Avatar</div>
+            )}
+            <h2>Seller: {listing.seller?.name || "Unknown"}</h2>
+          </div>
 
-      <div className="bids">
-        <h3>Bids: {listing._count.bids}</h3>
-      </div>
-      {/* <Link to={`/listing/${listing.id}`} className="details">View Details</Link> */}
-      <button onClick={handleViewDetails} className="details">
+          <div className="bids">
+            <h3>Bids: {listing._count.bids}</h3>
+          </div>
+
+          <button onClick={handleViewDetails} className="details">
             View Details
           </button>
 
-      <div className="end-time">
-        <p>Remainig time: {remainingTime}</p>
-      </div>
-      </>
+          <div className="end-time">
+            <p>Remainig time: {remainingTime}</p>
+          </div>
+        </>
       )}
     </div>
   );

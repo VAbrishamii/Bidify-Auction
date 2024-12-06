@@ -1,8 +1,8 @@
 import React from "react";
-import { useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import RegisterForm from "../components/RegisterForm";
 
-const RegisterPage = () => { 
+const RegisterPage = () => {
   const navigate = useNavigate();
 
   const handleRegisterSuccess = () => {
@@ -11,9 +11,8 @@ const RegisterPage = () => {
   };
   return (
     <div>
-      
       <RegisterForm onregisterSuccess={handleRegisterSuccess} />
     </div>
   );
-}
+};
 export default RegisterPage;

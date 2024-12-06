@@ -9,7 +9,6 @@ class AuctionAPI {
       headers: headers(),
     });
 
-    // Predefined API endpoints
     this.endpoints = {
       allListings: ALL_LISTING_ENDPOINT,
       singleListing: (id) => `auction/listings/${id}`,
@@ -23,16 +22,13 @@ class AuctionAPI {
       updateProfile: (name) => `auction/profiles/${name}`,
       filterByTagAndActive: (tag, active = true) =>
         `auction/listings?_tag=${encodeURIComponent(tag)}&_active=${active}`,
-
     };
   }
 
   // Reusable GET method
   async get(endpoint, params = {}) {
-    console.log(`[GET] Request to: ${endpoint}`, params); //debugging
     try {
       const response = await this.api.get(endpoint, { params });
-      console.log(`[GET] Response from: ${endpoint}`, response.data); //debugging
       return response.data;
     } catch (error) {
       this.handleError(error);
@@ -72,18 +68,18 @@ class AuctionAPI {
   handleError(error) {
     if (error.response && error.response.data) {
       const errorMessage = error.response.data.message || "An error occurred.";
-      alert(errorMessage); // Show the error message as an alert to the user
+      alert(errorMessage);
       console.error("API Error Details:", {
         status: error.response.status,
         headers: error.response.headers,
         data: error.response.data,
       });
-      throw new Error(errorMessage); // Re-throw the specific error for further handling if needed
+      throw new Error(errorMessage);
     } else {
       const fallbackMessage = "An unexpected error occurred.";
-      alert(fallbackMessage); // Show fallback alert
+      alert(fallbackMessage);
       console.error("Unexpected Error:", error.message);
-      throw new Error(fallbackMessage); // Re-throw for further handling
+      throw new Error(fallbackMessage);
     }
   }
 
@@ -94,12 +90,6 @@ class AuctionAPI {
     sort = "created",
     sortOrder = "desc"
   ) {
-    console.log("Fetching all listings with parameters:", {
-      page,
-      limit,
-      sort,
-      sortOrder,
-    }); //debugging
     return this.get(this.endpoints.allListings, {
       page,
       limit,
@@ -110,14 +100,12 @@ class AuctionAPI {
       _bids: true,
     })
       .then((data) => {
-        console.log("data in getALLListings", data);
         return {
           listings: data.data,
           meta: data.meta,
         };
       })
       .catch((error) => {
-        console.log("error in getALLListings", error);
         console.error("Error fetching listings:", error);
         throw error;
       });
@@ -149,9 +137,6 @@ class AuctionAPI {
   searchListings(query) {
     return this.get(this.endpoints.searchListings(query));
   }
-  // searchListings(query) {
-  //   return this.get(`${this.endpoints.searchListings(query)}?seller=true&bids=true`);
-  // }
 
   singleProfile(name) {
     return this.get(this.endpoints.singleProfile(name));
