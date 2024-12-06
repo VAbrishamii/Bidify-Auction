@@ -13,26 +13,23 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      # Step 2: Navigate to the project folder
-      - name: Navigate to project folder
-        run: cd bidify
-
-      # Step 3: Set up Node.js
+      # Step 2: Set up Node.js
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
           node-version: 16
 
-      # Step 4: Install dependencies and build the project
+      # Step 3: Install dependencies and build the project
       - name: Install and Build
         run: |
-          cd bidify
+          cd bidify  # Navigate to the project folder
           npm install
           npm run build
 
-      # Step 5: Deploy to GitHub Pages
+      # Step 4: Deploy to GitHub Pages
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           branch: gh-pages  # Deploy to the gh-pages branch
-          folder: bidify/build  # Path to the build folder
+          folder: bidify/build  # Path to the build folder (after running npm run build)
+          github_token: ${{ secrets.GITHUB_TOKEN }}
