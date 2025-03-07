@@ -15,7 +15,7 @@ Follow these steps to set up the project locally on your machine:
 
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/your-username/Bidify-Auction.git
+   git clone https://github.com/VAbrishamii/Bidify-Auction.git
    cd bidify
    npm install
    npm start
