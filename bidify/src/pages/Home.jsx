@@ -41,7 +41,6 @@ const Home = () => {
         const { listings = [], meta = {} } = response || {};
         setListings(listings);
         setMeta(meta || {});
-
       } catch (error) {
         console.error("Error loading listings", error);
         setListings([]);

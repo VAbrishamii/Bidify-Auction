@@ -15,7 +15,6 @@ const ListingDetails = () => {
     const loadDetailsListing = async () => {
       try {
         const listingData = await auctionAPI.getSingleListing(id);
-  
 
         if (listingData) {
           setListing(listingData.data);

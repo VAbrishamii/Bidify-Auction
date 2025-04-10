@@ -8,9 +8,9 @@ const UpdateProfile = ({ username, onUpdateAvatar }) => {
   const { userData, updateUserData } = useAppContext();
   const [avatar, setAvatar] = useState({ url: "", alt: "" });
   // eslint-disable-next-line no-unused-vars
-  const [CurrentAvatar,setCurrentAvatar] = useState("");
+  const [CurrentAvatar, setCurrentAvatar] = useState("");
   // eslint-disable-next-line no-unused-vars
-  const [CurrentBio,setCurrentBio] = useState("");
+  const [CurrentBio, setCurrentBio] = useState("");
   const [bio, setBio] = useState("");
   const [name, setName] = useState("");
   const [loading, setLoading] = useState(false);

@@ -1,7 +1,7 @@
 .loader-overlay {
-    @apply fixed top-0 left-0 w-full h-full bg-gray-light bg-opacity-50 flex justify-center items-center z-50;
-  }
-  
-  .loader {
-    @apply border-4 border-t-4 border-primary-default border-solid rounded-full w-16 h-16 animate-spin;
-  }
+  @apply fixed top-0 left-0 w-full h-full bg-gray-light bg-opacity-50 flex justify-center items-center z-50;
+}
+
+.loader {
+  @apply border-4 border-t-4 border-primary-default border-solid rounded-full w-16 h-16 animate-spin;
+}

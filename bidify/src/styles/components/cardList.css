@@ -1,43 +1,42 @@
-  .listings {
-      @apply grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 grid-rows-[auto_auto_auto] p-5; 
-    }
-  .listing-card {
-     @apply w-full border rounded-tl-2xl rounded-br-2xl shadow-md bg-white p-4 flex flex-col gap-4 max-w-md mx-auto transform transition-transform hover:scale-105 min-h-[380px];
-    
-    }
+.listings {
+  @apply grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 grid-rows-[auto_auto_auto] p-5;
+}
+.listing-card {
+  @apply w-full border rounded-tl-2xl rounded-br-2xl shadow-md bg-white p-4 flex flex-col gap-4 max-w-md mx-auto transform transition-transform hover:scale-105 min-h-[380px];
+}
 
-    .listing-card img {
-      @apply rounded-t-lg object-cover w-full h-48;
-    }
-    .no-image {
-      @apply w-full h-48 flex items-center justify-center bg-gray-light rounded-t-lg;
-    }
-    .listing-card h1 {
-      @apply text-xl font-bold text-gray-dark;
-    }
-    
-    .listing-card p {
-      @apply text-gray-mideum;
-    }
-    .seller {
-      @apply flex items-center gap-4;
-    }
-    
-    .seller img {
-      @apply w-10 h-10 rounded-full object-cover;
-    }
-    
-    .seller h2 {
-      @apply  text-gray-mideum ;
-    }
-     
-    .bids h3 {
-      @apply  text-gray-mideum;
-    } 
-    
-    .end-time p {
-      @apply  text-red-default text-center mt-auto text-sm;
-    }
-    .details {
-      @apply text-gray-dark hover:text-primary;
-    }
+.listing-card img {
+  @apply rounded-t-lg object-cover w-full h-48;
+}
+.no-image {
+  @apply w-full h-48 flex items-center justify-center bg-gray-light rounded-t-lg;
+}
+.listing-card h1 {
+  @apply text-xl font-bold text-gray-dark;
+}
+
+.listing-card p {
+  @apply text-gray-mideum;
+}
+.seller {
+  @apply flex items-center gap-4;
+}
+
+.seller img {
+  @apply w-10 h-10 rounded-full object-cover;
+}
+
+.seller h2 {
+  @apply text-gray-mideum;
+}
+
+.bids h3 {
+  @apply text-gray-mideum;
+}
+
+.end-time p {
+  @apply text-red-default text-center mt-auto text-sm;
+}
+.details {
+  @apply text-gray-dark hover:text-primary;
+}

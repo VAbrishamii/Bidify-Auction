@@ -4,22 +4,15 @@
 
 @import "~slick-carousel/slick/slick.css";
 @import "~slick-carousel/slick/slick-theme.css";
-@import './styles/components/navbar.css';
-@import './styles/components/loader.css';
-@import './styles/components/carousel.css';
-@import './styles/components/filterBar.css';
-@import './styles/components/cardList.css';
-@import './styles/components/detailspage.css';
-@import './styles/components/profile.css';
-@import './styles/utilities.css';
+@import "./styles/components/navbar.css";
+@import "./styles/components/loader.css";
+@import "./styles/components/carousel.css";
+@import "./styles/components/filterBar.css";
+@import "./styles/components/cardList.css";
+@import "./styles/components/detailspage.css";
+@import "./styles/components/profile.css";
+@import "./styles/utilities.css";
 @import "./styles/layout.css";
-
-
-
-
-
-
-
 
 /* Style the scrollbar */
 ::-webkit-scrollbar {
@@ -42,4 +35,4 @@
 /* Scrollbar thumb on hover */
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
-} 
+}

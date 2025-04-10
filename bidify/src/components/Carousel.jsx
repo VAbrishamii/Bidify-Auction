@@ -46,20 +46,19 @@ const Carousel = ({
     }
   }, [listings, isSingleListing, showAllImages]);
 
-
   return (
     <div className="carousel mx-auto my-4 overflow-visible">
       {carouselImages.length > 0 ? (
         <Gallery
-          items={carouselImages} 
-          showThumbnails={false} 
-          showFullscreenButton={true} 
-          showPlayButton={false} 
-          autoPlay={true} 
-          slideInterval={3000} 
-          showBullets={true} 
-          renderLeftNav={() => null} 
-          renderRightNav={() => null} 
+          items={carouselImages}
+          showThumbnails={false}
+          showFullscreenButton={true}
+          showPlayButton={false}
+          autoPlay={true}
+          slideInterval={3000}
+          showBullets={true}
+          renderLeftNav={() => null}
+          renderRightNav={() => null}
         />
       ) : (
         <p>No images available</p>
