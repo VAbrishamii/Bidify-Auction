@@ -5,7 +5,13 @@ import Carousel from "../components/Carousel";
 import PlaceBid from "../components/PlaceBid";
 
 const auctionAPI = new AuctionAPI("https://v2.api.noroff.dev/");
-
+/**
+ *
+ * ListingDetails component that displays the details of a specific listing.
+ * It fetches the listing data based on the ID from the URL parameters,
+ * handles the bidding process, and displays seller information and top bidders.
+ * It uses React hooks for state management and side effects,
+ */
 const ListingDetails = () => {
   const { id } = useParams();
   const [listing, setListing] = useState(null);

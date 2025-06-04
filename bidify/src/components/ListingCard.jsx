@@ -2,7 +2,12 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Loader from "./Loader";
 import "../index.css";
-
+/**
+ * ListingCard component displays a card for a single listing.
+ * It includes the listing's image, title, description, seller information,
+ * number of bids, and remaining time for the auction.
+ * It also provides a button to view more details about the listing.
+ */
 const ListingCard = ({ listing }) => {
   const [remainingTime, setRemainingTime] = useState("");
   const [loading, setLoading] = useState(false);

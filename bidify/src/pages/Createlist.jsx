@@ -2,7 +2,12 @@ import React from "react";
 import AuctionAPI from "../service/AuctionAPI";
 import ImageUploader from "../components/ImageUploader";
 import { useNavigate } from "react-router-dom";
-
+/**
+ * Createlist component allows users to create a new auction listing.
+ * It provides a form for entering listing details such as title, description, tags, image, and end date.
+ *  It handles form submission, image uploads, and validation of the end date.
+ * It uses React hooks for state management and integrates with the AuctionAPI service.
+ */
 const Createlist = () => {
   const [formData, setFormData] = React.useState({
     title: "",

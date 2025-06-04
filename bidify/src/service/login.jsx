@@ -1,7 +1,12 @@
 import { LOGIN_ENDPOINT } from "../constants/apiLinks";
 import axios from "axios";
 import { headers } from "../constants/headers";
-
+/**
+ * loginUser function handles user login by sending credentials to the server.
+ * It uses axios to make a POST request to the login endpoint,
+ * and returns the response data if successful.
+ * If an error occurs, it alerts the user with the error message.
+ */
 export const loginUser = async (credentials) => {
   try {
     const response = await axios.post(

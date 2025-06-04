@@ -1,7 +1,12 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { loginUser } from "../service/login";
-
+/**
+ * LoginForm component handles user login functionality.
+ * It includes fields for email and password,
+ * and submits the credentials to the server for authentication.
+ * On successful login, it stores the access token and user data in localStorage
+ */
 const LoginForm = () => {
   const [email, setEmail] = React.useState("");
   console.log("email", email);

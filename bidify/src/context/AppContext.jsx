@@ -1,7 +1,12 @@
 import { createContext, useState, useContext } from "react";
 
 const AppContext = createContext();
-
+/**
+ * useAppContext is a custom hook that provides access to the AppContext.
+ * It allows components to access and manipulate the application's global state,
+ * including active tags, current page, user data, search query, and results.
+ * This hook simplifies the process of consuming context in functional components.
+ */
 export const useAppContext = () => {
   return useContext(AppContext);
 };

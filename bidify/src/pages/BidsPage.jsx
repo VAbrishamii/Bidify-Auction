@@ -2,7 +2,13 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import AuctionAPI from "../service/AuctionAPI";
 import { Link } from "react-router-dom";
-
+/**
+ *
+ * BidsPage component fetches and displays all bids made by a specific user.
+ * It uses the AuctionAPI service to retrieve the bids data based on the username from the URL parameters.
+ * It handles loading state and displays a message if no bids are found.
+ * Each bid includes the amount, placement time, listing details, and a link to view the listing details.
+ */
 const BidsPage = () => {
   const { username } = useParams();
   const [bids, setBids] = useState([]);

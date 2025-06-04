@@ -7,7 +7,15 @@ import { useLocation } from "react-router-dom";
 import useAuctipnAPI from "../constants/instance";
 import { useAppContext } from "../context/AppContext";
 import Loader from "../components/Loader";
-
+/**
+ * Home component that displays the main page of the application.
+ * It fetches and displays listings, allows filtering by tags,
+ * and handles pagination.
+ * It uses React hooks for state management and side effects,
+ * and integrates with the AuctionAPI service.
+ *  It also includes a carousel for featured listings and a filter bar for tag selection.
+ * It handles loading state and displays a message if no listings are available.
+ */
 const Home = () => {
   const { activeTag, setActiveTag, currentPage, setCurrentPage } =
     useAppContext();
@@ -93,7 +101,7 @@ const Home = () => {
             ))}
           </div>
         ) : (
-          <p>No listings available.</p>
+          <p className="filter-bar">No listings available.</p>
         )}
 
         {/* Pagination  for filted by tag*/}

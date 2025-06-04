@@ -3,7 +3,12 @@ import AuctionAPI from "../service/AuctionAPI";
 import ListingCard from "../components/ListingCard";
 import Pagination from "../components/pagination";
 import { useAppContext } from "../context/AppContext";
-
+/**
+ * SearchResults component that displays the results of a search query.
+ * It fetches search results based on the user's query,
+ * handles pagination,
+ * and displays the results in a grid format.
+ */
 const SearchResults = () => {
   const { searchQuery, results, setResults, currentPage, setCurrentPage } =
     useAppContext();

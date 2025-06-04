@@ -1,5 +1,6 @@
-import React from "react";
-
+/**
+ * A simple loading spinner component.
+ */
 const Loader = () => {
   return (
     <div className="loader-overlay">

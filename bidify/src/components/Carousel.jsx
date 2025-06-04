@@ -1,7 +1,12 @@
 import React, { useState, useEffect } from "react";
 import Gallery from "react-image-gallery";
 import "react-image-gallery/styles/css/image-gallery.css";
-
+/**
+ *
+ * Carousel component displays a carousel of images for listings.
+ * It can handle both single listing images and multiple listings.
+ *
+ */
 const Carousel = ({
   listings,
   isSingleListing = false,

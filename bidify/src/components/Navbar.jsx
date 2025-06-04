@@ -3,7 +3,12 @@ import { Link, useNavigate } from "react-router-dom";
 import { useAppContext } from "../context/AppContext";
 import Search from "./Search";
 import { MdHome, MdLightMode, MdDarkMode, MdPerson } from "react-icons/md";
-
+/**
+ * Navbar component provides navigation links, a search bar, and user authentication features.
+ * It includes a dropdown menu for user actions like profile, edit, create listing, and logout.
+ * It also supports dark mode toggling and handles user login state.
+ * The component uses React hooks for state management and side effects.
+ */
 const Navbar = () => {
   const { setActiveTag, setCurrentPage, userData, updateUserData } =
     useAppContext();

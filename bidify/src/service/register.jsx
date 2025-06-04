@@ -1,5 +1,10 @@
 import { REGISTER_ENDPOINT } from "../constants/apiLinks";
-
+/**
+ * registerUser function handles user registration by sending user data to the server.
+ * It uses the Fetch API to make a POST request to the registration endpoint,
+ * and returns the response data if successful.
+ * If an error occurs, it alerts the user with the error message.
+ */
 export const registerUser = async (user) => {
   try {
     console.log("user", user);

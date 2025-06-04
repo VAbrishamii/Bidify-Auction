@@ -3,7 +3,13 @@ import AuctionAPI from "../service/AuctionAPI";
 import { useNavigate } from "react-router-dom";
 import ImageUploader from "./ImageUploader";
 import { useAppContext } from "../context/AppContext";
-
+/**
+ *
+ * UpdateProfile component allows users to update their profile information including avatar and bio.
+ * It fetches the current profile data on mount, displays it, and provides a form for updates.
+ * It handles image uploads, form submission, and displays success or error messages.
+ * It uses React hooks for state management and side effects, and integrates with the AuctionAPI service.
+ */
 const UpdateProfile = ({ username, onUpdateAvatar }) => {
   const { userData, updateUserData } = useAppContext();
   const [avatar, setAvatar] = useState({ url: "", alt: "" });

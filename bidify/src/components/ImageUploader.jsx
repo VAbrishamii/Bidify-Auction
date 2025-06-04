@@ -1,5 +1,9 @@
 import React, { useState } from "react";
-
+/**
+ * ImageUploader component allows users to upload images to Cloudinary.
+ * It handles multiple image uploads, displays uploaded images, and allows deletion of images.
+ * It uses Cloudinary's API to upload images and provides feedback on the upload status.
+ */
 const ImageUploader = ({ onImageUploaded }) => {
   const [imageFiles, setImageFiles] = useState(null);
   const [uploading, setUploading] = useState(false);

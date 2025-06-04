@@ -1,7 +1,12 @@
 import axios from "axios";
 import { headers } from "../constants/headers";
 import { ALL_LISTING_ENDPOINT, API_BASE } from "../constants/apiLinks";
-
+/**
+ * AuctionAPI class provides methods to interact with the auction API.
+ * It includes methods for fetching listings, creating listings, bidding on listings,
+ * searching listings, and managing user profiles.
+ * It uses axios for HTTP requests and handles errors gracefully.
+ */
 class AuctionAPI {
   constructor(baseURL = API_BASE) {
     this.api = axios.create({

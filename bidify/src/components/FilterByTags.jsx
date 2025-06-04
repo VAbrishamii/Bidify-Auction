@@ -1,5 +1,10 @@
-import React from "react";
-
+/**
+ *
+ * FilterByTags Component
+ * This component renders a filter bar with buttons for different tags.
+ * When a button is clicked, it toggles the active state of that tag.
+ *
+ */
 const FilterBar = ({ activeTag, setActiveTag }) => {
   const tags = [
     { name: "art", image: `${process.env.PUBLIC_URL}/art.jpg` },

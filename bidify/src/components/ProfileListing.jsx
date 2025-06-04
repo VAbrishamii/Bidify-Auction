@@ -3,7 +3,12 @@ import { faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 import { useState, useEffect } from "react";
 import AuctionAPI from "../service/AuctionAPI";
 import ListingCard from "./ListingCard";
-
+/**
+ * Listings component fetches and displays all listings for a given user.
+ * It allows the user to delete their listings.
+ * It handles loading state and error handling during the fetch operation.
+ * It also provides a confirmation dialog before deleting a listing.
+ */
 const Listings = ({ userName }) => {
   const [listings, setListings] = useState([]);
   const [loading, setLoading] = useState(true);

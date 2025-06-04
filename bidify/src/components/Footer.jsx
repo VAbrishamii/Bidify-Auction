@@ -1,6 +1,8 @@
-import React from "react";
 import { FaInstagram, FaFacebook } from "react-icons/fa";
-
+/**
+ * Footer component that displays contact information and social media links.
+ * It includes a section for contact details and icons for Instagram and Facebook.
+ */
 const Footer = () => {
   return (
     <footer className="footer">

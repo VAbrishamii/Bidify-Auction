@@ -3,7 +3,12 @@ import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import AuctionAPI from "../service/AuctionAPI";
 import Listings from "../components/ProfileListing";
-
+/**
+ * Profile component that displays user profile information.
+ * It fetches the profile data based on the username from the URL parameters,
+ *  handles loading and error states,
+ * and displays the user's avatar, name, bio, credits, listings count, and wins count.
+ */
 const Profile = () => {
   const { username } = useParams();
   const [profileData, setProfileData] = useState(null);

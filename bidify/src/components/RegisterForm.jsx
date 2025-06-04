@@ -1,7 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { registerUser } from "../service/register";
-
+/**
+ * RegisterForm component handles user registration functionality.
+ * It includes fields for name, email, password, and confirm password.
+ *  It validates the email format and checks if the passwords match before submitting the form.
+ * On successful registration, it calls the onregisterSuccess callback with the user data.
+ */
 const RegisterForm = ({ onregisterSuccess }) => {
   const [formData, setFormData] = React.useState({
     name: "",
