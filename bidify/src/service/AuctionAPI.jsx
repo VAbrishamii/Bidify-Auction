@@ -1,6 +1,7 @@
 import axios from "axios";
 import { headers } from "../constants/headers";
 import { ALL_LISTING_ENDPOINT, API_BASE } from "../constants/apiLinks";
+import { toast } from "react-toastify";
 /**
  * AuctionAPI class provides methods to interact with the auction API.
  * It includes methods for fetching listings, creating listings, bidding on listings,
@@ -73,7 +74,7 @@ class AuctionAPI {
   handleError(error) {
     if (error.response && error.response.data) {
       const errorMessage = error.response.data.message || "An error occurred.";
-      alert(errorMessage);
+      toast.error(errorMessage);
       console.error("API Error Details:", {
         status: error.response.status,
         headers: error.response.headers,
@@ -82,7 +83,7 @@ class AuctionAPI {
       throw new Error(errorMessage);
     } else {
       const fallbackMessage = "An unexpected error occurred.";
-      alert(fallbackMessage);
+      toast.error(fallbackMessage);
       console.error("Unexpected Error:", error.message);
       throw new Error(fallbackMessage);
     }
@@ -126,7 +127,7 @@ class AuctionAPI {
   bidOnListing(id, data) {
     const token = localStorage.getItem("token");
     if (!token) {
-      alert("You must be logged in to place a bid");
+      toast.error("You must be logged in to place a bid");
       return;
     }
     return this.post(this.endpoints.bids(id), data);

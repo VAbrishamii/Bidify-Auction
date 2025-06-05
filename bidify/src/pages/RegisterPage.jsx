@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import RegisterForm from "../components/RegisterForm";
+import { toast } from "react-hot-toast";
 /**
  * RegisterPage component that handles user registration.
  * It uses the RegisterForm component to collect user information
@@ -10,7 +11,7 @@ const RegisterPage = () => {
   const navigate = useNavigate();
 
   const handleRegisterSuccess = () => {
-    alert("Registration successful");
+    toast.success("Registration successful");
     navigate("/login");
   };
   return (

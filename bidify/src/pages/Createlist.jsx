@@ -2,6 +2,8 @@ import React from "react";
 import AuctionAPI from "../service/AuctionAPI";
 import ImageUploader from "../components/ImageUploader";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-hot-toast";
+
 /**
  * Createlist component allows users to create a new auction listing.
  * It provides a form for entering listing details such as title, description, tags, image, and end date.
@@ -46,11 +48,11 @@ const Createlist = () => {
       const endDate = new Date(formData.endDateTime);
 
       if (isNaN(endDate.getTime())) {
-        alert("Please provide a valid end date.");
+        toast.error("Please provide a valid end date.");
         return;
       }
       if (endDate < new Date()) {
-        alert("End date must be in the future.");
+        toast.error("End date must be in the future.");
         return;
       }
 
@@ -63,15 +65,15 @@ const Createlist = () => {
         endsAt: endDate.toISOString(),
       };
 
-      console.log("request data", data);
+
 
       const response = await auctionAPI.createListing(data);
-      alert("Listing created successfully");
-      console.log("createListing response", response);
+      toast.success("Listing created successfully");
+   
       navigate("/", { state: { newListing: response.data } });
     } catch (error) {
       console.error("createListing error", error);
-      alert("An error occurred while creating the listing");
+      toast.error("An error occurred while creating the listing");
     } finally {
       setLoading(false);
     }

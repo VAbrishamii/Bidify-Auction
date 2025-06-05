@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { registerUser } from "../service/register";
+import { toast } from "react-hot-toast";
 /**
  * RegisterForm component handles user registration functionality.
  * It includes fields for name, email, password, and confirm password.
@@ -28,12 +29,12 @@ const RegisterForm = ({ onregisterSuccess }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!isValidEmail(formData.email)) {
-      alert("Email must be in the format 'email@stud.noroff.no'");
+      toast.error("Email must be in the format 'email@stud.noroff.no'");
       return;
     }
 
     if (formData.password !== formData.confirmPassword) {
-      alert("Passwords do not match.");
+      toast.error("Passwords do not match.");
       return;
     }
     try {

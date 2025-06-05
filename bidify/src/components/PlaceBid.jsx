@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import  { useState } from "react";
+import { toast } from "react-toastify";
 /**
  * ImageUploader component allows users to upload images to Cloudinary.
  * It handles multiple image uploads, displays uploaded images, and allows deletion of images.
@@ -16,24 +17,24 @@ const PlaceBid = ({
 
   const handlePlaceBid = async () => {
     if (!token) {
-      alert("You must be logged in to place a bid.");
+      toast.error("You must be logged in to place a bid.");
       return;
     }
 
     if (bidAmount <= 0) {
-      alert("Please enter a valid bid amount.");
+      toast.error("Please enter a valid bid amount.");
       return;
     }
 
     try {
       const bidData = { amount: parseFloat(bidAmount) };
-      console.log("Bid Data:", bidData);
+ 
 
       const response = await auctionAPI.bidOnListing(listingId, bidData);
-      console.log("Response:", response);
+   
 
       if (response) {
-        alert(`Successfully placed a bid of $${bidAmount}`);
+        toast.success(`Successfully placed a bid of $${bidAmount}`);
         onBidPlaced(bidData.amount);
         setBidAmount("");
         const updatedListing = await auctionAPI.getSingleListing(listingId);
@@ -41,7 +42,7 @@ const PlaceBid = ({
       }
     } catch (error) {
       console.error("Error placing bid:", error);
-      alert("Failed to place a bid. Please try again.");
+      toast.error("Failed to place a bid. Please try again.");
     }
   };
 

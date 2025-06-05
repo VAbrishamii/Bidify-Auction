@@ -11,6 +11,7 @@ import SearchResults from "./pages/SearchResult";
 import BidsPage from "./pages/BidsPage";
 import Edit from "./pages/Edit";
 import { AppProvider } from "./context/AppContext";
+import { Toaster } from "react-hot-toast";
 import "./index.css";
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
     <>
       <AppProvider>
         <Layout>
+          <Toaster position="botton-right" reverseOrder={false} />
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/Login" element={<Login />} />
