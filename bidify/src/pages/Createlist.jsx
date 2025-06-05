@@ -31,7 +31,6 @@ const Createlist = () => {
   };
 
   const handleImageUpload = (imageUrls) => {
-    "imageUrl", imageUrls;
     setFormData((prev) => ({ ...prev, image: imageUrls }));
   };
 
@@ -75,7 +74,6 @@ const Createlist = () => {
 
   return (
     <div>
-      {/* <h1>Create Auction Listing</h1> */}
       <form className="form" onSubmit={handleSubmit}>
         <div className="form-group">
           <label htmlFor="title">Title:</label>
