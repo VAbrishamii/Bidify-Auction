@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import ListingCard from "../components/ListingCard";
 import Carousel from "../components/Carousel";
 import Pagination from "../components/pagination";
@@ -7,6 +7,7 @@ import { useLocation } from "react-router-dom";
 import useAuctipnAPI from "../constants/instance";
 import { useAppContext } from "../context/AppContext";
 import Loader from "../components/Loader";
+import { toast } from "react-hot-toast";
 /**
  * Home component that displays the main page of the application.
  * It fetches and displays listings, allows filtering by tags,
