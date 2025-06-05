@@ -1,7 +1,8 @@
 import { API_key } from "./apiLinks";
 /**
  * Function to generate headers for API requests
- * 
+ * It retrieves the token from localStorage and includes it in the headers.
+ *
  */
 export function headers() {
   const token = localStorage.getItem("token");

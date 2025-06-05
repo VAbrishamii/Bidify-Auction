@@ -164,3 +164,4 @@ class AuctionAPI {
 }
 
 export default AuctionAPI;
+
