@@ -1,5 +1,5 @@
 import  { useState } from "react";
-import { toast } from "react-toastify";
+import { toast } from "react-hot-toast";
 /**
  * ImageUploader component allows users to upload images to Cloudinary.
  * It handles multiple image uploads, displays uploaded images, and allows deletion of images.

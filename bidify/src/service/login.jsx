@@ -1,7 +1,7 @@
 import { LOGIN_ENDPOINT } from "../constants/apiLinks";
 import axios from "axios";
 import { headers } from "../constants/headers";
-import { toast } from "react-toastify";
+import { toast } from "react-hot-toast";
 /**
  * loginUser function handles user login by sending credentials to the server.
  * It uses axios to make a POST request to the login endpoint,

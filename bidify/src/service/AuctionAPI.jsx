@@ -1,7 +1,7 @@
 import axios from "axios";
 import { headers } from "../constants/headers";
 import { ALL_LISTING_ENDPOINT, API_BASE } from "../constants/apiLinks";
-import { toast } from "react-toastify";
+import { toast } from "react-hot-toast";
 /**
  * AuctionAPI class provides methods to interact with the auction API.
  * It includes methods for fetching listings, creating listings, bidding on listings,

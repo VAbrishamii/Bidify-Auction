@@ -1,5 +1,5 @@
 import { REGISTER_ENDPOINT } from "../constants/apiLinks";
-import { toast } from "react-toastify";
+import { toast } from "react-hot-toast";
 /**
  * registerUser function handles user registration by sending user data to the server.
  * It uses the Fetch API to make a POST request to the registration endpoint,
