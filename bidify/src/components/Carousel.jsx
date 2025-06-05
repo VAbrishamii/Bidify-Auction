@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import Gallery from "react-image-gallery";
 import "react-image-gallery/styles/css/image-gallery.css";
 /**
@@ -66,7 +66,7 @@ const Carousel = ({
           renderRightNav={() => null}
         />
       ) : (
-        <p>No images available</p>
+        <p className="filter-result">No images available</p>
       )}
     </div>
   );

@@ -73,7 +73,7 @@ const ListingCard = ({ listing }) => {
               alt={listing.media[0].alt || "Listing Image"}
             />
           ) : (
-            <div className="no-image">No image available</div>
+            <div className="filter-result">No image available</div>
           )}
 
           <h1>{truncateText(listing.title, MAX_TITLE_LENGTH)}</h1>
