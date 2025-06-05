@@ -82,6 +82,11 @@ const Home = () => {
         currentPage * itemsPerPage
       )
     : listings;
+  useEffect(() => {
+    if (!loading && displayedListings.length === 0) {
+      toast("No listings found for this filter.");
+    }
+  }, [loading, displayedListings]);
 
   return (
     <div className="home-page animate-spinSlow">
