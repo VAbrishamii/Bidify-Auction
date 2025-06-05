@@ -47,6 +47,12 @@ Once the application is up and running, follow these steps:
 - **React Router**: For handling routing within the application.
 - **Axios**: For making HTTP requests to the backend API.
 
+## Improvment 
+- Add more detailed error handling for user actions.
+- Breaking down some larger components into smaller
+
+## I will appreciate to give me suggestion for more improvment.
+
 ## Link to visit
  https://vabrishamii.github.io/Bidify-Auction/
 
