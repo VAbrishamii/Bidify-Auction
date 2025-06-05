@@ -9,18 +9,15 @@ import { loginUser } from "../service/login";
  */
 const LoginForm = () => {
   const [email, setEmail] = React.useState("");
-  console.log("email", email);
   const [password, setPassword] = React.useState("");
-  console.log("password", password);
   const [error, setError] = React.useState("");
-  console.log("error", error);
 
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const credentials = { email, password };
-    console.log("credentials", credentials);
+
     try {
       const response = await loginUser(credentials);
       const { accessToken, ...userData } = response.data;

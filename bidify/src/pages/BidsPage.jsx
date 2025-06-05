@@ -19,7 +19,6 @@ const BidsPage = () => {
       try {
         const api = new AuctionAPI();
         const fetchedBids = await api.allBidsByProfile(username);
-        console.log("fetchedBids", fetchedBids);
         setBids(fetchedBids);
       } catch (error) {
         console.error("Error fetching bids:", error);

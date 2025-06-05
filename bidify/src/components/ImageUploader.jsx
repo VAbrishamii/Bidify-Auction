@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { toast } from "react-hot-toast";
+
 /**
  * ImageUploader component allows users to upload images to Cloudinary.
  * It handles multiple image uploads, displays uploaded images, and allows deletion of images.
@@ -31,7 +32,6 @@ const ImageUploader = ({ onImageUploaded }) => {
       formData.append("upload_preset", "ml_default");
 
       try {
-        console.log("uploading image");
         const response = await fetch(
           "https://api.cloudinary.com/v1_1/dihplbjah/image/upload",
           {
@@ -48,7 +48,6 @@ const ImageUploader = ({ onImageUploaded }) => {
 
         const data = await response.json();
         uploadedUrls.push(data.secure_url);
-        console.log("uploading image data", data);
       } catch (error) {
         console.error("Error uploading image:", error);
       }

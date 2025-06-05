@@ -24,8 +24,6 @@ const Createlist = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    console.log("name ^ value", name, value);
-
     setFormData((prev) => ({
       ...prev,
       [name]: name === "endDateTime" ? value.slice(0, 16) : value,
@@ -33,7 +31,7 @@ const Createlist = () => {
   };
 
   const handleImageUpload = (imageUrls) => {
-    console.log("imageUrl", imageUrls);
+    "imageUrl", imageUrls;
     setFormData((prev) => ({ ...prev, image: imageUrls }));
   };
 
@@ -43,8 +41,6 @@ const Createlist = () => {
     setLoading(true);
 
     try {
-      console.log("FormData", formData);
-
       const endDate = new Date(formData.endDateTime);
 
       if (isNaN(endDate.getTime())) {
@@ -65,11 +61,9 @@ const Createlist = () => {
         endsAt: endDate.toISOString(),
       };
 
-
-
       const response = await auctionAPI.createListing(data);
       toast.success("Listing created successfully");
-   
+
       navigate("/", { state: { newListing: response.data } });
     } catch (error) {
       console.error("createListing error", error);
