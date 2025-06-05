@@ -3,11 +3,11 @@
 Bidify is an online auction platform built using React. It allows users to place bids on various products, track active auctions, and manage their profiles. This project aims to provide a seamless and interactive auction experience for users.
 
 ## Table of Contents
+
 - [Installation](#installation)
 - [Features](#features)
 - [Usage](#usage)
 - [Technologies Used](#technologies-used)
-
 
 ## Installation
 
@@ -19,8 +19,9 @@ Follow these steps to set up the project locally on your machine:
    cd bidify
    npm install
    npm start
+   ```
 
-Open http://localhost:3000 in your browser to see the application in action.   
+Open http://localhost:3000 in your browser to see the application in action.
 
 ## Features
 
@@ -47,14 +48,13 @@ Once the application is up and running, follow these steps:
 - **React Router**: For handling routing within the application.
 - **Axios**: For making HTTP requests to the backend API.
 
-## Improvment 
+## Improvment
+
 - Add more detailed error handling for user actions.
 - Breaking down some larger components into smaller
 
 ## I will appreciate to give me suggestion for more improvment.
 
 ## Link to visit
-https://bidify-auction.vercel.app/#/listing/c8d9c949-05ef-4c55-b10d-f573609b8a28
 
-
-
+https://bidify-auction.vercel.app/
