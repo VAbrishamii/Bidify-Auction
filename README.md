@@ -54,7 +54,7 @@ Once the application is up and running, follow these steps:
 ## I will appreciate to give me suggestion for more improvment.
 
 ## Link to visit
- https://vabrishamii.github.io/Bidify-Auction/
+https://bidify-auction.vercel.app/#/listing/c8d9c949-05ef-4c55-b10d-f573609b8a28
 
 
 
