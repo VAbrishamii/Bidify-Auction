@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/Bidify-Auction/static/css/main.9b5f9c0a.css",
-    "main.js": "/Bidify-Auction/static/js/main.53b0cbc1.js",
+    "main.js": "/Bidify-Auction/static/js/main.50502464.js",
     "static/js/453.4b7951fa.chunk.js": "/Bidify-Auction/static/js/453.4b7951fa.chunk.js",
     "static/media/slick.svg": "/Bidify-Auction/static/media/slick.2630a3e3eab21c607e21.svg",
     "static/media/slick.eot": "/Bidify-Auction/static/media/slick.a4e97f5a2a64f0ab1323.eot",
@@ -9,11 +9,11 @@
     "static/media/slick.woff": "/Bidify-Auction/static/media/slick.295183786cd8a1389865.woff",
     "index.html": "/Bidify-Auction/index.html",
     "main.9b5f9c0a.css.map": "/Bidify-Auction/static/css/main.9b5f9c0a.css.map",
-    "main.53b0cbc1.js.map": "/Bidify-Auction/static/js/main.53b0cbc1.js.map",
+    "main.50502464.js.map": "/Bidify-Auction/static/js/main.50502464.js.map",
     "453.4b7951fa.chunk.js.map": "/Bidify-Auction/static/js/453.4b7951fa.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.9b5f9c0a.css",
-    "static/js/main.53b0cbc1.js"
+    "static/js/main.50502464.js"
   ]
 }
