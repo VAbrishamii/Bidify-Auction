@@ -107,7 +107,7 @@ const Home = () => {
             ))}
           </div>
         ) : (
-          <p className="filter-bar">No listings available.</p>
+          <p className="filter-result">No listings available.</p>
         )}
 
         {/* Pagination  for filted by tag*/}

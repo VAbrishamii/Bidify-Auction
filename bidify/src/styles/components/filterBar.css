@@ -19,3 +19,6 @@
 .filter-item {
   @apply items-center relative;
 }
+.filter-result {
+  @apply flex items-center justify-center gap-2 p-4;
+}
