@@ -50,8 +50,8 @@ Once the application is up and running, follow these steps:
 
 ## Improvment
 
-- Add more detailed error handling for user actions.
-- Breaking down some larger components into smaller
+- Replace Alert with Toast as a notification to better user experience.
+- Add some styles for user experience.
 
 ## I will appreciate to give me suggestion for more improvment.
 
